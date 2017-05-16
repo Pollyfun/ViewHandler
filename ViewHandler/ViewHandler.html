@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>ViewHandler</title>
+    <meta http-equiv="X-UA-Compatible" content="IE =edge,chrome =1" />
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width =device-width, initial-scale=1.0" />
+    <!--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/2.0.0-beta1/css/bootstrap-select.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-shim.min.js"></script>	< !-- IE8/IE9 alasql 'bind' -- >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-sham.min.js"></script>	< !-- IE8/IE9 alasql 'create' -- >
+    -->
+    <link rel="stylesheet" href="Scripts/External/bootstrap/3.3.7/bootstrap.min.css" />
+    <link rel="stylesheet" href="Scripts/External/bootstrap-select/2.0.0-beta1/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="Css/viewHandler.css" />
+
+    <script src="Scripts/External/es5-shim/4.5.7/es5-shim.min.js"></script>	<!-- IE8/IE9 alasql 'bind' -->
+    <script src="Scripts/External/es5-shim/4.5.7/es5-sham.min.js"></script>	<!-- IE8/IE9 alasql 'bind' -->
+    <script src="Scripts/External/alasql.min.js"></script>
+</head>
+<body>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+
+    <div class="container" id="main-area">
+        <!--- container: for a responsive fixed width container-->
+        <!-- Dropdown filters -->
+        <div id="filter-area" class="row">
+            <div class="panel panel-default">
+                <!--- panel-default and panel-body is used to create frame around the filter row -->
+                <div class="panel-body nopadding">
+                    <ul id="filter-row"></ul>	<!--- id used in javascript -->
+                </div>
+            </div>
+            <div class="sectionseparator"></div>  <!---has to be inside the filter-area to keep in fixed header (when using innerScroll) -->
+        </div>
+
+        <div id="data-area" class="row hidden">
+            <div id="overlay">
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body nopadding" id="data-content">
+                    <!--- The container for dynamically created rows -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascript -->
+    <!-- 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/2.0.0-beta1/js/bootstrap-select.min.js"></script> 
+    -->
+    <script src="Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+    <script src="Scripts/External/bootstrap-select/2.0.0-beta1/bootstrap-select.min.js"></script>
+    <script src="Scripts/supportFunctions.js"></script>
+    <script src="Scripts/viewConfiguration.js"></script>
+    <script src="Scripts/columnInfoVH.js"></script>
+    <script src="Scripts/dropFilterVH.js"></script>
+    <script src="Scripts/spin.js"></script>
+    <script src="Scripts/viewHandler.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

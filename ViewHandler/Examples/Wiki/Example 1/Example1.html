@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Example 1</title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="/Scripts/interface/local.js"></script>
+</head>
+<body>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+        'use strict';
+        //var SERVER_DOMAIN = 'http://dev.psksyd.com';    // used when it's a local container. Empty in the real container.
+        //var viewHandlerDb = '/psk/ViewHandlerBase.nsf'; // hardcoded in the local Container. In the real Container this is done in the HTML Head Content.
+        //var webdbname = '/kund/preem/Preembygg.nsf';     // hardcoded in the local Container. In the real Container this is done in the HTML Head Content.
+        //var inspectionDb='/kund/preem/tillsyn.nsf';
+        //var ID_VIEWHANDLER = 'viewhandlerTillsyner';
+        //var DEFAULT_CONFIGNAME = 'Example1.config';
+
+        /*$(function () {
+            createView({ containerId: ID_VIEWHANDLER, configName: DEFAULT_CONFIGNAME, serverDomain: SERVER_DOMAIN, viewHandlerPath: viewHandlerDb });
+        });*/
+
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('nu börjar det..');
+            createView({ containerId: 'viewhandler', configName: 'Example1.config' });
+            //ViewHandler.createView('viewhandler', 'Example1.config', '../../../ViewHandler.html', function(viewConfig) {
+            //    console.info('configure..', viewConfig);
+            //    viewConfig.addDataStore('/Examples/Wiki/Example 1/data1.json');
+            //});
+        });
+
+    </script>
+</body>
+</html>

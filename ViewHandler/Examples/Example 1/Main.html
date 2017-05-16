@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Example 1</title>
+    <meta charset="utf-8">
+    <!-- start Bootstrap subform -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    <!-- end Bootstrap subform -->
+
+    <link rel="stylesheet" href="viewHandlerContainer.css" />
+    <script src="viewHandlerContainer.js"></script>
+    <script src="/Scripts/columnInfoVH.js"></script> <!-- behövs i viewHandlerCustom.js -->
+    <script src="../../Scripts/interface/viewHandler.js"></script>
+    <!-- <script src="../../Scripts/interface/viewHandler.js"></script> -->
+</head>
+<body>
+    <form>
+        <style>
+            div.outercontainer {
+                padding-left: 11px;
+                padding-top: 20px;
+                margin-left: 0px;
+            }
+
+            select.hideduringload {
+                display: none;
+            }
+        </style><!-- some styling -->
+        <span><strong>MULTIPLE VIEWHANDLERS!</strong></span>
+
+
+        <div class="container outercontainer">
+            <div class="row">
+                <!--------------------------------------- Main controls ------------------------------------->
+                <div class="col-xs-12 col-lg-6 col-sm-12 col-md-7">
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-8" style="height:11px">&nbsp</div>
+                        <div class="col-md-8 viewnavpath" id="ptitle1">
+                            Terminaler
+                        </div>
+                        <div class="col-md-12"><hr></div>
+                        <div class="col-md-12"><label class="select" for="SelectTyp1">Välj ViewHandler 1!</label></div>
+                        <div class="col-md-4 col-sm-4 col-xs-10">
+                            <select name="SelectTyp1" id="SelectTyp1" class="selectpicker hideduringload" onchange="selectView1(this)">
+                                <option value="Config_A">Konfig A</option>
+                                <option value="Config_B">Konfig B</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-1"></div>
+                        <div class="col-md-3 col-sm-3 col-xs-1"></div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        </div>
+                        <div class="col-md-12 col-xs-4">&nbsp;</div>
+                        <div class="col-md-9 col-sm-9 col-xs-4">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default grouped" id="bnResetFilter" onclick="ViewHandler.resetFilter();">
+                                    <i class="glyphicon glyphicon-flash"></i>
+                                    <span>Nollställ filter</span>
+                                </button>
+                                <button type="button" class="btn btn-default grouped" onclick="printToExcel();">
+                                    <i class="glyphicon glyphicon-save-file"></i>
+                                    <span>Hämta till Excel</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-4">&nbsp</div>
+                    </div>
+                </div>
+                <!--------------------------------------- Totals Area ------------------------------------->
+                <div class="col-xs-12 col-lg-6 col-sm-12 col-md-5">
+                    <div class="panel panel-default totalsPanel">
+                        <div class="panel-heading">
+                            <div class="row " id="terminalrow1"><div class="col-md-6 col-sm-6 col-xs-6">Fysiska terminaler</div><div class="col-md-6 col-sm-6 col-xs-6" id="totalFysiskaTerminaler1"></div></div>
+                            <div class="row"><div class="col-md-6 col-sm-6 col-xs-6">Enskilda stationer</div><div class="col-md-6 col-sm-6 col-xs-6" id="totalEnskildaStationer1"></div></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="activefilters">
+                            <!-- Summary of active filters -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="viewhandler"></div>
+        <br />
+        <div class="container outercontainer">
+            <div class="row">
+                <!--------------------------------------- Main controls ------------------------------------->
+                <div class="col-xs-12 col-lg-6 col-sm-12 col-md-7">
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-8" style="height:11px">&nbsp</div>
+                        <div class="col-md-8 viewnavpath" id="ptitle2">
+                            
+                        </div>
+                        <div class="col-md-12"><hr></div>
+                        <div class="col-md-12"><label class="select" for="SelectTyp2">Välj ViewHandler 2!</label></div>
+                        <div class="col-md-4 col-sm-4 col-xs-10">
+                            <select name="SelectTyp2" id="SelectTyp2" class="selectpicker hideduringload" onchange="selectView2(this)">
+                                <option value="Config_A">Konfig A</option>
+                                <option value="Config_C">Konfig C</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-1"></div>
+                        <div class="col-md-3 col-sm-3 col-xs-1"></div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        </div>
+                        <div class="col-md-12 col-xs-4">&nbsp;</div>
+                        <div class="col-md-9 col-sm-9 col-xs-4">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default grouped" id="bnResetFilter" onclick="ViewHandler.resetFilter('viewhandler2');">
+                                    <i class="glyphicon glyphicon-flash"></i>
+                                    <span>Nollställ filter</span>
+                                </button>
+                                <button type="button" class="btn btn-default grouped" onclick="printToExcel();">
+                                    <i class="glyphicon glyphicon-save-file"></i>
+                                    <span>Hämta till Excel</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-4">&nbsp</div>
+                    </div>
+                </div>
+                <!--------------------------------------- Totals Area ------------------------------------->
+                <div class="col-xs-12 col-lg-6 col-sm-12 col-md-5">
+                    <div class="panel panel-default totalsPanel">
+                        <div class="panel-heading">
+                            <div class="row " id="terminalrow2"><div class="col-md-6 col-sm-6 col-xs-6">Fysiska terminaler</div><div class="col-md-6 col-sm-6 col-xs-6" id="totalFysiskaTerminaler2"></div></div>
+                            <div class="row"><div class="col-md-6 col-sm-6 col-xs-6">Enskilda stationer</div><div class="col-md-6 col-sm-6 col-xs-6" id="totalEnskildaStationer2"></div></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="activefilters">
+                            <!-- Summary of active filters -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="viewhandler2"></div>
+    </form>
+
+</body>
+
+</html>

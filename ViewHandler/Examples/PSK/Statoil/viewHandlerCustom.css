@@ -1,0 +1,39 @@
+
+/* redmark text for Garantitid - Garantitid */
+#data-content[config="UtrUrvalMatareGDAT.simple"] ul li[itemname="_garantitid"] { 
+	color: #f00;
+}
+
+/* bluemark text for Lager - Koppling */
+#data-content[config="UtrUrvalMatareLAG.simple"] ul li[itemname="_koppling"] { 
+	color: #00f;
+}
+
+/* also in viewHandler.css but here we need the important tag to override the column-css color */
+#data-content ul.red li {
+	color: #f00 !important;
+}
+
+#data-content ul.green li {
+	color: #008000 !important;
+}
+
+#data-content ul.evengroup {
+	/*background-color: #f9ebbb;*/
+	background-color: #e6f0f0;
+}
+
+#data-content[config="UtrUrvalMatareLAG.simple"] ul {	/* since AnmÃ¤rkningar can be multi-row, add a border after each ul for clarity */
+	border-bottom: 1px solid #ddd;
+}
+#data-content[config="UtrUrvalMatareLAG.simple"] ul:last-child {	/* override last child */
+	border-bottom: 0px;
+}
+ 
+#data-content[config="UtrUrvalTerminaler.simple"] ul li[itemname="_betalform"] { 
+	padding-left: 26px;
+}
+ 
+#data-content[config="UtrUrvalTerminaler.simple"] ul li[itemname="_tum"] { 
+	padding-left: 26px;
+}

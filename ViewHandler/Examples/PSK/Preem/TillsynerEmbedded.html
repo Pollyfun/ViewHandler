@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Tillsyner Embedded</title>
+    <meta charset="utf-8">
+    <!-- start Bootstrap subform -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    <!-- end Bootstrap subform -->
+    <link rel="stylesheet" href="/Examples/PSK/Preem/viewHandlerContainer.css" />
+    <script src="/Examples/PSK/viewfilter.js"></script>
+    <script src="/Examples/PSK/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="/Examples/PSK/css3-mediaqueries.js"></script>
+    <script src="/Examples/PSK/object.keys.js"></script>
+    <script src="/Examples/PSK/dropFilter.js"></script> <!-- behöver för konstaner. ATTRIBUTE_EXCLUDED -->
+    <script src="/Examples/PSK/Preem/viewHandlerCustom.js"></script>
+    <!--<script src="/Scripts/interface/psk.js"></script> -->
+    <script src="/Scripts/interface/psk.js"></script>
+</head>
+
+<body onclick="ViewHandler.clickedOnParentForm('viewhandlerTillsyner');">
+
+        <form>
+
+            <div class="container-fluid" id="menurow">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default grouped" id="bnResetFilter" onclick="ViewHandler.resetFilter('viewhandlerTillsyner');">
+                                <i class="glyphicon glyphicon-flash"></i>
+                                <span>Nollställ filter</span>
+                            </button>
+                            <button type="button" class="btn btn-default grouped" onclick="printToExcel(false, 'viewhandlerTillsyner');">
+                                <i class="glyphicon glyphicon-save-file"></i>
+                                <span>Hämta till Excel</span>
+                            </button>
+                        </div>
+                        <span id="qtyVisibleInfo">&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+            <div id="viewhandlerTillsyner"></div>
+        </form>
+
+    <script>
+        'use strict';
+        var SERVER_DOMAIN = 'http://dev.psksyd.com';    // used when it's a local container. Empty in the real container.
+        var viewHandlerDb = '/psk/ViewHandlerBase.nsf'; // hardcoded in the local Container. In the real Container this is done in the HTML Head Content.
+        var webdbname = '/kund/preem/Preembygg.nsf';     // hardcoded in the local Container. In the real Container this is done in the HTML Head Content.
+        var inspectionDb='/kund/preem/tillsyn.nsf';
+        var ID_VIEWHANDLER = 'viewhandlerTillsyner';
+        var DEFAULT_CONFIGNAME = 'AllaTillsyner.config';
+
+        $(function () {
+            createView({ containerId: ID_VIEWHANDLER, configName: DEFAULT_CONFIGNAME, serverDomain: SERVER_DOMAIN, viewHandlerPath: viewHandlerDb });
+        });
+
+    </script>
+    </body>
+</html>

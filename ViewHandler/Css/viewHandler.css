@@ -1,0 +1,334 @@
+/* reset some values from other css */
+* {
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+}
+
+iframe {
+    width: 1760px;
+    height: 400px;
+    overflow: hidden; 
+    padding-right: 2px; /* to make it look better on IE */
+}
+
+
+body {
+	padding: 1em;
+	-webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    color: #000;
+    /*font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, sans-serif;*/
+    font-size: 11px;
+	line-height: 0.8;
+}
+
+
+/*-------------------------- Generic ------------------------------------------------------------------------------------*/
+#main-area {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#main-area .nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+#main-area div hr {
+	border-top-color: #bbb;	
+}
+
+#main-area div.container {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+/* set optional min width of standard buttons */
+#main-area button.standard {
+	min-width: 118px;
+}
+
+#main-area div.sectionseparator {
+	min-height: 6px;
+	background: url(white.png) left top repeat;
+	z-index: 1;
+}
+
+#main-area input.form-control {		/* ev pÃ¥ fritext fÃ¤lten */
+	padding-left: 6px;
+}
+
+#main-area div.bootstrap-select button, #main-area div.dropdown-menu ul li a {
+	padding-left: 6px;
+}
+
+#main-area div.panel {
+	margin-bottom: 0px;	/* override the bootstrap default */	
+}
+
+#main-area div.row div {
+	color: #222;
+}
+
+#main-area div.vertalign, #main-area span.vertalign {
+	line-height: 28px;	/*34*/
+	padding-left: 2px;	/* ev flytta */
+}
+
+#main-area div.totalsPanel {
+	/* these margins are hardcoded. but needed to make the totalspanel align with columns */
+	margin-left: 38px;
+	margin-right: 20px;
+}
+
+/*-------------------------- Filter panel ----------------------------------------------------------------------------------*/
+/* contains the dropdown filters and sort arrows */
+#filter-area ul  {
+	list-style-type: none;	/* removes list bullets */
+}
+#filter-area ul li {
+	float: left;   			/* makes the list horizontal */
+	/*height: 35px;*/		/* needed to make the space above and below the selectpickers same */
+}
+
+#filter-area div.panel-body/*, #filter-row*/ {
+	height: 28px;
+}
+
+#filter-row {
+	padding-left: 16px;
+	padding-right: 15px;
+
+    /*height: 28px;*/
+}
+
+/* avoid title line break (when titles are too long). use ellipsis */
+#filter-row li span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*rows inside bootstrap select
+#filter-area div.panel-body ul li {		
+	height: 28px;
+}*/
+#filter-area + div.row {	/* select only the first row */
+	min-height: 28px;	/* 34    makes the height of the row the same also in the beginning when it's empty */
+}
+
+/* sort arrow */
+#filter-area span.opaque {
+	opacity: 0.1;
+	filter: alpha(opacity=10); /* IE8 */
+}
+#filter-area span.opaque:hover {
+	opacity: 0.5; /* make it more visible when it's clickable */
+	filter: alpha(opacity=50); /* IE8 */
+}
+#filter-area li select:hover + span.opaque {
+	opacity: 0.2;
+	filter: alpha(opacity=20); /* IE8 */
+}
+#filter-area li input:hover + span.opaque {
+	opacity: 0.2;
+	filter: alpha(opacity=20); /* IE8 */
+}
+#filter-area li span:hover + span.opaque {
+	opacity: 0.5;
+	filter: alpha(opacity=50); /* IE8 */
+}
+
+#filter-area span.sortArrow:hover {
+	cursor: pointer;
+	cursor: hand;
+}
+
+
+
+#filter-area div.bootstrap-select.master1 > button,
+#filter-area div.bootstrap-select.master1 {			/* with/without bootstrap */
+	background-color: #f8E4bf;
+}
+#filter-area div.bootstrap-select.master2 > button,
+#filter-area div.bootstrap-select.master2 {			/* with/without bootstrap */
+	background-color: #f9eacb;  /* old masterOne */
+}
+#filter-area div.bootstrap-select.master3 > button,
+#filter-area div.bootstrap-select.master3 {			/* with/without bootstrap */
+	background-color: #faf0d7;
+}
+#filter-area div.bootstrap-select.master4 > button,
+#filter-area div.bootstrap-select.master4 {			/* with/without bootstrap */
+	background-color: #fbf7e2;  /* old masterTwo */
+}
+#filter-area div.bootstrap-select.master5 > button,
+#filter-area div.bootstrap-select.master5 {			/* with/without bootstrap */
+	background-color: #fcfced;
+}
+
+#filter-area div.bootstrap-select > button {
+    height: inherit;    /* negates the form-control class that's automatically added to it and sets the height to 25 */
+}
+
+#filter-area div.bs-actionsbox {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 0px;
+}
+
+  
+
+
+/*
+F8E4BF      248  228  191
+F9EACB		249  234  203
+FAF0D7		250  240  215
+FBF7E2		251  247  226
+FCFCED      252  252  237
+*/
+
+
+#filter-area ul.dropdown-menu li {
+	float: none !important;		/* otherwise the ACL dropdowns get float:left and looks messed up */
+}
+
+#filter-area .hideduringload {
+	/* changes the layout, use wisely 
+	but needed bootstrap-selects that otherwise disturb the height of the body during loading */
+	display: none;
+}
+#filter-area .softhideduringload {
+	/* !important is ok to use here. the class is removed after the page is loaded */
+	opacity: 0 !important;
+	filter: alpha(opacity=0) !important; /* IE8 */
+}
+
+
+/* match the fontsize of the column labels */
+#filter-area div.bootstrap-select button {
+	font-weight: bold;
+}
+/* font-size for all text on the filter-area row */
+#filter-area div.bootstrap-select button,
+#filter-area div.bootstrap-select li span,
+#filter-area ul li span:not(.glyphicon) {
+	font-size: 11px;
+}
+
+#filter-area div.bootstrap-select {
+	display: block;		/* has to override the default inline-block */
+}
+#filter-area div.bootstrap-select button {
+	padding-top: 5.5px;
+	padding-bottom: 5.5px;	
+}
+
+#filter-area span.sortArrow {	/* to align labelcolumn-arrows vertically correct */
+	line-height: 26px;
+    /*background-color: #0f0;*/
+}
+
+#filter-area div.dropdown-menu div.bs-searchbox input {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 28px;
+}
+
+/*-------------------------- Data rows -------------------------------------------------------------------------------------*/
+#data-area div.panel-default {
+	/*background-color: #f7f7f7;*/
+    /*border-top: 0;
+    border-bottom: 0;*/
+} 
+
+#data-content ul.normal:first-child {
+    /*background-color: aquamarine;*/
+    /*border-top: 1px solid;*/
+}
+
+#data-content ul.normal, #data-content ul.totals  {
+	list-style-type: none; 	/* removes list bullets */
+	min-height: 23px;
+	margin: auto;  			/* center the list within its parent element */
+	padding-top: 0px;		/* don't use padding here, since colorised cells should be full height */
+	padding-left: 15px;
+	padding-right: 15px;
+    display: inline-block;	/* important to allow all text to be shown in a li also when > 1 line */
+
+    border-bottom: 1px solid #d1d1d1;
+}
+#data-content ul.normal.lastrow, #data-content ul.totals.lastrow {	/* need a longer specification to override above */
+	border-bottom: 0px solid;
+}
+
+#data-content ul.totals {
+	background-color: #ebebeb;
+	width: 100%;
+}
+
+#data-content ul.normal:hover {
+	background-color: #f9eacb;
+}
+
+#data-content ul.normal.selected {
+	background-color: #d8fca1;
+}
+
+#data-content ul li {
+	float: left;   		/* makes the list horizontal */
+	Xline-height: 20px;	/* needed to center vertically   obs: blir fÃ¶r mkt space nÃ¤r flera rader i samma cell (ex: Kommentarer) */
+	line-height: 15px;	/* needed to center vertically */
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 3px;
+	padding-bottom: 3px;	/* important when multiple line fields (Anteckningar) */
+	/*border:1px solid #0f0;*/		/* for dev */
+	list-style-position: inside;
+	Xwhite-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis; 
+	text-align: left;
+
+	min-height: 23px;
+	display: block;
+}
+
+
+#data-content a {
+    text-decoration: underline; 
+} 
+
+
+#filter-area.innerScroll {
+	z-index: 2;
+	background: url(white.png) left top repeat;	/* when using innerscroll, don't let the underlying rows show through in the filterpanel corners */
+}
+
+#data-area.innerScroll {
+	margin-top: 36px;
+}
+
+
+
+#overlay.innerScroll {
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	height: 40px;
+	top: 0;
+	background: url(white.png) left top repeat;	/* when using innerscroll, hide backgrounds rows above the filterpanel */
+}
+
+/* TODO: snygga till */
+ul.dropdown-menu.selectpicker li a {
+	min-height: 20px;
+}
+  
+  
+  
+#res1 {
+    xheight: 400px;
+    xdisplay: inline-block;
+}

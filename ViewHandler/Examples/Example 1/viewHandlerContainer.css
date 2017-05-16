@@ -1,0 +1,13 @@
+#viewhandler {
+    background-color: #f00;
+}
+
+#viewhandler iframe {
+    background-color: #0f0;
+    width: 1760px;
+    height: 180px;
+    overflow: hidden;
+}
+
+
+

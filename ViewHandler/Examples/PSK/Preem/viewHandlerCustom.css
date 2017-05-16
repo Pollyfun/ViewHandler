@@ -1,0 +1,36 @@
+#data-content[config="Anlaggning.json"] ul li[itemname="_hanteringstillstandutgar"] {
+	color: #f00;
+}
+
+#data-content[config="Anlaggning.json"] ul li[itemname="_invden"] {
+	padding-left: 15px;
+}
+
+#data-content[config="UtrUrvalCisternerHL.json"] ul li[itemname="_stationsdokument"],
+#data-content[config="UtrUrvalCisternerREP.json"] ul li[itemname="_stationsdokument"],
+#data-content[config="UtrUrvalCisternerSTN.json"] ul li[itemname="_stationsdokument"] {
+	padding-left: 28px;
+}
+
+/* Anläggning embedded views */
+#data-content[config="EmbeddedKortpMatare.simple"] ul.red li,
+#data-content[config="EmbeddedFlyttadeKortpMatare.simple"] ul.red li {
+	color: red;
+}
+#data-content[config="EmbeddedKortpMatare.simple"] ul.green li,
+#data-content[config="EmbeddedFlyttadeKortpMatare.simple"] ul.green li {
+	color: #008000;
+}
+
+#data-content[config="EmbeddedKortpMatare.simple"] li[itemname="_Lopnummer"],	/* NO ul here. has to be less specific than ul.red above that should override this */
+#data-content[config="EmbeddedKortpMatare.simple"] li[itemname="_DokumentID"] {
+	color: #00f;
+}
+#data-content[config="EmbeddedFlyttadeKortpMatare.simple"] li[itemname="_Typ"] {	/* NO ul here. has to be less specific than ul.red above that should override this */
+	color: #00f;
+}
+
+
+#datacontentx ul li {
+    background-color: aqua;
+}

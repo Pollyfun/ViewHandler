@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Terminaler</title>
+    <meta charset="utf-8">
+    <!-- start Bootstrap subform -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    <!-- end Bootstrap subform -->
+
+    <link rel="stylesheet" href="/Examples/PSK/Statoil/bootstrap_statoil.css" />
+    <script src="/Examples/PSK/viewfilter.js"></script>
+    <script src="/Examples/PSK/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="/Examples/PSK/css3-mediaqueries.js"></script>
+    <script src="/Examples/PSK/object.keys.js"></script>
+    <script src="/Examples/PSK/dropFilter.js"></script> <!-- behöver för konstaner. ATTRIBUTE_EXCLUDED -->
+    <script src="/Examples/PSK/Statoil/viewHandlerMatareTerminaler.js"></script>
+    <!--<script src="/Scripts/interface/psk.js"></script> -->
+      <script src="/Scripts/interface/psk.js"></script>
+</head>
+
+<body onclick="ViewHandler.clickedOnParentForm();">
+
+    <form>
+        <style>
+            div.outercontainer {
+                padding-left: 11px;
+                padding-top: 20px;
+                margin-left: 0px;
+            }
+
+            select.hideduringload {
+                display: none;
+            }
+        </style><!-- some styling -->
+        <div class="container outercontainer">
+            <div class="row">
+                <!--------------------------------------- Main controls ------------------------------------->
+                <div class="col-xs-12 col-lg-6 col-sm-12 col-md-7">
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-8" style="height:11px">&nbsp</div>
+                        <div class="col-md-8 viewnavpath" id="ptitle">
+                            Terminaler
+                        </div>
+                        <div class="col-md-12"><hr></div>
+                        <div class="col-md-12"><label class="select" for="SelectTyp">Välj visningstyp !</label></div>
+                        <div class="col-md-4 col-sm-4 col-xs-10">
+                            <select name="SelectTyp" id="SelectTyp" class="selectpicker hideduringload" onchange="selectView(this)">
+                                <option value="UtrUrvalTerminaler.simple">Terminaler</option>
+                                <option value="UtrUrvalTerminalerSTN.simple">Stationer</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-1"></div>
+                        <div class="col-md-3 col-sm-3 col-xs-1"></div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+
+                            <input type="button" value="Till mätare" class="btn btn-default" onclick="gotoMatare();" />
+                        </div>
+                        <div class="col-md-12 col-xs-4">&nbsp;</div>
+                        <div class="col-md-9 col-sm-9 col-xs-4">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default grouped" id="bnResetFilter" onclick="ViewHandler.resetFilter();">
+                                    <i class="glyphicon glyphicon-flash"></i>
+                                    <span>Nollställ filter</span>
+                                </button>
+                                <button type="button" class="btn btn-default grouped" onclick="printToExcel();">
+                                    <i class="glyphicon glyphicon-save-file"></i>
+                                    <span>Hämta till Excel</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-4">&nbsp</div>
+                    </div>
+                </div>
+                <!--------------------------------------- Totals Area ------------------------------------->
+                <div class="col-xs-12 col-lg-6 col-sm-12 col-md-5">
+                    <div class="panel panel-default totalsPanel">
+                        <div class="panel-heading">
+                            <div class="row " id="terminalrow"><div class="col-md-6 col-sm-6 col-xs-6">Fysiska terminaler</div><div class="col-md-6 col-sm-6 col-xs-6" id="totalFysiskaTerminaler"></div></div>
+                            <div class="row"><div class="col-md-6 col-sm-6 col-xs-6">Enskilda stationer</div><div class="col-md-6 col-sm-6 col-xs-6" id="totalEnskildaStationer"></div></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="activefilters">
+                            <!-- Summary of active filters -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="viewhandler"></div>
+    </form>
+
+
+    <script>
+        'use strict';
+        var SERVER_DOMAIN = 'http://dev.psksyd.com';    // used when it's a local container. Empty in the real container.
+        var viewHandlerDb = '/psk/ViewHandlerBase.nsf'; // hardcoded in the local Container. In the real Container this is done in the HTML Head Content.
+        var webdbname = '/kund/statoil/stbygg.nsf';     // hardcoded in the local Container. In the real Container this is done in the HTML Head Content.
+        var ID_VIEWHANDLER = 'viewhandler';
+        var DEFAULT_CONFIGNAME = 'UtrUrvalTerminaler.simple';
+
+        $(function () {
+            createView({
+                containerId: ID_VIEWHANDLER, configName: DEFAULT_CONFIGNAME, serverDomain: SERVER_DOMAIN, viewHandlerPath: viewHandlerDb
+            });
+        });
+        
+        function openGoogleMaps() {
+            console.log('openGoogleMaps..');
+        }
+        function doSearch() {
+            console.log('doSearch..');
+        }
+        function gotoMatare() {
+            location.href = 'UrvalMatare.html';
+        }
+
+        function selectView(dropdown) {
+            var configName = dropdown.value;
+            if (configName === 'UtrUrvalTerminalerSTN.simple')
+                $('#terminalrow').addClass('hidden');
+            else
+                $('#terminalrow').removeClass('hidden');
+
+            fillInTitle(configName);
+
+            $('#totalFysiskaTerminaler').text('');
+            $('#totalEnskildaStationer').text('');
+
+            setTimeout(function () {
+                createView({ containerId: ID_VIEWHANDLER, configName: configName, serverDomain: SERVER_DOMAIN, viewHandlerPath: viewHandlerDb });
+            }, 10);   // let the dropdown finish it's operations before replacing the iframe (since it might want to close dropdowns inside the iframe)
+        }
+
+        function fillInTitle(configName) {
+            if (configName === 'UtrUrvalTerminalerSTN.simple')
+                $('#ptitle').text('Terminaler / Stationer');
+            else
+                $('#ptitle').text('Terminaler');
+        }
+
+    </script>
+</body>
+</html>

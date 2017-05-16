@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{875B7B68-38FD-4760-8882-CDEEE5D9227C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ViewHandler</RootNamespace>
+    <AssemblyName>ViewHandler</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Css\red.png" />
+    <Content Include="Css\viewHandler.css" />
+    <Content Include="Css\white.png" />
+    <Content Include="Examples\Example 1\Main.html" />
+    <Content Include="Examples\Example 1\viewHandlerContainer.css" />
+    <Content Include="Examples\Example 1\viewHandlerContainer.js" />
+    <Content Include="Examples\PSK\css3-mediaqueries.js" />
+    <Content Include="Examples\PSK\dropFilter.js" />
+    <Content Include="Examples\PSK\google-maps\custom.js" />
+    <Content Include="Examples\PSK\google-maps\utility\markerclusterer.js" />
+    <Content Include="Examples\PSK\modernizr-2.6.2-respond-1.1.0.min.js" />
+    <Content Include="Examples\PSK\object.keys.js" />
+    <Content Include="Examples\PSK\Preem\TillsynerEmbedded.html" />
+    <Content Include="Examples\PSK\Preem\viewHandlerContainer.css" />
+    <Content Include="Examples\PSK\Preem\viewHandlerCustom.css" />
+    <Content Include="Examples\PSK\Preem\viewHandlerCustom.js" />
+    <Content Include="Examples\PSK\scriptformglobal.js" />
+    <Content Include="Examples\PSK\Statoil\bootstrap_statoil.css" />
+    <Content Include="Examples\PSK\Statoil\UrvalMatare.html" />
+    <Content Include="Examples\PSK\Statoil\UrvalTerminaler.html" />
+    <Content Include="Examples\PSK\Statoil\viewHandlerCustom.css" />
+    <Content Include="Examples\PSK\Statoil\viewHandlerCustom.js" />
+    <Content Include="Examples\PSK\Statoil\viewHandlerMatareTerminaler.js" />
+    <Content Include="Examples\PSK\viewfilter.js" />
+    <Content Include="Examples\Wiki\Example 1\Example1.html" />
+    <Content Include="Examples\Wiki\Example 1\viewHandlerCustom.js" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\ViewHandler.odp" />
+    <Content Include="scripts\External\bootstrap-select.js.map" />
+    <Content Include="Examples\PSK\google-maps\custom.css" />
+    <Content Include="Docs\Multiple.odg" />
+    <Content Include="Examples\Data\data.json" />
+    <Content Include="Examples\Data\design.json" />
+    <Content Include="Examples\Data\person_data.json" />
+    <Content Include="Examples\Data\data1.json" />
+    <Content Include="Examples\Data\data2.json" />
+    <Content Include="Examples\Data\data3.json" />
+    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.css.map" />
+    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.js.map" />
+    <Content Include="scripts\External\bootstrap\3.3.7\bootstrap.min.css.map" />
+    <Content Include="Examples\Wiki\Example 1\psk-data.json" />
+    <Content Include="Examples\Wiki\Example 1\standard-data.json" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="scripts\columnInfoVH.js" />
+    <Content Include="scripts\dropFilterVH.js" />
+    <Content Include="scripts\External\alasql.min.js" />
+    <Content Include="scripts\External\bootstrap-3.3.5.min.css" />
+    <Content Include="scripts\External\bootstrap-select.min.css" />
+    <Content Include="scripts\External\bootstrap-select.min.js" />
+    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.js" />
+    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.min.css" />
+    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.min.js" />
+    <Content Include="scripts\External\bootstrap.min.css" />
+    <Content Include="scripts\External\bootstrap.min.js" />
+    <Content Include="scripts\External\bootstrap\3.3.7\bootstrap.min.css" />
+    <Content Include="scripts\External\bootstrap\3.3.7\bootstrap.min.js" />
+    <Content Include="scripts\External\es5-shim\4.5.7\es5-sham.min.js" />
+    <Content Include="scripts\External\es5-shim\4.5.7\es5-shim.min.js" />
+    <Content Include="scripts\External\jquery.min.js" />
+    <Content Include="Examples\PSK\google-maps\viewHandler.js" />
+    <Content Include="scripts\External\jquery\1.12.4\jquery.min.js" />
+    <Content Include="scripts\interface\domino.js" />
+    <Content Include="scripts\interface\local.js" />
+    <Content Include="scripts\interface\psk.js" />
+    <Content Include="scripts\interface\viewHandler.js" />
+    <Content Include="scripts\spin.js" />
+    <Content Include="scripts\supportFunctions.js" />
+    <Content Include="scripts\viewConfiguration.js" />
+    <Content Include="scripts\viewHandler.js" />
+    <Content Include="ViewHandler.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63311</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63311/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="CopyLinkedContentFiles" BeforeTargets="Build">
+    <Copy SourceFiles="%(Content.Identity)" DestinationFiles="%(Content.Link)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Condition="'%(Content.Link)' != ''" />
+  </Target>
+</Project>
