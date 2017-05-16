@@ -28,7 +28,7 @@ function createView(cfg) {
          designName = cfg.designName;
 
       // when html files are opened through Domino they need the ?OpenFileResource suffix
-      var viewHandlerPath = '/ViewHandler.html' + (!isLocalHost ? '?OpenFileResource' : '');
+      var viewHandlerPath = '/ViewHandler/ViewHandler/ViewHandler.html' + (!isLocalHost ? '?OpenFileResource' : '');
       if (!isLocalHost && $.trim(cfg.viewHandlerPath) !== '')
          viewHandlerPath = cfg.viewHandlerPath + viewHandlerPath;
 
