@@ -8,7 +8,7 @@ function configureView(viewConfig) {
    if (configName === 'Example1.config') {
       //var dataUrl = webdbname + '/' + configName;
       //viewConfig.addDataStore(dataUrl);
-      viewConfig.addDataStore('/Examples/Wiki/Example 1/standard-data.json');
+      viewConfig.addDataStore('/ViewHandler/ViewHandler/Examples/Wiki/Example 1/standard-data.json');
 
 
 
