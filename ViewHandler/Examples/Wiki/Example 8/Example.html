@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Example 8</title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../scripts/interface/local.js"></script>
+</head>
+<body>
+    <div style="padding-left:11px"><h3>Column: classes</h3></div>
+    <div style="padding-left:11px">Appends classes to the ul row-elements. Can be used for layout.</div>
+
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+        'use strict';
+        document.addEventListener('DOMContentLoaded', function () {
+            createView({ containerId: 'viewhandler', configName: 'Example8.config' });
+        });
+    </script>
+</body>
+</html>

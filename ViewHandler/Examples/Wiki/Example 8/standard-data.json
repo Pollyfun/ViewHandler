@@ -1,0 +1,29 @@
+﻿[
+    {
+        "title": "Task 1",
+        "duration": "5 days",
+        "percentComplete": 0.66,
+        "start": "01/01/2009",
+        "finish": "01/05/2009",
+        "effortDriven": 123,
+        "formating": "yellow"
+    },
+    {
+        "title": "Task 2",
+        "duration": "9 days",
+        "percentComplete": 0.71,
+        "start": "01/01/2009",
+        "finish": "01/05/2009",
+        "effortDriven": 123,
+        "formating": "red"
+    },
+    {
+        "title": "Task 3",
+        "duration": "22 days",
+        "percentComplete": 1.00,
+        "start": "01/01/2009",
+        "finish": "01/05/2009",
+        "effortDriven": 123,
+        "formating": "green"
+    }
+]

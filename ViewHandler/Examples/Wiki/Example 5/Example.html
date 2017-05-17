@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Example 5</title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../scripts/interface/local.js"></script>
+</head>
+<body>
+    <div style="padding-left:11px"><h3>Columns: label and hidden</h3></div>
+
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+        'use strict';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            createView({ containerId: 'viewhandler', configName: 'Example5.config' });
+        });
+
+    </script>
+</body>
+</html>
