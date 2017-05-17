@@ -4,7 +4,7 @@ function configureView(viewConfig) {
    var configName = viewConfig.configName;
 
    if (configName === 'Example5.config') {
-      viewConfig.addDataStore('/Examples/Wiki/Example 5/standard-data.json');
+      viewConfig.addDataStore('standard-data.json');
 
       viewConfig.addColumns([
            { title: 'title', type: COLUMN.LABEL },    // COLUMN.LABEL is the default

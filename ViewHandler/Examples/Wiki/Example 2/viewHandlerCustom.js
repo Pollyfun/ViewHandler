@@ -4,7 +4,7 @@ function configureView(viewConfig) {
    var configName = viewConfig.configName;
 
    if (configName === 'Example2.config') {
-      viewConfig.addDataStore('/Examples/Wiki/Example 2/standard-data.json');
+      viewConfig.addDataStore('standard-data.json');
 
       viewConfig.addColumns([
            { title: 'Duration', sort: true },
