@@ -8,9 +8,10 @@ function configureView(viewConfig) {
    if (configName === 'Example1.config') {
       //var dataUrl = webdbname + '/' + configName;
       //viewConfig.addDataStore(dataUrl);
-      viewConfig.addDataStore('/Examples/Wiki/Example 1/standard-data.json');
-
-
+      //viewConfig.addDataStore('/Examples/Wiki/Example 1/standard-data.json');
+      //viewConfig.addDataStore('/ViewHandler/ViewHandler/Examples/Wiki/Example 1/standard-data.json');
+      viewConfig.addDataStore('standard-data.json');
+      
 
       //viewConfig.createFullDOM = true;	// TODO: ta bort n\u00E4r den k\u00E4nner av h\u00F6jden och renderar tillr\u00E4ckligt m\u00E5nga automatiskt
 
