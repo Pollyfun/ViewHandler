@@ -6,7 +6,7 @@ function configureView(viewConfig) {
    if (configName === 'Example3.config') {
       viewConfig.addDataStore('standard-data.json');
       viewConfig.addColumns([
-         { title: 'title', sortOrder: 'descending' }
+         { title: 'name', sortOrder: 'descending' }
       ]);
    }
 }

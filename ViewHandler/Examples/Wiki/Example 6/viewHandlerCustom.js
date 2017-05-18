@@ -7,7 +7,7 @@ function configureView(viewConfig) {
       viewConfig.addDataStore('standard-data.json');
 
       viewConfig.addColumns([
-           { title: 'Duration', type: COLUMN.DROPDOWN }  // EV numSort: true för att dema sortering även i dropdownen
+           { title: 'country', type: COLUMN.DROPDOWN }  // EV numSort: true för att dema sortering även i dropdownen
       ]);
    }
 }

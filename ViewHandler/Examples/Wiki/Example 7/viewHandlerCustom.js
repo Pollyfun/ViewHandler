@@ -7,7 +7,7 @@ function configureView(viewConfig) {
       viewConfig.addDataStore('standard-data.json');
 
       viewConfig.addColumns([
-           { title: 'Duration', type: COLUMN.DROPDOWN_MULTIPLE }
+           { title: 'country', type: COLUMN.DROPDOWN_MULTIPLE }
       ]);
    }
 }

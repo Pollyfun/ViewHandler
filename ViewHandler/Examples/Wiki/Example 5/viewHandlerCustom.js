@@ -7,10 +7,8 @@ function configureView(viewConfig) {
       viewConfig.addDataStore('standard-data.json');
 
       viewConfig.addColumns([
-           { title: 'title', type: COLUMN.LABEL },    // COLUMN.LABEL is the default
-           { title: 'Duration', type: COLUMN.HIDDEN },
-           { title: 'Duration-numSort', type: COLUMN.HIDDEN },
-           { title: 'percentComplete', type: COLUMN.HIDDEN }
+           { title: 'name', type: COLUMN.LABEL },
+           { title: 'country', type: COLUMN.HIDDEN }
       ]);
    }
 }

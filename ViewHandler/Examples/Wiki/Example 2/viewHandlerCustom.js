@@ -7,8 +7,7 @@ function configureView(viewConfig) {
       viewConfig.addDataStore('standard-data.json');
 
       viewConfig.addColumns([
-           { title: 'Duration', sort: true },
-           { title: 'Duration-numSort', sort: true, numSort: true }
+           { title: 'duration', sort: true, numSort: true }
       ]);
    }
 }
