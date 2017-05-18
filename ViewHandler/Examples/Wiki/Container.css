@@ -1,0 +1,23 @@
+﻿/* some styling for the example pages */
+
+div.summary {
+    padding-left: 11px;
+    padding-bottom: 8px;
+}
+
+pre {
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  overflow: auto;
+  padding: 5px;
+  background-color: #eee;
+  padding-bottom: 10px;
+  max-height: 600px;
+  /*margin-bottom: 10px;
+  width: auto;
+  width: 650px!ie7;*/
+}
+
+a  {
+    font-size: 14px;
+    padding-bottom: 10px;
+}

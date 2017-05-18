@@ -1,26 +1,34 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Example 2</title>
+    <title>Numeric sort</title>
 	<meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="viewHandlerCustom.js"></script>
     <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
 </head>
 <body>
-    <div style="padding-left:11px"><h3>Numeric sort</h3></div>
-
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>Numeric sort.</div>
+        <h4>Configuration</h4>
+   <pre><code>  viewConfig.addColumns([
+    { title: 'Duration', sort: true },
+    { title: 'Duration-numSort', sort: true, numSort: true }
+  ]);</code></pre>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Example%202">View the source for this example on Github</a>
+    </div>
     <!-- The container for spinner -->
     <div id="loading_image"></div>
     <div id="viewhandler"></div>
 
     <script>
         'use strict';
-
         document.addEventListener('DOMContentLoaded', function () {
             createView({ containerId: 'viewhandler', configName: 'Example2.config' });
         });
-
     </script>
+   
 </body>
 </html>

@@ -1,15 +1,26 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Example 5</title>
+    <title>Columns: label and hidden</title>
 	<meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="viewHandlerCustom.js"></script>
     <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
 </head>
 <body>
-    <div style="padding-left:11px"><h3>Columns: label and hidden</h3></div>
-
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>Columns with a label (default) and hidden columns.</div>
+        <h4>Configuration</h4>
+        <pre><code>  viewConfig.addColumns([
+    { title: 'title', type: COLUMN.LABEL },    // COLUMN.LABEL is the default
+    { title: 'Duration', type: COLUMN.HIDDEN },
+    { title: 'Duration-numSort', type: COLUMN.HIDDEN },
+    { title: 'percentComplete', type: COLUMN.HIDDEN }
+  ]);</code></pre>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Example%205">View the source for this example on Github</a>
+    </div>
     <!-- The container for spinner -->
     <div id="loading_image"></div>
     <div id="viewhandler"></div>
