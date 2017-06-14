@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL - Preprocessing data</title>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>SQL - Preprocessing data.</div>
+        The original dataset contains 30.000 rows. Before the grid is created an sql-statements is processed to group them on 
+        unique names. </br>36 records remain afterwards. Any SQL statements allowed by the alasql library can be used.
+        </br></br>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-block">
+                <pre><code>function configureView(viewConfig) {
+   var configName = viewConfig.configName;
+   if (configName === 'Example28.config') {
+      viewConfig.addDataStore('standard-data.json');
+      viewConfig.preprocessData = function () {
+         // group by name
+         var columnInfoGroupBy = ViewHandler.getColumnInfoFromTitle('name');
+         var sql = ViewHandler.getSQLSelect();
+         sql += ' FROM ' + viewConfig.dataStores[0].alias + ' GROUP BY [' + columnInfoGroupBy.getItemName() + ']';
+         return sql;
+      }
+   }
+}
+</code></pre>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Example%2028">Full source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+            'use strict';
+
+            document.addEventListener('DOMContentLoaded', function () {
+                createView({ containerId: 'viewhandler', configName: 'Example28.config' });
+            });
+
+    </script>
+</body>
+</html>

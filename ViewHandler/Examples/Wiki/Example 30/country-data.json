@@ -1,0 +1,42 @@
+﻿[
+    {
+        "countryid": "al",
+        "country": "Albania"
+    },
+    {
+        "countryid": "br",
+        "country": "Brazil"
+    },
+    {
+        "countryid": "ca",
+        "country": "Canada"
+    },
+    {
+        "countryid": "fi",
+        "country": "Finland"
+    },
+    {
+        "countryid": "fr",
+        "country": "France"
+    },
+    {
+        "countryid": "jp",
+        "country": "Japan"
+    },
+    {
+        "countryid": "mc",
+        "country": "Monaco"
+    },
+    {
+        "countryid": "mt",
+        "country": "Malta"
+    },
+    {
+        "countryid": "us",
+        "country": "United States"
+    },
+    {
+        "countryid": "zw",
+        "country": "Zimbabwe"
+    }
+]

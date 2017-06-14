@@ -1,0 +1,702 @@
+﻿[
+	{
+		"name": "Charity",
+		"country": "United States",
+		"duration": 142,
+		"tags": "nonfiction",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Quincy",
+		"country": "United States",
+		"duration": 176,
+		"tags": "fantasy",
+		"startdate": "April||||04"
+	},
+	{
+		"name": "Odette",
+		"country": "Canada",
+		"duration": 95,
+		"tags": "travel, classics||||travel, classics||travel_____classics",
+		"startdate": "May||||05"
+	},
+	{
+		"name": "Shellie",
+		"country": "United States",
+		"duration": 168,
+		"tags": "nonfiction",
+		"startdate": "January||||01"
+	},
+	{
+		"name": "Phelan",
+		"country": "United States",
+		"duration": 97,
+		"tags": "fantasy",
+		"startdate": "January||||01"
+	},
+	{
+		"name": "Ishmael",
+		"country": "United States",
+		"duration": 123,
+		"tags": "travel",
+		"startdate": "January||||01"
+	},
+	{
+		"name": "Alma",
+		"country": "Canada",
+		"duration": 67,
+		"tags": "nonfiction",
+		"startdate": "September||||09"
+	},
+	{
+		"name": "Arsenio",
+		"country": "United States",
+		"duration": 86,
+		"tags": "fantasy",
+		"startdate": "October||||10"
+	},
+	{
+		"name": "Alyssa",
+		"country": "France",
+		"duration": 183,
+		"tags": "travel",
+		"startdate": "April||||04"
+	},
+	{
+		"name": "Madeline",
+		"country": "United States",
+		"duration": 123,
+		"tags": "nonfiction",
+		"startdate": "September||||09"
+	},
+	{
+		"name": "Upton",
+		"country": "France",
+		"duration": 47,
+		"tags": "fantasy",
+		"startdate": "October||||10"
+	},
+	{
+		"name": "Chastity",
+		"country": "Canada",
+		"duration": 48,
+		"tags": "travel",
+		"startdate": "September||||09"
+	},
+	{
+		"name": "Roanna",
+		"country": "Canada",
+		"duration": 191,
+		"tags": "nonfiction",
+		"startdate": "December||||12"
+	},
+	{
+		"name": "Leandra",
+		"country": "United States",
+		"duration": 183,
+		"tags": "fantasy",
+		"startdate": "December||||12"
+	},
+	{
+		"name": "Tatum",
+		"country": "Canada",
+		"duration": 190,
+		"tags": "travel",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Cally",
+		"country": "United States",
+		"duration": 160,
+		"tags": "nonfiction",
+		"startdate": "May||||05"
+	},
+	{
+		"name": "Darius",
+		"country": "Canada",
+		"duration": 36,
+		"tags": "fantasy",
+		"startdate": "September||||09"
+	},
+	{
+		"name": "Amela",
+		"country": "Canada",
+		"duration": 96,
+		"tags": "travel",
+		"startdate": "February||||02"
+	},
+	{
+		"name": "Menonfictionith",
+		"country": "United States",
+		"duration": 177,
+		"tags": "nonfiction",
+		"startdate": "February||||02"
+	},
+	{
+		"name": "Tasha",
+		"country": "United States",
+		"duration": 95,
+		"tags": "fantasy",
+		"startdate": "December||||12"
+	},
+	{
+		"name": "Guinevere",
+		"country": "United States",
+		"duration": 28,
+		"tags": "travel, classics||||travel, classics||travel_____classics",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Carol",
+		"country": "France",
+		"duration": 19,
+		"tags": "nonfiction",
+		"startdate": "April||||04"
+	},
+	{
+		"name": "Kelsie",
+		"country": "United States",
+		"duration": 48,
+		"tags": "fantasy",
+		"startdate": "January||||01"
+	},
+	{
+		"name": "Mira",
+		"country": "United States",
+		"duration": 68,
+		"tags": "travel",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Fuller",
+		"country": "Canada",
+		"duration": 181,
+		"tags": "nonfiction",
+		"startdate": "December||||12"
+	},
+	{
+		"name": "Madeson",
+		"country": "Canada",
+		"duration": 173,
+		"tags": "fantasy",
+		"startdate": "April||||04"
+	},
+	{
+		"name": "Georgia",
+		"country": "France",
+		"duration": 1,
+		"tags": "travel",
+		"startdate": "March||||03"
+	},
+	{
+		"name": "Aurora",
+		"country": "Canada",
+		"duration": 122,
+		"tags": "nonfiction",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Germane",
+		"country": "United States",
+		"duration": 127,
+		"tags": "fantasy, classics||||fantasy, classics||fantasy_____classics",
+		"startdate": "February||||02"
+	},
+	{
+		"name": "Leilani",
+		"country": "France",
+		"duration": 119,
+		"tags": "travel",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Jameson",
+		"country": "Canada",
+		"duration": 174,
+		"tags": "nonfiction",
+		"startdate": "January||||01"
+	},
+	{
+		"name": "Hilary",
+		"country": "United States",
+		"duration": 28,
+		"tags": "fantasy",
+		"startdate": "October||||10"
+	},
+	{
+		"name": "Samantha",
+		"country": "United States",
+		"duration": 192,
+		"tags": "travel, classics||||travel, classics||travel_____classics",
+		"startdate": "August||||08"
+	},
+	{
+		"name": "Melinda",
+		"country": "United States",
+		"duration": 11,
+		"tags": "nonfiction",
+		"startdate": "January||||01"
+	},
+	{
+		"name": "Macon",
+		"country": "United States",
+		"duration": 46,
+		"tags": "fantasy",
+		"startdate": "January||||01"
+	},
+	{
+		"name": "Sonya",
+		"country": "France",
+		"duration": 9,
+		"tags": "travel",
+		"startdate": "June||||06"
+	},
+	{
+		"name": "Xaviera",
+		"country": "Canada",
+		"duration": 118,
+		"tags": "nonfiction, classics||||nonfiction, classics||nonfiction_____classics",
+		"startdate": "June||||06"
+	},
+	{
+		"name": "Hiroko",
+		"country": "Canada",
+		"duration": 73,
+		"tags": "fantasy",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Vivian",
+		"country": "Canada",
+		"duration": 19,
+		"tags": "travel",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Herman",
+		"country": "France",
+		"duration": 119,
+		"tags": "nonfiction",
+		"startdate": "August||||08"
+	},
+	{
+		"name": "Silas",
+		"country": "United States",
+		"duration": 126,
+		"tags": "fantasy",
+		"startdate": "May||||05"
+	},
+	{
+		"name": "Urielle",
+		"country": "France",
+		"duration": 175,
+		"tags": "travel",
+		"startdate": "April||||04"
+	},
+	{
+		"name": "Brynne",
+		"country": "France",
+		"duration": 139,
+		"tags": "nonfiction",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Grace",
+		"country": "Canada",
+		"duration": 26,
+		"tags": "fantasy, classics||||fantasy, classics||fantasy_____classics",
+		"startdate": "September||||09"
+	},
+	{
+		"name": "Ronan",
+		"country": "United States",
+		"duration": 137,
+		"tags": "travel",
+		"startdate": "January||||01"
+	},
+	{
+		"name": "Dorian",
+		"country": "United States",
+		"duration": 99,
+		"tags": "nonfiction, classics||||nonfiction, classics||nonfiction_____classics",
+		"startdate": "January||||01"
+	},
+	{
+		"name": "Clare",
+		"country": "United States",
+		"duration": 68,
+		"tags": "fantasy, classics||||fantasy, classics||fantasy_____classics",
+		"startdate": "October||||10"
+	},
+	{
+		"name": "Ali",
+		"country": "United States",
+		"duration": 29,
+		"tags": "travel",
+		"startdate": "October||||10"
+	},
+	{
+		"name": "Barclay",
+		"country": "United States",
+		"duration": 2,
+		"tags": "nonfiction",
+		"startdate": "October||||10"
+	},
+	{
+		"name": "Lucas",
+		"country": "Canada",
+		"duration": 163,
+		"tags": "fantasy, classics||||fantasy, classics||fantasy_____classics",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Regan",
+		"country": "Canada",
+		"duration": 172,
+		"tags": "travel",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Isabella",
+		"country": "Canada",
+		"duration": 183,
+		"tags": "nonfiction",
+		"startdate": "December||||12"
+	},
+	{
+		"name": "Richard",
+		"country": "Canada",
+		"duration": 110,
+		"tags": "fantasy",
+		"startdate": "May||||05"
+	},
+	{
+		"name": "Berk",
+		"country": "Canada",
+		"duration": 189,
+		"tags": "travel",
+		"startdate": "September||||09"
+	},
+	{
+		"name": "Charity",
+		"country": "United States",
+		"duration": 4,
+		"tags": "nonfiction",
+		"startdate": "February||||02"
+	},
+	{
+		"name": "Illiana",
+		"country": "France",
+		"duration": 118,
+		"tags": "fantasy, classics, dystopian||||fantasy, classics, dystopian||fantasy_____classics_____dystopian",
+		"startdate": "September||||09"
+	},
+	{
+		"name": "Deirdre",
+		"country": "Canada",
+		"duration": 71,
+		"tags": "travel",
+		"startdate": "October||||10"
+	},
+	{
+		"name": "Aurora",
+		"country": "Canada",
+		"duration": 123,
+		"tags": "nonfiction",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Wing",
+		"country": "Canada",
+		"duration": 159,
+		"tags": "fantasy, dystopian||||fantasy, dystopian||fantasy_____dystopian",
+		"startdate": "October||||10"
+	},
+	{
+		"name": "Gregory",
+		"country": "Canada",
+		"duration": 91,
+		"tags": "travel",
+		"startdate": "March||||03"
+	},
+	{
+		"name": "Shellie",
+		"country": "United States",
+		"duration": 76,
+		"tags": "nonfiction",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Rhonda",
+		"country": "Canada",
+		"duration": 197,
+		"tags": "fantasy",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Shea",
+		"country": "France",
+		"duration": 99,
+		"tags": "travel",
+		"startdate": "February||||02"
+	},
+	{
+		"name": "Briar",
+		"country": "France",
+		"duration": 128,
+		"tags": "nonfiction",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Maia",
+		"country": "United States",
+		"duration": 199,
+		"tags": "fantasy",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Hamilton",
+		"country": "France",
+		"duration": 98,
+		"tags": "travel",
+		"startdate": "September||||09"
+	},
+	{
+		"name": "Shana",
+		"country": "Canada",
+		"duration": 64,
+		"tags": "nonfiction",
+		"startdate": "August||||08"
+	},
+	{
+		"name": "Alisa",
+		"country": "United States",
+		"duration": 194,
+		"tags": "fantasy",
+		"startdate": "February||||02"
+	},
+	{
+		"name": "Zachary",
+		"country": "Canada",
+		"duration": 23,
+		"tags": "travel",
+		"startdate": "May||||05"
+	},
+	{
+		"name": "Casey",
+		"country": "France",
+		"duration": 110,
+		"tags": "nonfiction",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Barclay",
+		"country": "Canada",
+		"duration": 34,
+		"tags": "fantasy",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Timon",
+		"country": "United States",
+		"duration": 144,
+		"tags": "travel",
+		"startdate": "June||||06"
+	},
+	{
+		"name": "Yuri",
+		"country": "United States",
+		"duration": 42,
+		"tags": "nonfiction",
+		"startdate": "December||||12"
+	},
+	{
+		"name": "Darius",
+		"country": "United States",
+		"duration": 7,
+		"tags": "fantasy",
+		"startdate": "December||||12"
+	},
+	{
+		"name": "Ariana",
+		"country": "Canada",
+		"duration": 13,
+		"tags": "travel",
+		"startdate": "August||||08"
+	},
+	{
+		"name": "Jorden",
+		"country": "Canada",
+		"duration": 53,
+		"tags": "nonfiction",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Roary",
+		"country": "Canada",
+		"duration": 82,
+		"tags": "fantasy",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Lamar",
+		"country": "Canada",
+		"duration": 118,
+		"tags": "travel",
+		"startdate": "February||||02"
+	},
+	{
+		"name": "Meghan",
+		"country": "United States",
+		"duration": 107,
+		"tags": "nonfiction",
+		"startdate": "May||||05"
+	},
+	{
+		"name": "Hunter",
+		"country": "France",
+		"duration": 184,
+		"tags": "fantasy",
+		"startdate": "May||||05"
+	},
+	{
+		"name": "Preston",
+		"country": "Canada",
+		"duration": 171,
+		"tags": "travel",
+		"startdate": "June||||06"
+	},
+	{
+		"name": "Benedict",
+		"country": "Canada",
+		"duration": 93,
+		"tags": "nonfiction",
+		"startdate": "April||||04"
+	},
+	{
+		"name": "Colt",
+		"country": "Canada",
+		"duration": 134,
+		"tags": "fantasy",
+		"startdate": "May||||05"
+	},
+	{
+		"name": "Steel",
+		"country": "France",
+		"duration": 159,
+		"tags": "travel",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Yoko",
+		"country": "France",
+		"duration": 142,
+		"tags": "nonfiction",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Gisela",
+		"country": "France",
+		"duration": 34,
+		"tags": "fantasy",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Carly",
+		"country": "United States",
+		"duration": 132,
+		"tags": "travel",
+		"startdate": "September||||09"
+	},
+	{
+		"name": "Ferris",
+		"country": "United States",
+		"duration": 42,
+		"tags": "nonfiction",
+		"startdate": "August||||08"
+	},
+	{
+		"name": "Angelica",
+		"country": "France",
+		"duration": 91,
+		"tags": "fantasy",
+		"startdate": "February||||02"
+	},
+	{
+		"name": "Harper",
+		"country": "United States",
+		"duration": 111,
+		"tags": "travel",
+		"startdate": "March||||03"
+	},
+	{
+		"name": "Quintessa",
+		"country": "France",
+		"duration": 119,
+		"tags": "nonfiction",
+		"startdate": "February||||02"
+	},
+	{
+		"name": "Virginia",
+		"country": "United States",
+		"duration": 151,
+		"tags": "fantasy",
+		"startdate": "December||||12"
+	},
+	{
+		"name": "Sasha",
+		"country": "France",
+		"duration": 165,
+		"tags": "travel",
+		"startdate": "March||||03"
+	},
+	{
+		"name": "Hanna",
+		"country": "United States",
+		"duration": 32,
+		"tags": "nonfiction",
+		"startdate": "July||||07"
+	},
+	{
+		"name": "Ila",
+		"country": "France",
+		"duration": 48,
+		"tags": "fantasy",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Ashely",
+		"country": "France",
+		"duration": 121,
+		"tags": "travel",
+		"startdate": "May||||05"
+	},
+	{
+		"name": "Ryan",
+		"country": "United States",
+		"duration": 193,
+		"tags": "nonfiction",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Stacey",
+		"country": "United States",
+		"duration": 74,
+		"tags": "fantasy, classics||||fantasy, classics||fantasy_____classics",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Mara",
+		"country": "United States",
+		"duration": 34,
+		"tags": "travel",
+		"startdate": "November||||11"
+	},
+	{
+		"name": "Nash",
+		"country": "Canada",
+		"duration": 120,
+		"tags": "nonfiction",
+		"startdate": "July||||07"
+	}
+]

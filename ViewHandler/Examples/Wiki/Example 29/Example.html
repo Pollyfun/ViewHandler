@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL - Preprocessing data</title>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>SQL - Combining two data sources.</div>
+        Two datasets are retrieved. SQL is used to combine them before rendering the grid.
+        </br></br>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-block">
+                <pre><code>function configureView(viewConfig) {
+   var configName = viewConfig.configName;
+   if (configName === 'Example29.config') {
+      viewConfig.addDataStore('standard-data.json');  // gets the default table name 'data'
+      viewConfig.addDataStore('country-data.json', null, 'country'); // 'country' is table name
+      viewConfig.preprocessData = function () {
+         var sql = 'SELECT data.*, country.* FROM data JOIN country on data.country = country.countryid';
+         return sql;
+      }
+   }
+}
+</code></pre>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Example%2029">Full source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+            'use strict';
+
+            document.addEventListener('DOMContentLoaded', function () {
+                createView({ containerId: 'viewhandler', configName: 'Example29.config' });
+            });
+
+    </script>
+</body>
+</html>

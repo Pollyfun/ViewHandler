@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiple viewhandlers</title>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>Using multiple viewhandlers.</div>
+        A div with a unique id is used for each. "viewhandler", and "viewhandler2"
+        </br></br>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-block">
+                <pre><code>document.addEventListener('DOMContentLoaded', function () {
+  createView({ containerId: 'viewhandler', configName: 'Example30-1.config' });
+  createView({ containerId: 'viewhandler2', configName: 'Example30-2.config' });
+});
+function configureView(viewConfig) {
+  var configName = viewConfig.configName;
+  if (configName === 'Example30-1.config') {
+    viewConfig.addDataStore('standard-data.json');
+    viewConfig.addColumns([
+      { title: 'formating', type: COLUMN.DROPDOWN }
+    ]);
+  }
+  else if (configName === 'Example30-2.config') {
+    viewConfig.addDataStore('country-data.json');
+    viewConfig.addColumns([
+      { title: 'country', type: COLUMN.DROPDOWN }
+    ]);
+  }
+}
+</code></pre>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Example%2030">Full source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div>
+        <div class="row">
+            <div class="col-md-4">
+                <div style="padding-left: 11px; padding-bottom: 11px">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default grouped" onclick="ViewHandler.resetFilter();">
+                            <i class="glyphicon glyphicon-flash"></i>
+                            <span>Nollställ filter</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+                <div style="padding-left: 11px; padding-bottom: 11px">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default grouped" onclick="ViewHandler.resetFilter('viewhandler2');">
+                            <i class="glyphicon glyphicon-flash"></i>
+                            <span>Nollställ filter</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="viewhandler"></div>
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+                <div id="viewhandler2"></div>
+            </div>
+        </div>
+    </div>
+            <script>
+                'use strict';
+                document.addEventListener('DOMContentLoaded', function () {
+                    createView({ containerId: 'viewhandler', configName: 'Example30-1.config' });
+                    createView({ containerId: 'viewhandler2', configName: 'Example30-2.config' });
+                });
+            </script>
+</body>
+</html>

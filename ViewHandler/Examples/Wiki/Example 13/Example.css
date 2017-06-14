@@ -1,0 +1,16 @@
+﻿li[itemname="name"] {
+    background-color: blanchedalmond;
+}
+ul.green li[itemname="country"] {
+    background-color: darkgrey;
+}
+ul.red li[itemname="duration"] {
+    font-weight: bold;
+}
+ul.yellow li[itemname="duration"] {
+    font-style: italic;
+    background-color: yellow;
+}
+li[itemname="startdate"] {
+    background-color: red;
+}

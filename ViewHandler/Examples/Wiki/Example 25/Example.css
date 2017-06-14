@@ -1,0 +1,44 @@
+﻿li[itemname="name"] {
+    font-weight: bold;
+}
+ul.red li[itemname="color"] {
+    background-color: red;
+}
+ul.yellow li[itemname="color"] {
+    background-color: yellow;
+}
+ul.green li[itemname="color"] {
+    background-color: green;
+}
+ul.purple li[itemname="color"] {
+    background-color: purple;
+}
+ul.orange li[itemname="color"] {
+    background-color: orange;
+}
+ul.black li[itemname="color"] {
+    background-color: black;
+    color: white;
+}
+ul.blue li[itemname="color"] {
+    background-color: blue;
+    color: white;
+}
+ul.pink li[itemname="color"] {
+    background-color: pink;
+}
+ul.grey li[itemname="color"] {
+    background-color: grey;
+}
+ul.yellow li[itemname="color"] {
+    background-color: yellow;
+}
+
+
+
+
+
+li[itemname="fo"] {
+    background-color: red;
+    font-weight: bold;
+}

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Alternative column sorting</title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>
+            A cell can contain multiple filter values. In this example each entry contains one or several tags.
+            <br />Each of them appears in the dropdown filter and can be filtered on individually.<br />
+            <br />Example data: "tags": "fantasy, dystopian||||fantasy, dystopian||fantasy_____dystopian"
+            <h4>Configuration</h4>
+            <br />
+            <pre><code>  viewConfig.addColumns([
+    { title : 'tags', type : COLUMN.DROPDOWN_MULTIPLE, altFilter : true, width: 170 }
+  ]);</code></pre>
+        </div>
+    &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Example%2020">View the source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+        'use strict';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            createView({ containerId: 'viewhandler', configName: 'Example20.config' });
+        });
+
+    </script>
+</body>
+</html>

@@ -3,11 +3,11 @@
 function configureView(viewConfig) {
    var configName = viewConfig.configName;
 
-   if (configName === 'Example6.config') {
+   if (configName === 'Example14.config') {
       viewConfig.addDataStore('standard-data.json');
 
       viewConfig.addColumns([
-           { title: 'country', type: COLUMN.DROPDOWN }
+           { title: 'startdate', altSort: true, sort: true}
       ]);
    }
 }
