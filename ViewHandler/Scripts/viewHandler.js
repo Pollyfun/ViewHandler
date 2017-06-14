@@ -174,8 +174,14 @@ function createLocalDatabase() {
       return transformFilterValue(cfgValues.filterValue, cfgValues.filterText);
    }
 
+   var counterUniqued = 0;
+   // used when creating the id-column
+   alasql.fn.INCREMENT_ID = function () {
+      return counterUniqued++;
+   }
+
    // transforms the backend value to a value that's better for sql-matching
-   //          ie: 08,09,12  Augusti,September,December  -->   08_____Augusti, 09_____September, 12_____December
+   // ie: 08,09,12  Augusti,September,December  -->   08_____Augusti, 09_____September, 12_____December
    // ie: 08,09,12  Augusti,September,December  -->   [08,Augusti], [09,September], [12,December]
    var transformFilterValue = function (arrFilterValue, arrFilterText) {
       var updatedValue = [];
@@ -227,7 +233,7 @@ function getSeqParam() {
 // fills in baseColumn design from the data. used if no baseColumn design were provided from the server
 function extractBaseColumnsFromData() {
    //console.log('extractBaseColumnsFromData____');
-   console.dir(globalData);
+   //console.dir(globalData);
    if (globalData[0].length === 0) {
       console.log('<ERROR>No data. Cannot extract columns...');
       return; // TODO: real exit
@@ -290,6 +296,7 @@ function mergeColumnDesign() {
       // count the width of visible columns
       if (columnCfg.type == COLUMN.LABEL || columnCfg.type == COLUMN.TEXT_SEARCH || columnCfg.type == COLUMN.DROPDOWN || columnCfg.type == COLUMN.DROPDOWN_MULTIPLE)
          calculatedWidth += columnCfg.width;		// can be from backend or viewConfig
+
       //console.log(i + ": " + columnCfg.title + "             width: " + columnCfg.width);
       if (columnCfg.totals === true)
          viewConfig.showTotals = true;
@@ -298,9 +305,10 @@ function mergeColumnDesign() {
    if (viewConfig.useOuterScroll !== true)   // inner scroll
       bodyWidth += 16;
 
-   /*$('body').css('width', bodyWidth);
+   /*$('body').css('width', bodyWidth);*/
    // set the iframe width
-   $(parent.document.body).find('#' + viewConfig.containerId + ' iframe').css('width', bodyWidth + 20);*/
+   $(parent.document.body).find('#' + viewConfig.containerId + ' iframe').css('width', bodyWidth);
+   //console.log('width: ' + bodyWidth);
 }
 
 function createFilterPanel() {
@@ -408,11 +416,11 @@ function createFilterPanel() {
 
 
 function refreshInnerScrollPositions() {
-   var topOffset = 10; //parseInt($("#filter-area").css('top'), 10);			// 10		(equals body padding)
+   //var topOffset = 10; //parseInt($("#filter-area").css('top'), 10);			// 10		(equals body padding)
    // TODO: for some annoying reason the width and position:absolute is lost after the top is updated
    $('#filter-area.innerScroll').css({
       //'top': $(this).scrollTop() + topOffset,
-      'top': topOffset,
+      //'top': topOffset,
       'position': 'fixed',
       'width': bodyWidth - 20
    });
@@ -488,7 +496,7 @@ function processData() {
 
    createSortFields();
    createFilterFields();
-   //console.info('ALL DATA: ', alasql('SELECT FROM data'));
+   createIDField();     // creates a unique @id field if missing
 
    setSortColumn(getDefaultSortColumn(), true);
    // make the data panel visible
@@ -523,8 +531,9 @@ function refreshScrollAreaHeight() {
    // there's some problem in IE/Edge where the last row is cut in half. add margin to handle it.
    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
    if (!isChrome) {
-       scrollAreaHeight += 14;
+       scrollAreaHeight += 14;   
    }
+   scrollAreaHeight += 10; // 20170519 - added after padding-top 10 removed
    $('#data-area div.panel-default').css('height', scrollAreaHeight);
    viewConfig.scrollAreaHeight = scrollAreaHeight;
    //console.log('viewConfig.qtyTotal: ' + viewConfig.qtyTotal + '  scrollAreaHeight: ' + scrollAreaHeight); // 57240
@@ -610,10 +619,11 @@ function resizeInnerScrollFrame() {
    else {
       //console.log('not null!!');
    }
+   /* inactivated 20170519 - makes it wide as the parent. also moves the scroll there. not good. 
    var parentWidth = $(parent).width();
-   //console.log('parent width: ' + parentWidth);
    parent.ViewHandler.setIframeWidth(parentWidth, viewConfig.containerId);
-   //$('html').css('width', parentWidth);
+   console.log('parent width: ' + parentWidth);
+   //$('html').css('width', parentWidth);*/
 
    /* TODO
    this height doesn't work so great when it's an embedded view that's starting after under the viewport.
@@ -678,7 +688,7 @@ function createDOMRow(viewEntry, rowType, replacing) {
          if (columnInfo.getType() === COLUMN.DROPDOWN || columnInfo.getType() === COLUMN.DROPDOWN_MULTIPLE) {
             // create a filter-attribute on each row
             var attrName = PREFIX_FILTER + title;
-            attributes += ' ' + attrName + '="' + convertFilterValue(columnInfo, cfgValues.filter) + '"';
+            attributes += ' ' + attrName + '="' + convertFilterValue(columnInfo, cfgValues.filterValue) + '"';
          }
       }
       else if (columnInfo.getType() == COLUMN.CLASSES) {
@@ -810,13 +820,13 @@ function convertSortValue(columnInfo, value) {
 
 // default code. this can be overridden to format the filtervalue in any choosen way.
 // the filtervalue is added as a PREFIX_FILTER-attribute to the ul-row
-function convertFilterValue(columnInfo, value) {
-   var output = viewConfig.convertFilterValue(columnInfo, value);
+function convertFilterValue(columnInfo, filterValue) {
+   var output = viewConfig.convertFilterValue(columnInfo, filterValue);
    if (typeof output !== 'undefined') {
       return sanitizeSortFilterValue(output);
    }
    else {
-      return sanitizeSortFilterValue(value);
+      return sanitizeSortFilterValue(filterValue);
    }
 }
 
@@ -1585,12 +1595,13 @@ function createSortFields() {
          var columName = columnInfo.getItemName();
          // extract the sort-value from the cell and give it to it's own field
          var mySql = 'UPDATE ' + viewConfig.dataStores[0].alias + ' SET [Sort_' + columName + '] = EXTRACT_SORTVALUE([' + columName + '])';
+         //console.log(mySql);
          alasql(mySql);
       }
    }
    //console.timeEnd("createSortFields");
 }
-// create a new  filter-field when config has altSort=true
+// create a new  filter-field when config has altFilter=true
 function createFilterFields() {
    //console.log("createFilterFields " + viewConfig.dataStores[0].alias);
    //console.time("createFilterFields");
@@ -1605,6 +1616,24 @@ function createFilterFields() {
       }
    }
    //console.timeEnd("createFilterFields");
+}
+
+function createIDField() {
+   var query = 'SELECT FROM ' + viewConfig.dataStores[0].alias;
+   var resultArray = alasql(query);
+   var missingID = false;
+
+   for (var i = 0, l = resultArray.length; i < l; i++) {
+      //console.info(i, resultArray[i]);
+      if ($.trim(resultArray[i]['@id']) === '')
+         missingID = true;
+   }
+   //console.info('missingID: ' + missingID);
+
+   if (missingID) {
+      var mySql = 'UPDATE ' + viewConfig.dataStores[0].alias + ' SET [@id] = INCREMENT_ID()';
+      alasql(mySql);
+   }
 }
 
 function fillInTotalsRowCells() {
@@ -1934,7 +1963,6 @@ function createActiveFilterDOM(activeFilters) {		// perhaps add a parameter to d
 
    for (var i = 0, l = activeFilters.length; i < l; i++) {
       var activeFilter = activeFilters[i];
-      //console.dir(activeFilter);
       if (i > 0)
          filterDOM += '<br \>';
       filterDOM += '<strong>' + activeFilter.label + ': </strong>';

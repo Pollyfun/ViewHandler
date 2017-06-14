@@ -85,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\qunit.css" />
-    <Content Include="Scripts\default.js" />
     <Content Include="Scripts\remains.js" />
     <Content Include="Scripts\tests.js" />
     <Content Include="TestResults.html" />

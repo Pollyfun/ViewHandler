@@ -18,7 +18,7 @@ var PREFIX_SORT_ARROW = 'sortArrow';
 //		viewConfig.addColumns({ title: 'Database',   type: COLUMN.DROPDOWN_MULTIPLE, link: true });
 // ------------------------------------------------------------------------------------------------------------------------
 function columnConfig(arguments) {
-
+   // base attributes
 	this.itemName = '';
 	this.title = '';
 	this.lngkey = '';
@@ -28,6 +28,7 @@ function columnConfig(arguments) {
 	this.totals = false;
 	this.sort = false;
 	this.sortDescending = false;
+   // additional attributes
 	this.altSort = false;
 	this.altFilter = false;
 	this.search = false;
@@ -36,7 +37,7 @@ function columnConfig(arguments) {
 	this.flag1 = false;
 	this.flag2 = false;
 
-	this.initialize = function(arguments) {
+	this.initialize = function (arguments) {
 		if (typeof (arguments) === 'object') {
 			if (arguments.hasOwnProperty('itemName'))
 				this.itemName = arguments.itemName;

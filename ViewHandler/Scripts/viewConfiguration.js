@@ -141,7 +141,7 @@ function viewConfiguration() {
    this.getActiveFilterArray = function (fieldName) {
       var sql = 'SELECT FROM filters WHERE FieldName = "' + fieldName + '"';
       //console.log('  getActiveFilterValue: ' + sql);
-      //console.dir(alasql(sql));
+      //console.info(sql, alasql(sql));
       // get active filters. note that there can be more than one active filter for a field (if addFilter() has been called more than once)
       var arrFilterValues = alasql(sql);
       var resultsArray = [];

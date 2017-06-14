@@ -259,7 +259,8 @@ test('dropFilter sorting', 14 , function () {
    deepEqual(df.getMembers(), [{ "value": "a03", "text": "3" }, { "value": "a05", "text": "5" }, { "value": "a10", "text": "10" }]);
 
    df.sortMembers();    // alpha asc
-   deepEqual(df.getMembers(), [{ "value": "a10", "text": "10" }, { "value": "a03", "text": "3" }, { "value": "a05", "text": "5" }]);
+   //deepEqual(df.getMembers(), [{ "value": "a10", "text": "10" }, { "value": "a03", "text": "3" }, { "value": "a05", "text": "5" }]);
+   deepEqual(df.getMembers(), [{ "value": "a03", "text": "3" }, { "value": "a05", "text": "5" }, { "value": "a10", "text": "10" }]);
 
    df.setSortDescending('abc');
    deepEqual(df.isSortDescending(), false);
@@ -269,7 +270,7 @@ test('dropFilter sorting', 14 , function () {
    deepEqual(df.isSortDescending(), true);
 
    df.sortMembers();    // alpha desc
-   deepEqual(df.getMembers(), [{ "value": "a05", "text": "5" }, { "value": "a03", "text": "3" }, { "value": "a10", "text": "10" }]);
+   deepEqual(df.getMembers(), [{ "value": "a10", "text": "10" }, { "value": "a05", "text": "5" }, { "value": "a03", "text": "3" }]);
 
    df.setNumSort('def');
    deepEqual(df.isNumSort(), false);
@@ -278,12 +279,16 @@ test('dropFilter sorting', 14 , function () {
    df.setNumSort(true);
    deepEqual(df.isNumSort(), true);
 
+   df.clearMembers();
+   df.addMember('03', '3');
+   df.addMember('05', '5');
+   df.addMember('10', '10');
    df.sortMembers();  // num desc
-   deepEqual(df.getMembers(), [{ "value": "a10", "text": "10" }, { "value": "a05", "text": "5" }, { "value": "a03", "text": "3" }]);
+   deepEqual(df.getMembers(), [{ "value": "10", "text": "10" }, { "value": "05", "text": "5" }, { "value": "03", "text": "3" }]);
 
    df.setSortDescending(false);
    df.sortMembers(); // num asc
-   deepEqual(df.getMembers(), [{ "value": "a03", "text": "3" }, { "value": "a05", "text": "5" }, { "value": "a10", "text": "10" }]);
+   deepEqual(df.getMembers(), [{ "value": "03", "text": "3" }, { "value": "05", "text": "5" }, { "value": "10", "text": "10" }]);
 
    df.setLevel('abc');
    deepEqual(df.getLevel(), 0);

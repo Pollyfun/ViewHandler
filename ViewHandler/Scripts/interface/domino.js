@@ -116,8 +116,9 @@ function fillInBaseColumns(viewConfig) {
       var title = columns[column]['@title'];			// key: prog name	value: title
       var width = columns[column]['@width'];			// checka json i browsern
       //width *= 8;	// seems to mimic the value retrieved from 'ReadDesign'
+      width = parseInt(width, 10);
+      //console.log(" itemName: " + itemName + "   title: " + title + "   width: " + width + '   isnumber: ' + (typeof arguments.width === 'number'));
 
-      //console.log(" itemName: " + itemName + "   title: " + title + "   width: " + width);
       // create a config from the backend info combined the default column type (LABEL)
       var columnCfg = new columnConfig({ itemName: itemName, title: title, width: width, type: COLUMN.LABEL });
       viewConfig.addBaseColumnConfig(columnCfg);
@@ -165,6 +166,12 @@ function normalizeJson(inputData, optionalInfo) {
                   }
                   //console.log('TXT: ' + text);
                }
+               else if (field["datetime"]) {
+                  text = field["datetime"][0];         // ie: 20100527T120429,61-05
+               }
+               else {
+                  console.info(i + '__' + j + ': NOT text, textlist or datetime..');
+               }
                //console.info(j + ": " + field["@name"] + ' text: ' + text[0] + "   text: ", text);
                outputEntry[field["@name"]] = '' + text;
                // make sure it's a string. then we don't have to handle different sql where-variations
@@ -175,8 +182,9 @@ function normalizeJson(inputData, optionalInfo) {
             //if (i === 0)
             //   //console.info('numero uno: ', outputEntry);
       }
-      //var topLevelEntries = inputData['@toplevelentries'];
+      var topLevelEntries = inputData['@toplevelentries'];
       //console.info('@toplevelentries: ', topLevelEntries, '  inputData#: ', inputData.length);
+      //console.info(inputData);
    }
    return outputData;
 }

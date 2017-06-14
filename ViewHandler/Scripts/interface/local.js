@@ -14,7 +14,7 @@ var serverColumnDesign = [];  // one entry per viewhandler container (when chang
 // if there's several datasources in the viewhandler, the design is only retrieved from the first one.
 
 function createView(cfg) {
-   console.info('local createView ', cfg.viewHandlerPath);
+   //console.info('local createView ', cfg.viewHandlerPath);
    ViewHandler.addPostConfigurationCallback(sharedLocalConfiguration);  // for retrieving column design from the first datastore and to fill in base columns (same for all psk viewhandlers)
    ViewHandler.addDataStoreConfigurator(configureDatastore);
    ViewHandler.addRetrieveDataFunction(retrieveData);
@@ -28,13 +28,13 @@ function createView(cfg) {
          designName = cfg.designName;
 
       // when html files are opened through Domino they need the ?OpenFileResource suffix
-      var viewHandlerPath = '/ViewHandler/ViewHandler/ViewHandler.html' + (!isLocalHost ? '?OpenFileResource' : '');
+      var viewHandlerPath = '/ViewHandler.html' + (!isLocalHost ? '?OpenFileResource' : '');
       if (!isLocalHost && $.trim(cfg.viewHandlerPath) !== '')
          viewHandlerPath = cfg.viewHandlerPath + viewHandlerPath;
 
       ViewHandler.createView(cfg.containerId, cfg.configName, viewHandlerPath, (typeof configureView === 'function' ? configureView : null));
    }
-   console.log('containerId: ' + cfg.containerId + '  configName: ' + cfg.configName);
+   //console.log('containerId: ' + cfg.containerId + '  configName: ' + cfg.configName);
    refreshViewHandler();
 }
 
@@ -128,8 +128,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
       callAgain = true;
    }
    else {
-      console.info(data);
-
+      //console.info(data);
       data = normalizeJson(data, optionalInfo)
       //data = JSON.parse(JSON.stringify(data));  // seems to be needed, otherwise the data is malformed after being added to the sql database
       //console.info('normalized: ', data);
@@ -152,7 +151,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
    if (callAgain === true) {
       var uri = optionalInfo.uri;
 
-      console.log('URI: ' + uri);
+      //console.log('URI: ' + uri);
       $.ajax(uri).done(function (data) {
          retrieveData(data, optionalInfo, viewConfig);
       }
@@ -216,7 +215,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
 //}
 
 
-function normalizeJson(inputData, optionalInfo) {     // psk-data
+function normalizeJson(inputData, optionalInfo) {
    // standardize the data and add it to gData
    //console.info('normalizeJson ');
    //console.info(inputData);
@@ -243,8 +242,8 @@ function normalizeJson(inputData, optionalInfo) {     // psk-data
       //if (i === 0) console.info('numero uto: ', outputEntry);
       outputData.push(outputEntry);
    }
-   console.info('inputData: ', inputData);
-   console.info('outputData: ', outputData);
+   //console.info('inputData: ', inputData);
+   //console.info('outputData: ', outputData);
 
    //var data = [];
    //for (var i = 0; i < 500; i++) {

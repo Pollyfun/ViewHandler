@@ -118,8 +118,8 @@ function dropFilter(ctrlId, dataKey, label, columnInfo, tag) {
       return _members;
    }
    this.sortMembers = function () {
+      //console.info('  numsort: ' + this.isNumSort() + '  desc: ' + _sortDescending);
       if (this.isNumSort()) {
-         //console.info('numeric sort for ' + this.getLabel());
          if (_sortDescending)
             _members.sort(sortNumberD);
          else
@@ -490,6 +490,8 @@ function fillInDropDowns(excludeDropFilter) {     // TEMP name
 
       // make sure that the value from the active filter is actually in the newly created list of values for the dropdown (might not be after a higher dropdown has changed)
       arrFilterValues = validateActiveFilterValues(arrFilterValues, dropFilter);
+      //console.info('resultArray: ', resultArray);
+      //console.info('arrFilterValues: ', arrFilterValues);
         
       if (arrFilterValues.length > 0) { // there might not be any valid active filter values left after validation
          if (whereIsUsed)
@@ -526,13 +528,16 @@ function fillInDropDowns(excludeDropFilter) {     // TEMP name
             else { // exact match on full filter value
                viewConfig.where += '[' + dropFilter.getColumnInfo().getFilterFieldName() + '] = "' + arrFilterValues[j] + '"';
             }
+            //console.info(viewConfig.where);
             colValues.push(arrFilterValues[j]);
             colDisplayValues.push(overrideActiveFilterValue(dropFilter, arrFilterValues[j]));
+            //console.info(j, arrFilterValues[j]);
          }
          viewConfig.where += ')';
          //console.log('fillInDropDowns - viewConfig.where: ' + viewConfig.where);
 
          if (colValues.length > 0) {
+            //console.info(dropFilter.getLabel(), colValues, colDisplayValues);
             activeFiltersList.push(new filterEntry(dropFilter.getCtrlId(), dropFilter.getLabel(), masterIndex, colValues, colDisplayValues, true));
          }
          // update css:
@@ -625,35 +630,35 @@ function validateActiveFilterValues(arrFilterValues, dropFilter) { //, resultArr
 
 
 function sortNumberA(a, b) {
-   // if some parseInt returns NaN it doesn't matter match. the other members will continue sorting
-   //console.log(parseInt(a) + " > " + parseInt(b) + ": " + (parseInt(a) > parseInt(b)));
-   return parseInt(a.text, 10) - parseInt(b.text, 10);	// OBS: funkar ej med >, den kör bara 1 iteration..
+   // if some parseInt returns NaN it doesn't matter much. the other members will continue sorting
+   //console.log(parseInt(a.value, 10) + " > " + parseInt(b.value, 10) + ": " + (parseInt(a.value, 10) > parseInt(b.value, 10)));
+   return parseInt(a.value, 10) - parseInt(b.value, 10);	// OBS: funkar ej med >, den kör bara 1 iteration..
 }
 
 function sortNumberD(a, b) {
    //console.log(parseInt(a) + " > " + parseInt(b) + ": " + (parseInt(a) > parseInt(b)));
-   return parseInt(b.text, 10) - parseInt(a.text, 10);	// OBS: funkar ej med >, den kör bara 1 iteration..
+   return parseInt(b.value, 10) - parseInt(a.value, 10);	// OBS: funkar ej med >, den kör bara 1 iteration..
 }
 
 // sort ascending, ignore case
 function charOrdA(a, b) {
-   //console.info(a, b);
-   a = a.text.toLowerCase();
-   b = b.text.toLowerCase();
-   if (a > b)
+   var a1 = a.value.toLowerCase();
+   var b1 = b.value.toLowerCase();
+   //console.info(a, b, a1, b1);
+   if (a1 > b1)
       return 1;
-   if (a < b)
+   if (a1 < b1)
       return -1;
    return 0;
 }
 
 // sort descending, ignore case
 function charOrdD(a, b) {
-   a = a.text.toLowerCase();
-   b = b.text.toLowerCase();
-   if (a < b)
+   var a1 = a.value.toLowerCase();
+   var b1 = b.value.toLowerCase();
+   if (a1 < b1)
       return 1;
-   if (a > b)
+   if (a1 > b1)
       return -1;
    return 0;
 }

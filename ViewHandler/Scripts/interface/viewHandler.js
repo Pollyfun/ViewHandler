@@ -334,7 +334,7 @@ var ViewHandler = function () {
       // create iframe for the viewhandler
       // TODO: autofix width. width also in css, but the header becomes visible too early (wrong width) without width here
       // seems width and height has to be here to be correct immediately
-      $('#' + containerId).append('<iframe style="width: 1760px;height:400px;" frameborder="0"></iframe>');
+      $('#' + containerId).append('<iframe style="width: 800px;height:400px;" frameborder="0"></iframe>');
       
       var separator = ~viewHandlerPath.indexOf('?') ? '&' : '?';
       var url =  viewHandlerPath + separator + 'containerid=' + containerId + '&configname=' + configName;
