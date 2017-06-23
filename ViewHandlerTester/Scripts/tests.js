@@ -146,10 +146,9 @@ test("columnConfig boolean fields", 12, function () {
    deepEqual(cfg.flag2, false);
 });
 
-test("columnInfo default", 19, function () {
+test("columnInfo default", 18, function () {
    var columnInfo1 = new columnInfo(new columnConfig());
 
-   deepEqual(columnInfo1.getItemName(), '');
    deepEqual(columnInfo1.getTitle(), '');
    deepEqual(columnInfo1.getDataKey(), '');
    deepEqual(columnInfo1.getLabel(), '');        // from lngkey
@@ -171,10 +170,9 @@ test("columnInfo default", 19, function () {
 });
 
 
-test("columnInfo filled-in", 19, function () {
+test("columnInfo filled-in", 18, function () {
    var columnInfo1 = new columnInfo(cfgFilledIn);
 
-   deepEqual(columnInfo1.getItemName(), 'goodItemName');
    deepEqual(columnInfo1.getTitle(), 'goodTitle');
    deepEqual(columnInfo1.getDataKey(), 'goodtitle');
    deepEqual(columnInfo1.getLabel(), 'goodTitle');        // from lngkey
@@ -191,8 +189,8 @@ test("columnInfo filled-in", 19, function () {
    deepEqual(columnInfo1.getTag(), 'tag');
    deepEqual(columnInfo1.hasFlag1(), true);
    deepEqual(columnInfo1.hasFlag2(), false);
-   deepEqual(columnInfo1.getSortFieldName(), 'Sort_goodItemName');
-   deepEqual(columnInfo1.getFilterFieldName(), 'Filter_goodItemName');
+   deepEqual(columnInfo1.getSortFieldName(), 'Sort_goodTitle');
+   deepEqual(columnInfo1.getFilterFieldName(), 'Filter_goodTitle');
 });
 
 module("dropFilterVH.js");
