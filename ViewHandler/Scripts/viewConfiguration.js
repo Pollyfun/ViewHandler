@@ -13,6 +13,7 @@ function viewConfiguration() {
    this.dataStores = [];   // this can be filled in from viewHandlerCustom.js
    this.restrictToCategory = null;   // this can be filled in from viewHandlerCustom.js        empty strings are a valid value, so null is used for default
 
+   this.lookupBaseColumns = [];  // for performance. send itemName, get title
    this.baseColumnConfigs = [];
    this.columnConfigs = [];
    this.filterHierarchy = [];
@@ -48,6 +49,7 @@ function viewConfiguration() {
    this.addBaseColumnConfig = function (cfg) {
       this.baseColumnConfigs.push(cfg);
       //console.log("added a cfg. current qty: " + this.columnConfigs.length);
+      this.lookupBaseColumns[cfg.itemName] = cfg.title;
    }
 
    this.addColumnConfig = function (cfg) {    // TODO: probably make private
@@ -62,6 +64,10 @@ function viewConfiguration() {
             return this.columnConfigs[i];
       }
       return null;
+   }
+
+   this.getBaseColumnTitleFromItemName = function (itemName) {
+      return this.lookupBaseColumns[itemName];
    }
 
    this.cleanFilterName = function (filterName) {

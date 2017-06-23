@@ -96,6 +96,8 @@
     <Content Include="Examples\Wiki\Example 10\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 11\Example.html" />
     <Content Include="Examples\Wiki\Example 11\viewHandlerCustom.js" />
+    <Content Include="Examples\Wiki\Example 12.5\Example.html" />
+    <Content Include="Examples\Wiki\Example 12.5\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 12\Example.html" />
     <Content Include="Examples\Wiki\Example 12\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 13\Example.css" />
@@ -110,12 +112,15 @@
     <Content Include="Examples\Wiki\Example 17\Example.html" />
     <Content Include="Examples\Wiki\Example 17\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 18\Example.html" />
+    <Content Include="Examples\Wiki\Example 18\standard-data.json" />
     <Content Include="Examples\Wiki\Example 18\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 19\Example.html" />
+    <Content Include="Examples\Wiki\Example 19\standard-data.json" />
     <Content Include="Examples\Wiki\Example 19\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 1\Example.html" />
     <Content Include="Examples\Wiki\Example 1\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 20\Example.html" />
+    <Content Include="Examples\Wiki\Example 20\standard-data.json" />
     <Content Include="Examples\Wiki\Example 20\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 21\Example.html" />
     <Content Include="Examples\Wiki\Example 21\viewHandlerCustom.js" />
@@ -158,7 +163,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Docs\ViewHandler.odp" />
-    <Content Include="scripts\External\bootstrap-select.js.map" />
+    <Content Include="Scripts\External\bootstrap-select.js.map" />
     <Content Include="Examples\PSK\google-maps\custom.css" />
     <Content Include="Docs\Multiple.odg" />
     <Content Include="Examples\Data\data.json" />
@@ -167,10 +172,18 @@
     <Content Include="Examples\Data\data1.json" />
     <Content Include="Examples\Data\data2.json" />
     <Content Include="Examples\Data\data3.json" />
-    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.css.map" />
-    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.js.map" />
-    <Content Include="scripts\External\bootstrap\3.3.7\bootstrap.min.css.map" />
+    <Content Include="Scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.css.map" />
+    <Content Include="Scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.js.map" />
+    <Content Include="Scripts\External\bootstrap\3.3.7\bootstrap.min.css.map" />
+    <Content Include="Examples\Wiki\psk-data.json" />
     <Content Include="Examples\Wiki\Example 1\standard-data.json" />
+    <Content Include="Examples\Wiki\Example 2\standard-data.json" />
+    <Content Include="Examples\Wiki\Example 3\standard-data.json" />
+    <Content Include="Examples\Wiki\Example 4\standard-data.json" />
+    <Content Include="Examples\Wiki\Example 5\standard-data.json" />
+    <Content Include="Examples\Wiki\Example 6\standard-data.json" />
+    <Content Include="Examples\Wiki\Example 7\standard-data.json" />
+    <Content Include="Examples\Wiki\Example 8\standard-data.json" />
     <Content Include="Examples\Wiki\Example 1.5\standard-data.json" />
     <Content Include="Examples\Wiki\Example 10\standard-data.json" />
     <Content Include="Examples\Wiki\Example 11\standard-data.json" />
@@ -180,27 +193,17 @@
     <Content Include="Examples\Wiki\Example 15\standard-data.json" />
     <Content Include="Examples\Wiki\Example 16\standard-data.json" />
     <Content Include="Examples\Wiki\Example 17\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 18\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 19\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 20\standard-data.json" />
     <Content Include="Examples\Wiki\Example 21\standard-data.json" />
     <Content Include="Examples\Wiki\Example 22\standard-data.json" />
     <Content Include="Examples\Wiki\Example 23\standard-data.json" />
     <Content Include="Examples\Wiki\Example 24\standard-data.json" />
     <Content Include="Examples\Wiki\Example 25\standard-data.json" />
     <Content Include="Examples\Wiki\Example 28\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 29\country-data.json" />
     <Content Include="Examples\Wiki\Example 29\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 2\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 30\country-data.json" />
     <Content Include="Examples\Wiki\Example 30\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 3\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 4\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 5\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 6\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 7\standard-data.json" />
-    <Content Include="Examples\Wiki\Example 8\standard-data.json" />
-    <Content Include="Examples\Wiki\psk-data.json" />
+    <Content Include="Examples\Wiki\Example 29\country-data.json" />
+    <Content Include="Examples\Wiki\Example 30\country-data.json" />
+    <Content Include="Examples\Wiki\Example 12.5\standard-data.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -209,32 +212,32 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="scripts\columnInfoVH.js" />
-    <Content Include="scripts\dropFilterVH.js" />
-    <Content Include="scripts\External\alasql.min.js" />
-    <Content Include="scripts\External\bootstrap-3.3.5.min.css" />
-    <Content Include="scripts\External\bootstrap-select.min.css" />
-    <Content Include="scripts\External\bootstrap-select.min.js" />
-    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.js" />
-    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.min.css" />
-    <Content Include="scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.min.js" />
-    <Content Include="scripts\External\bootstrap.min.css" />
-    <Content Include="scripts\External\bootstrap.min.js" />
-    <Content Include="scripts\External\bootstrap\3.3.7\bootstrap.min.css" />
-    <Content Include="scripts\External\bootstrap\3.3.7\bootstrap.min.js" />
-    <Content Include="scripts\External\es5-shim\4.5.7\es5-sham.min.js" />
-    <Content Include="scripts\External\es5-shim\4.5.7\es5-shim.min.js" />
-    <Content Include="scripts\External\jquery.min.js" />
+    <Content Include="Scripts\columnInfoVH.js" />
+    <Content Include="Scripts\dropFilterVH.js" />
+    <Content Include="Scripts\External\alasql.min.js" />
+    <Content Include="Scripts\External\bootstrap-3.3.5.min.css" />
+    <Content Include="Scripts\External\bootstrap-select.min.css" />
+    <Content Include="Scripts\External\bootstrap-select.min.js" />
+    <Content Include="Scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.js" />
+    <Content Include="Scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.min.css" />
+    <Content Include="Scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.min.js" />
+    <Content Include="Scripts\External\bootstrap.min.css" />
+    <Content Include="Scripts\External\bootstrap.min.js" />
+    <Content Include="Scripts\External\bootstrap\3.3.7\bootstrap.min.css" />
+    <Content Include="Scripts\External\bootstrap\3.3.7\bootstrap.min.js" />
+    <Content Include="Scripts\External\es5-shim\4.5.7\es5-sham.min.js" />
+    <Content Include="Scripts\External\es5-shim\4.5.7\es5-shim.min.js" />
+    <Content Include="Scripts\External\jquery.min.js" />
     <Content Include="Examples\PSK\google-maps\viewHandler.js" />
-    <Content Include="scripts\External\jquery\1.12.4\jquery.min.js" />
-    <Content Include="scripts\interface\domino.js" />
-    <Content Include="scripts\interface\local.js" />
-    <Content Include="scripts\interface\psk.js" />
-    <Content Include="scripts\interface\viewHandler.js" />
-    <Content Include="scripts\spin.js" />
-    <Content Include="scripts\supportFunctions.js" />
-    <Content Include="scripts\viewConfiguration.js" />
-    <Content Include="scripts\viewHandler.js" />
+    <Content Include="Scripts\External\jquery\1.12.4\jquery.min.js" />
+    <Content Include="Scripts\Interface\domino.js" />
+    <Content Include="Scripts\Interface\local.js" />
+    <Content Include="Scripts\Interface\psk.js" />
+    <Content Include="Scripts\Interface\viewHandler.js" />
+    <Content Include="Scripts\spin.js" />
+    <Content Include="Scripts\supportFunctions.js" />
+    <Content Include="Scripts\viewConfiguration.js" />
+    <Content Include="Scripts\viewHandler.js" />
     <Content Include="ViewHandler.html" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -260,20 +260,13 @@ function mergeColumnDesign() {
       return; // TODO: real exit
    }
 
-   // first transform values in viewConfig.columns to the user column configs
-   /*for (var i = 0, l = viewConfig.columns.length; i < l; i++) {
-      //console.log('transforming ' + i);
-      //console.dir(viewConfig.columns[i]);
-      viewConfig.addColumnConfig(new columnConfig(viewConfig.columns[i]));
-   }
-   for (var i = 0, l = viewConfig.columns.length; i < l; i++) {
-      var columnCfg = viewConfig.columns[i];
-      //console.log(i + ": " + columnCfg.title);
-   }*/
-
    var calculatedWidth = 0;
    for (var i = 0, l = viewConfig.baseColumnConfigs.length; i < l; i++) {
       var columnCfg = viewConfig.baseColumnConfigs[i];
+
+      if (typeof columnCfg.itemName !== 'undefined')
+         columnCfg.itemName = columnCfg.title;  // for domino-data: synch title to itemName so title can be used in addFilter(title) and other places
+      //console.dir(columnCfg);
 
       if (typeof columnCfg.width === 'undefined')
          columnCfg.width = 199;
@@ -283,8 +276,6 @@ function mergeColumnDesign() {
          columnCfg.overrideWith(userCfg);
          //console.log("user-column DEFINED: " + columnCfg.title + "_____" + columnCfg.name + "_____" + columnCfg.width + "_____" + columnCfg.link);
       }
-      //else
-      //   console.log("didn't find title: " + columnCfg.title);
 
       // check for valid column types
       if (columnCfg.type == COLUMN.HIDDEN || columnCfg.type == COLUMN.LABEL || columnCfg.type == COLUMN.TEXT_SEARCH || columnCfg.type == COLUMN.DROPDOWN || columnCfg.type == COLUMN.DROPDOWN_MULTIPLE || columnCfg.type == COLUMN.CLASSES) {
@@ -305,7 +296,6 @@ function mergeColumnDesign() {
    if (viewConfig.useOuterScroll !== true)   // inner scroll
       bodyWidth += 16;
 
-   /*$('body').css('width', bodyWidth);*/
    // set the iframe width
    $(parent.document.body).find('#' + viewConfig.containerId + ' iframe').css('width', bodyWidth);
    //console.log('width: ' + bodyWidth);
@@ -382,11 +372,7 @@ function createFilterPanel() {
       }
    }
    //console.log('______________________________________panelWidth: ' + panelWidth);
-   //panelWidth += 33;
 
-   //$('#data-area').css('margin-right','100px');
-
-   //padding-right:10px
    var RIGHTSIDE_PADDING = 10;	// create some space between the filter/data and the rightside scroll
    $('#data-area').css('padding-right', RIGHTSIDE_PADDING + 'px');
 
@@ -661,19 +647,14 @@ function createHeightFillerDOMRow(height) {
 
 function createDOMRow(viewEntry, rowType, replacing) {
    var rowUNID = viewEntry['@id'];	// UNID is included automatically (not a column)
-   //console.info('rowUNID: ' + rowUNID);
    var rowCode = '';
    var classes = rowType;
    var attributes = 'id="' + rowUNID + '"';
    
    for (var i = 0, l = getColumnInfoQty() ; i < l; i++) {		// since the columns from xagent are unsorted, we'll loop the design-columns 
       var columnInfo = getColumnInfoFromIndex(i);
-      var field = columnInfo.getItemName();
-      //var cfgValues = extractValues(viewEntry, field);	// extract display, alt, sort, filter, (list)
-      var cfgValues = extractValues(viewEntry[field]);
-      //console.log("cfgValues.filter: " + cfgValues.filter);
-      //console.log("itemName: " + field);
-      //console.info(viewEntry);
+      var field = columnInfo.getTitle();
+      var cfgValues = extractValues(viewEntry[field]);   // extract display, alt, sort, filter, (list)
 
       if (columnInfo.getType() === COLUMN.LABEL || columnInfo.getType() === COLUMN.TEXT_SEARCH || columnInfo.getType() === COLUMN.DROPDOWN || columnInfo.getType() === COLUMN.DROPDOWN_MULTIPLE) {
          // create a sort-attribute on each row
@@ -769,7 +750,7 @@ function convertDisplayValue(columnInfo, cfgValues, optUnid) {
 
 
 function createStandardLi(columnInfo, content) {	// content is put inside the <li>
-   return '<li itemname="' + columnInfo.getItemName() + '" style="width:' + columnInfo.getWidth() + 'px">' + content + '</li>';
+   return '<li column="' + columnInfo.getTitle() + '" style="width:' + columnInfo.getWidth() + 'px">' + content + '</li>';
 }
 
 // handles generic cases (basic link etc). called from convertDisplayValue()-functions
@@ -939,8 +920,6 @@ function extractValues(fieldValue) {
       cfgValues.sort = values[0];
       cfgValues.filterValue = values[0];
       cfgValues.filterText = values[0];
-      //if (itemName === '$51') 
-      //console.log("1");
    }
    else if (values.length === 2) {
       cfgValues.display = values[0];
@@ -948,8 +927,6 @@ function extractValues(fieldValue) {
       cfgValues.sort = values[0];
       cfgValues.filterValue = values[0];
       cfgValues.filterText = values[0];
-      //if (itemName === '$51') 
-      //console.log("2");
    }
    else if (values.length === 3) {
       cfgValues.display = values[0];
@@ -957,8 +934,6 @@ function extractValues(fieldValue) {
       cfgValues.sort = values[2];
       cfgValues.filterValue = values[2];		// use sort also for filter
       cfgValues.filterText = values[2];		// use sort also for filter
-      //if (itemName === '$51') 
-      //console.log("3");
    }
    else if (values.length === 4) {
       cfgValues.display = values[0];
@@ -966,8 +941,6 @@ function extractValues(fieldValue) {
       cfgValues.sort = values[2];
       cfgValues.filterValue = values[3];
       cfgValues.filterText = values[3];
-      //if (itemName === '$51') 
-      //console.log("4");
    }
    else if (values.length === 5) {
       cfgValues.display = values[0];
@@ -975,8 +948,6 @@ function extractValues(fieldValue) {
       cfgValues.sort = values[2];
       cfgValues.filterValue = values[3];
       cfgValues.filterText = values[4];      // different value / text for dropdown
-      //if (itemName === '$51') 
-      //console.log("4");
    }
    return cfgValues;
 }
@@ -989,7 +960,6 @@ function extractFilterValue(fieldValue) {
    if (cfgValues.isList) {
       cfgValues.list = fieldValue;
       fieldValue = fieldValue[0];		// just the first entry
-      //console.log("is a list: " + itemName + ". #: " + cfgValues.list.length);
    }
    // use trim to make the value into a string		
    var values = $.trim(fieldValue).split(DATA_SEPARATOR);
@@ -1033,7 +1003,6 @@ function extractSortValue(fieldValue) {
    if (cfgValues.isList) {
       cfgValues.list = fieldValue;
       fieldValue = fieldValue[0];		// just the first entry
-      //console.log("is a list: " + itemName + ". #: " + cfgValues.list.length);
    }
    // use trim to make the value into a string		
    var values = $.trim(fieldValue).split(DATA_SEPARATOR);
@@ -1164,19 +1133,18 @@ function selectAllMembers(dropFilter) {
    var selectableOptions = $(dropFilter.getCtrl()).find('option:not([' + ATTRIBUTE_EXCLUDED + '])');
    $(selectableOptions).prop("selected", true);        // works..
 
-   viewConfig.removeFilter(dropFilter.getColumnInfo().getItemName());
+   viewConfig.removeFilter(dropFilter.getColumnInfo().getTitle());
    refreshDropdowns(dropFilter);
 }
 
 function selectNoMembers(dropFilter) {
    //console.log('selectNoMembers : ' + dropFilter.getLabel());
-
    if (dropFilter.isMultiple()) {
       var options = $(dropFilter.getCtrl()).find('option:selected');
       //console.log('options #: ' + options.length);
       $(options).removeAttr('selected');
 
-      viewConfig.replaceFilter(dropFilter.getColumnInfo().getItemName(), null);
+      viewConfig.replaceFilter(dropFilter.getColumnInfo().getTitle(), null);
       refreshDropdowns(dropFilter);
    }
 }
@@ -1199,12 +1167,20 @@ function enableResetFilter(value) {   // RETIRED. finns ingen sådan knapp inuti
 
 
 function getDefaultSortColumn() {
-   var defaultColumn = 0;		// value used if no sort column has been specified
+   var defaultColumn = -1;
 
    // finds the first column with the sort=true (any additional ones are ignored)
    for (var i = 0, l = columnInfos.length; i < l; i++) {
+      // make sure it's a visible column
+      //console.info(i, columnInfos[i]);
+      if (!(columnInfos[i].getType() == COLUMN.LABEL || columnInfos[i].getType() == COLUMN.TEXT_SEARCH || columnInfos[i].getType() == COLUMN.DROPDOWN || columnInfos[i].getType() == COLUMN.DROPDOWN_MULTIPLE)) {
+         continue;
+      }
       if (columnInfos[i].isSort() === true) {
          return i;
+      }
+      else if (defaultColumn === -1) {
+         defaultColumn = i;   // value used if no sort column has been specified (using first visible column)
       }
    }
    return defaultColumn;
@@ -1484,13 +1460,14 @@ function hasGlobalSearch() {
 }
 
 function getExcelColumnsParam() {
+   console.info('getExcelColumnsParam');
    var param = '';	// must start empty, so it can be used in the loop to skip the first comma-sign
    for (var i = 0, l = columnInfos.length; i < l; i++) {
       var columnInfo = columnInfos[i];
       if (columnInfo.getType() == COLUMN.LABEL || columnInfo.getType() == COLUMN.TEXT_SEARCH || columnInfo.getType() == COLUMN.DROPDOWN || columnInfo.getType() == COLUMN.DROPDOWN_MULTIPLE) {
          if (param !== '')
             param += ',';
-         param += columnInfo.getItemName();
+         param += columnInfo.getTitle();
       }
    }
    if (param === '')
@@ -1532,7 +1509,7 @@ function retrieveFilterData(cfg) {
       sql = 'SELECT [@id]';
       for (var i = 0, l = cfg.fields.length; i < l; i++) {
          var columnInfo = getColumnInfoFromTitle(cfg.fields[i]);
-         sql += ', [' + columnInfo.getItemName() + ']';
+         sql += ', [' + columnInfo.getTitle() + ']';
       }
       sql += ' FROM ' + viewConfig.dataStores[0].alias;
    }
@@ -1557,7 +1534,7 @@ function retrieveFilterData(cfg) {
          //console.log('unid: ' + obj.unid);
          for (var j = 0, m = cfg.fields.length; j < m; j++) {
             var columnInfo = getColumnInfoFromTitle(cfg.fields[j]);
-            var value = queryResult[i][columnInfo.getItemName()];
+            var value = queryResult[i][columnInfo.getTitle()];
             if (renameFields)
                obj[cfg.returnfields[j]] = value;
             else
@@ -1592,7 +1569,7 @@ function createSortFields() {
    for (var i = 0, l = columnInfos.length; i < l; i++) {
       var columnInfo = columnInfos[i];
       if (columnInfo.isAltSort()) {
-         var columName = columnInfo.getItemName();
+         var columName = columnInfo.getTitle();
          // extract the sort-value from the cell and give it to it's own field
          var mySql = 'UPDATE ' + viewConfig.dataStores[0].alias + ' SET [Sort_' + columName + '] = EXTRACT_SORTVALUE([' + columName + '])';
          //console.log(mySql);
@@ -1608,7 +1585,7 @@ function createFilterFields() {
    for (var i = 0, l = columnInfos.length; i < l; i++) {
       var columnInfo = columnInfos[i];
       if (columnInfo.isAltFilter()) {
-         var columName = columnInfo.getItemName();
+         var columName = columnInfo.getTitle();
          // extract the filter-value from the cell and give it to it's own field
          var mySql = 'UPDATE ' + viewConfig.dataStores[0].alias + ' SET [Filter_' + columName + '] = EXTRACT_FILTERVALUE([' + columName + '])';
          //console.info('createFilterFields: ', mySql);
@@ -1644,9 +1621,8 @@ function fillInTotalsRowCells() {
    for (var i = 0, l = columnInfos.length; i < l; i++) {
       var tmpColumnInfo = columnInfos[i];
       if (tmpColumnInfo.hasTotals()) {
-         var amount = summarizeColumn(tmpColumnInfo.getItemName());
-         //console.log(i + ' ' + tmpColumnInfo.getItemName() + ': ' + amount);
-         $('#totalsrow li[itemname="' + tmpColumnInfo.getItemName() + '"]').text(amount);
+         var amount = summarizeColumn(tmpColumnInfo.getTitle());
+         $('#totalsrow li[column="' + tmpColumnInfo.getTitle() + '"]').text(amount);
       }
    }
 }
@@ -1719,9 +1695,8 @@ function selectMembersFromGroup(dropFilter, group) {
 
    var resultArray = getMatchedMembers(dropFilter, group);
    //console.log('QTY matched members: ' + resultArray.length);
-   //viewConfig.replaceFilter(dropFilter.getColumnInfo().getItemName(), group.members.length === 1 ? group[0] : group);
-   viewConfig.replaceFilter(dropFilter.getColumnInfo().getItemName(), resultArray);
-   //ViewHandler.printFilters();
+   viewConfig.replaceFilter(dropFilter.getColumnInfo().getTitle(), resultArray);
+   //printFilters();
    //ViewHandler.refreshDrop();  // OBS: kan inte skicka in dropFilter to exclude here. we need to refresh it.
    refreshDropdowns();
 }
@@ -1755,7 +1730,6 @@ function setSortColumn(columnIndex, reseting) {   // reseting is optional. reset
    if (orderBy !== '') {
       if (sortColumnInfo.isNumSort()) {
          viewConfig.orderBy = " ORDER BY CASE WHEN [" + orderBy + "] = '' THEN '999999' ELSE cast(EXTRACT_NUMERIC([" + orderBy + "]) as integer) END " + (sortAscending ? '' : ' DESC'); // 25.863ms
-         //console.log('NUMCOL ' + sortColumnInfo.getTitle() + '___' + sortColumnInfo.getItemName() + '  orderBy: ' + viewConfig.orderBy);
       }
       else
          viewConfig.orderBy = " ORDER BY CASE WHEN [" + orderBy + "] = '' THEN '999999' ELSE [" + orderBy + "] END " + (sortAscending ? '' : ' DESC');
@@ -1790,32 +1764,26 @@ function resetFilter() {
    refreshDropdowns();
 }
 
-function getDropFilterFromItemName(itemName) {
+function getDropFilterFromTitle(title) {
    for (var i = 0, l = dropfilters.length; i < l; i++) {
-      if (dropfilters[i].getColumnInfo().getItemName() == itemName) {
-         //console.log('FOUND______________' + itemName);
+      if (dropfilters[i].getColumnInfo().getTitle() == title) {
          return dropfilters[i];
       }
    }
    return null;
 }
 
-function summarizeColumn(itemName) {
+function summarizeColumn(columnTitle) {
    //console.log('summarizeColumn ' + viewConfig.dataStores[0].alias);
-   //console.time('summarizeColumn(' + itemName + ')');
-   //var sql = 'SELECT CASE WHEN ISNUMERIC([' + itemName + ']) = 1 THEN CAST([' + itemName + '] AS INT) ELSE 0 END FROM data';
-   var sql = 'SELECT SUM(CAST([' + itemName + '] AS NUMBER)) AS [' + itemName + '] FROM ' + viewConfig.dataStores[0].alias;
+   //console.time('summarizeColumn(' + columnTitle + ')');
 
+   var sql = 'SELECT SUM(CAST([' + columnTitle + '] AS NUMBER)) AS [' + columnTitle + '] FROM ' + viewConfig.dataStores[0].alias;
    if (viewConfig.where !== '')
       sql += ' WHERE ' + viewConfig.where;
-   //console.log('  ' + sql);
 
    var resultArray = alasql(sql);
-   //console.timeEnd('summarizeColumn(' + itemName + ')');
-   //console.dir(resultArray);
-   //console.dir(resultArray[0][itemName]);
    if (resultArray.length > 0)
-      return resultArray[0][itemName];
+      return resultArray[0][columnTitle];
 
    return 0;
 }
@@ -1998,7 +1966,7 @@ function getSQLSelect() {
    var sql = 'SELECT FIRST([@id]) AS [@id]';
    for (var i = 0, l = getColumnInfoQty() ; i < l; i++) {    // 
       var columnInfo = getColumnInfoFromIndex(i);
-      sql += ', FIRST([' + columnInfo.getItemName() + ']) AS [' + columnInfo.getItemName() + ']';
+      sql += ', FIRST([' + columnInfo.getTitle() + ']) AS [' + columnInfo.getTitle() + ']';
    }
    return sql;
 }

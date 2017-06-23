@@ -355,13 +355,8 @@ function configureView(viewConfig) {
       viewConfig.preprocessData = function () {   // executed later than createFilterPanel (where columnInfos are filled in)
          // code to group by AnlNr.
          var columnInfoGroupBy = ViewHandler.getColumnInfoFromTitle('Anl nr');
-         /*var sql = 'SELECT FIRST([@id]) AS [@id]';
-         for (var i = 0, l = ViewHandler.getColumnInfoQty() ; i < l; i++) {    // 
-             var columnInfo = ViewHandler.getColumnInfoFromIndex(i);
-             sql += ', FIRST([' + columnInfo.getItemName() + ']) AS [' + columnInfo.getItemName() + ']';
-         }*/
          var sql = ViewHandler.getSQLSelect();
-         sql += ' FROM ' + viewConfig.dataStores[0].alias + ' GROUP BY [' + columnInfoGroupBy.getItemName() + ']';
+         sql += ' FROM ' + viewConfig.dataStores[0].alias + ' GROUP BY [' + columnInfoGroupBy.getTitle() + ']';
          return sql;
       }
 
@@ -429,17 +424,13 @@ function refreshSummaryMatare(reset) {
       for (var i = 0; i < queryResult.length; i++) {
          var qtyDieselPlus_OnRow = 0;
          var qtyAdBlue_OnRow = 0;
-
-         var products = queryResult[i][ViewHandler.getColumnInfoFromTitle('Produkt').getItemName()];
+         
+         var products = queryResult[i]['Produkt'];
          if (products === undefined) {
             console.log("row " + i + " is undefined.." + "Produkt");
             continue;
          }
          products = products.toLowerCase();
-         //if (i < 10) {
-         //    console.log(i + ': ' + queryResult[i][ViewHandler.getColumnInfoFromTitle('Produkt').getItemName()] + '_____' + products);
-         //    console.dir(queryResult[i]);
-         //}
 
          if (products.indexOf('95') > -1)
             qty95++;
@@ -485,45 +476,29 @@ function refreshSummaryMatare(reset) {
 
          // ---- LOWER SUMMARY SECTION -------------------------------------------------
          var anlNrAttributeName = configName === 'UtrUrvalMatareLAG.simple' ? 'anlnrhidden' : 'anlnr';
+         var fieldName = configName === 'UtrUrvalMatareLAG.simple' ? 'AnlNrHidden' : 'Anl nr';
+         
+         var anlNr = ViewHandler.extractCellValue(queryResult[i][fieldName]);
 
-         var fieldName = configName === 'UtrUrvalMatareLAG.simple' ? 'anlnrhidden' : 'Anl nr';
-         //console.log('anlNrAttributeName: ' + anlNrAttributeName + '   fieldName: ' + fieldName + '   itemname: ' + ViewHandler.getColumnInfoFromTitle(fieldName).getItemName());
-         //queryResult[i][ViewHandler.getColumnInfoFromTitle('Produkt').getItemName()]
-         //var anlNr = queryResult[i]['Sort_' + ViewHandler.getColumnInfoFromTitle(fieldName).getItemName()];
-         //console.log('itemName: ' + 'Sort_' + ViewHandler.getColumnInfoFromTitle(fieldName).getItemName());
-         var anlNr = ViewHandler.extractCellValue(queryResult[i][ViewHandler.getColumnInfoFromTitle(fieldName).getItemName()]);
-         //var anlNr = $(rows[i]).attr(PREFIX_SORT + anlNrAttributeName);
          if (anlNr !== undefined)
             listAnlNr[anlNr] = anlNr;		// keep only unique entries
-         //console.log("anlNr: " + anlNr);
 
          if (configName === 'UtrUrvalMatareLAG.simple') {		// Lager summarizes on two attributes
-            //console.log('M\u00E4tare: ' + ViewHandler.getColumnInfoFromTitle('Ant. m\u00E4t.').getItemName());
-            //var antal = queryResult[i][ViewHandler.getColumnInfoFromTitle('Ant. m\u00E4t.').getItemName()];
-            var info = ViewHandler.getColumnInfoFromTitle('Ant. m\u00E4t.');
-            if (info !== undefined && info !== null) {
-               var antal = queryResult[i][info.getItemName()];
-               if (antal !== undefined) {
-                  var value = parseFloat(antal);
-                  if (!isNaN(value))
-                     qtyFysiskaEnheter += value;
-               }
+            var antal = queryResult[i]['Ant. m\u00E4t.'];
+            if (antal !== undefined) {
+               var value = parseFloat(antal);
+               if (!isNaN(value))
+                  qtyFysiskaEnheter += value;
             }
-
-            //var antalTerminaler = queryResult[i][ViewHandler.getColumnInfoFromTitle('Ant. term.').getItemName()];
-            info = ViewHandler.getColumnInfoFromTitle('Ant. term.');
-            if (info !== undefined && info !== null) {
-               var antalTerminaler = queryResult[i][info.getItemName()];
-               if (antalTerminaler !== undefined) {
-                  var value = parseFloat(antalTerminaler);
-                  if (!isNaN(value))
-                     qtyFysiskaTerminaler += value;
-               }
+            var antalTerminaler = queryResult[i]['Ant. term.'];
+            if (antalTerminaler !== undefined) {
+               var value = parseFloat(antalTerminaler);
+               if (!isNaN(value))
+                  qtyFysiskaTerminaler += value;
             }
          }
          else {	// the other 5 views summarizes on attribute 'Antal'
-            //var antal = $(rows[i]).attr(PREFIX_SORT + 'antal');
-            var antal = queryResult[i][ViewHandler.getColumnInfoFromTitle('Antal').getItemName()];
+            var antal = queryResult[i]['Antal'];
             if (antal !== undefined) {
                var value = parseFloat(antal);
                if (!isNaN(value))
@@ -567,12 +542,11 @@ function refreshSummaryTerminaler() {
    var qtyFysiskaTerminaler = 0;
    var qtyEnskildaStationer = 0;
    qtyFysiskaTerminaler = viewConfig.qtyVisible;
-   //console.dir(ViewHandler.getColumnInfoFromTitle('Anl nr'));
 
    var sql = 'SELECT COUNT(*) FROM ' + viewConfig.dataStores[0].alias;
    if (viewConfig.where !== '')
       sql += ' WHERE ' + viewConfig.where;
-   sql += ' GROUP BY [' + ViewHandler.getColumnInfoFromTitle('Anl nr').getItemName() + ']';
+   sql += ' GROUP BY [Anl nr]';
    //console.log('sql: ' + sql);
    var queryResult = ViewHandler.query(sql);
    qtyEnskildaStationer = queryResult.length;

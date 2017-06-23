@@ -17,9 +17,10 @@ var PREFIX_SORT_ARROW = 'sortArrow';
 //		viewConfig.addColumns({ title: 'Access',     type: COLUMN.DROPDOWN });
 //		viewConfig.addColumns({ title: 'Database',   type: COLUMN.DROPDOWN_MULTIPLE, link: true });
 // ------------------------------------------------------------------------------------------------------------------------
+// itemName	     = column design (Programmatic Use: Name). Used to match Design and Data.
 function columnConfig(arguments) {
    // base attributes
-	this.itemName = '';
+	this.itemName = '';     // required by domino
 	this.title = '';
 	this.lngkey = '';
 	this.width = -1;
@@ -79,8 +80,6 @@ function columnConfig(arguments) {
 	
 	// override members except title (which is the key)
 	this.overrideWith = function(cfg) {
-		//if (cfg.itemName !== '')			// probably not allow this. should always be from the backend
-		//	this.itemName = cfg.itemName;
 		this.lngkey = cfg.lngkey;
 		if (cfg.width !== -1)      // ''
 			this.width = cfg.width;
@@ -103,7 +102,6 @@ function columnConfig(arguments) {
 
 
 // Members:
-// itemName	     = column design (Programmatic Use: Name). Used to match Design and Data.
 // title         = column design Title
 // dataKey       = DOM-attribute friendly key (lowercase, no spaces)
 // type 	        = COLUMN.DROPDOWN etc
@@ -114,7 +112,6 @@ function columnConfig(arguments) {
 // link          = if true the cell value should be a link to the document
 function columnInfo(cfg) {		// accepts a columnConfig() instance for input
 
-	var _itemName 		  = cfg.itemName;
 	var _title 			  = cfg.title;
 	var _dataKey;
 	var _width          = cfg.width;
@@ -146,9 +143,6 @@ function columnInfo(cfg) {		// accepts a columnConfig() instance for input
 	   _label = parent.translateWord(cfg.lngkey);
 	//console.log('_label is: ' + _label);
 
-	this.getItemName = function() {
-		return _itemName;
-	}
 	this.getTitle = function() {			// column view title
 		return _title;
 	}
@@ -203,10 +197,10 @@ function columnInfo(cfg) {		// accepts a columnConfig() instance for input
 		return _flag2;
 	}
 	this.getSortFieldName = function () {
-	    return _altSort ? 'Sort_' + _itemName : _itemName;
+	   return _altSort ? 'Sort_' + _title : _title;
 	}
 	this.getFilterFieldName = function () {
-	    return _altFilter ? 'Filter_' + _itemName : _itemName;
+	   return _altFilter ? 'Filter_' + _title : _title;
 	}
 
 	// returns the connected sortArrow (if existing)
@@ -214,7 +208,7 @@ function columnInfo(cfg) {		// accepts a columnConfig() instance for input
 		return document.getElementById(PREFIX_SORT_ARROW + _dataKey);
 	}	
 	this.toString = function() {
-		return 'itemName:' + _itemName +
+		return
 			'   title:' + _title +
 			'   dataKey:' + _dataKey +
 			'   type:' + _type +

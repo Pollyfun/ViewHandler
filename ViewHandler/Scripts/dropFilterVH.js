@@ -2,9 +2,9 @@
 var ATTRIBUTE_EXCLUDED = 'excluded';	// options with this attribute are ignored by the dropfilter functions (get/set etc)
 var PREFIX_FILTER = 'filter_';
 
-var TEXT_STATUS_DROPDOWN_OPTION_UNSELECT = '(Avmarkera)';	// for single-select
-var TEXT_ALL = 'Alla';
-var TEXT_NONE = 'Ingen';
+var TEXT_STATUS_DROPDOWN_OPTION_UNSELECT = '(Unselect)';	// for single-select
+var TEXT_ALL = 'All';
+var TEXT_NONE = 'None';
 
 var ATTRIBUTE_SEPARATOR = '_____';	// when a html attribute have several values
 var dropfilters = [];
@@ -443,9 +443,9 @@ function fillInDropDowns(excludeDropFilter) {     // TEMP name
       var fieldName = viewConfig.filterHierarchy[i];
       //console.log('___viewConfig.filterHierarchy___' + i + ': ' + fieldName);
 
-      var dropFilter = getDropFilterFromItemName(fieldName);
+      var dropFilter = getDropFilterFromTitle(fieldName);
       if (!dropFilter) {
-         console.log('<warning> No dropFilter exists with itemname: ' + fieldName);
+         console.log('<warning> No dropFilter exists with title: ' + fieldName);
          continue;
       }
       dropFilter.processed = true;
@@ -466,7 +466,7 @@ function fillInDropDowns(excludeDropFilter) {     // TEMP name
       // now add WHERE clause to the sql to be used in the following sql questions
       var arrFilterValues = viewConfig.getActiveFilterArray(fieldName);
       if (!arrFilterValues.length > 0) {
-         console.log('<warning> No arrFilterValues returned for itemname: ' + fieldName);
+         console.log('<warning> No arrFilterValues returned for title: ' + fieldName);
          continue;
       }
 
@@ -563,7 +563,6 @@ function fillInDropDowns(excludeDropFilter) {     // TEMP name
       }
       else {
          //console.log('  ' + i + ' NOT processed');
-         //var fieldName = dropFilter.getColumnInfo().getItemName();
          var fieldName = dropFilter.getColumnInfo().getFilterFieldName();
 
          var sql = 'SELECT DISTINCT [' + fieldName + '] FROM ' + viewConfig.dataStores[0].alias;   // WHERE Ort="Helsingborg"';
@@ -621,7 +620,7 @@ function validateActiveFilterValues(arrFilterValues, dropFilter) { //, resultArr
          returnList.push(filterValue);
       }
       else {
-         console.log('Filter value NOT allowed: ' + filterValue);
+         //console.log('Filter value NOT allowed: ' + filterValue);
       }
    }
    //return arrFilterValues;
@@ -685,19 +684,19 @@ function filterUpdate(dropdownCtrl) {
    if (inputDropFilter.isMultiple()) {
       if (options.length === 0) { // allow no selected options
          //console.log('setting NULL filter');
-         viewConfig.replaceFilter(inputDropFilter.getColumnInfo().getItemName(), null);
+         viewConfig.replaceFilter(inputDropFilter.getColumnInfo().getTitle(), null);
       }
       else if (options.length === selectableOptions.length)
-         viewConfig.removeFilter(inputDropFilter.getColumnInfo().getItemName());
+         viewConfig.removeFilter(inputDropFilter.getColumnInfo().getTitle());
       else
-         viewConfig.replaceFilter(inputDropFilter.getColumnInfo().getItemName(), options.length === 1 ? values[0] : values);
+         viewConfig.replaceFilter(inputDropFilter.getColumnInfo().getTitle(), options.length === 1 ? values[0] : values);
 
    }
    else {   // single select
       if (options.length === 0)
-         viewConfig.removeFilter(inputDropFilter.getColumnInfo().getItemName());
+         viewConfig.removeFilter(inputDropFilter.getColumnInfo().getTitle());
       else
-         viewConfig.replaceFilter(inputDropFilter.getColumnInfo().getItemName(), options.length === 1 ? values[0] : values);
+         viewConfig.replaceFilter(inputDropFilter.getColumnInfo().getTitle(), options.length === 1 ? values[0] : values);
    }
    refreshDropdowns(inputDropFilter);
 }

@@ -1,11 +1,11 @@
 
 /* redmark text for Garantitid - Garantitid */
-#data-content[config="UtrUrvalMatareGDAT.simple"] ul li[itemname="_garantitid"] { 
+#data-content[config="UtrUrvalMatareGDAT.simple"] ul li[column="_garantitid"] { 
 	color: #f00;
 }
 
 /* bluemark text for Lager - Koppling */
-#data-content[config="UtrUrvalMatareLAG.simple"] ul li[itemname="_koppling"] { 
+#data-content[config="UtrUrvalMatareLAG.simple"] ul li[column="_koppling"] { 
 	color: #00f;
 }
 
@@ -30,10 +30,10 @@
 	border-bottom: 0px;
 }
  
-#data-content[config="UtrUrvalTerminaler.simple"] ul li[itemname="_betalform"] { 
+#data-content[config="UtrUrvalTerminaler.simple"] ul li[column="_betalform"] { 
 	padding-left: 26px;
 }
  
-#data-content[config="UtrUrvalTerminaler.simple"] ul li[itemname="_tum"] { 
+#data-content[config="UtrUrvalTerminaler.simple"] ul li[column="_tum"] { 
 	padding-left: 26px;
 }

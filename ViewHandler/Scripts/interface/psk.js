@@ -168,7 +168,7 @@ function printToExcel(alwaysSendUnids, containerId) {     // alwaysSendUnids:tru
 }
 
 
-function normalizeJson(inputData, optionalInfo) {
+function normalizeJson(inputData, optionalInfo, viewConfig) {
    // standardize the data and add it to gData
    //console.info('normalizeJson ');
    //console.info(inputData);
@@ -186,7 +186,15 @@ function normalizeJson(inputData, optionalInfo) {
       for (var property in inputEntry) {
          if (inputEntry.hasOwnProperty(property)) {
             //console.info(counter + ": ", property, inputEntry[property]);
-            outputEntry[property] = '' + inputEntry[property];   // make sure it's a string. then we don't have to handle different sql where-variations
+
+            var title;
+            if (property === '@id' || property === '@position')
+               title = property;
+            else
+               title = viewConfig.getBaseColumnTitleFromItemName(property);
+            //console.log(title + '___' + property);
+
+            outputEntry[title] = '' + inputEntry[property];   // make sure it's a string. then we don't have to handle different sql where-variations
             counter++;
          }
          else
@@ -267,7 +275,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
    }
    else {
       //console.info('before normalize: ', data);
-      data = normalizeJson(data, optionalInfo)
+      data = normalizeJson(data, optionalInfo, viewConfig)
 
       if (!ViewHandler.hasGlobalData(optionalInfo.dataStoreIndex, viewConfig.containerId)) {
          ViewHandler.createGlobalData(optionalInfo.dataStoreIndex, data, viewConfig.containerId)

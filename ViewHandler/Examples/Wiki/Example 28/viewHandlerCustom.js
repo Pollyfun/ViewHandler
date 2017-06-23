@@ -10,7 +10,7 @@ function configureView(viewConfig) {
          // group by name
          var columnInfoGroupBy = ViewHandler.getColumnInfoFromTitle('name');
          var sql = ViewHandler.getSQLSelect();
-         sql += ' FROM ' + viewConfig.dataStores[0].alias + ' GROUP BY [' + columnInfoGroupBy.getItemName() + ']';
+         sql += ' FROM ' + viewConfig.dataStores[0].alias + ' GROUP BY [' + columnInfoGroupBy.getTitle() + ']';
          return sql;
       }
    }

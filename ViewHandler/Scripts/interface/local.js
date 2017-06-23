@@ -43,25 +43,6 @@ function createView(cfg) {
 // used to retrieve the design for the first datastore, and to fill in base columns
 function sharedLocalConfiguration(viewConfig) {
    //console.log('sharedLocalConfiguration..' + viewConfig);
-
-   //var designUrl = viewConfig.getSourceDbUrl(0) + '/' + viewConfig.getSourceView(0);
-   ////console.log('designUrl: ' + designUrl);
-   //// designUrl: /kund/psk/xagents.nsf/view.xsp/entries?uri=/names.nsf/People.simple
-
-   //getServerDesign(viewConfig.containerId, designUrl, function (success) {    // fills in serverColumnDesign
-   //   //console.log('after getServerDesign: ' + success);
-   //   fillInBaseColumns(viewConfig);
-   //   // well..  xagents datapathen skapas här för tillfället. behövs en pks.getData() fkn som extraherar ut allt xagents/domino specifikt och sköter bl.a. detta.
-   //   //console.log('qty datastores: ' + viewConfig.dataStores.length);
-   //   for (var i = 0, l = viewConfig.dataStores.length; i < l; i++) {
-   //      //console.log('DataStore' + i + ': ' + viewConfig.dataStores[i].url)
-   //      viewConfig.dataStores[i].url = makeDataPath(viewConfig.dataStores[i].url);
-   //      //console.log('  ---> ' + viewConfig.dataStores[i].url)
-   //   }
-   //   ViewHandler.finalizeConfiguration(viewConfig.containerId);
-   //});
-   //return true;   // true = pause the execution until we're finished here
-
    ViewHandler.finalizeConfiguration(viewConfig.containerId);
    return true;
 }
@@ -129,7 +110,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
    }
    else {
       //console.info(data);
-      data = normalizeJson(data, optionalInfo)
+      data = normalizeJson(data, optionalInfo, viewConfig)
       //data = JSON.parse(JSON.stringify(data));  // seems to be needed, otherwise the data is malformed after being added to the sql database
       //console.info('normalized: ', data);
       if (!ViewHandler.hasGlobalData(optionalInfo.dataStoreIndex, viewConfig.containerId)) {
@@ -167,7 +148,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
 }
 
 
-//function normalizeJson(inputData, optionalInfo) {     // psk-data
+//function normalizeJson(inputData, optionalInfo, viewConfig) {     // psk-data
 //   // standardize the data and add it to gData
 //   //console.info('normalizeJson ');
 //   //console.info(inputData);
@@ -215,7 +196,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
 //}
 
 
-function normalizeJson(inputData, optionalInfo) {
+function normalizeJson(inputData, optionalInfo, viewConfig) {
    // standardize the data and add it to gData
    //console.info('normalizeJson ');
    //console.info(inputData);

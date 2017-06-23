@@ -1,36 +1,36 @@
-﻿li[itemname="name"] {
+﻿li[column="name"] {
     font-weight: bold;
 }
-ul.red li[itemname="color"] {
+ul.red li[column="color"] {
     background-color: red;
 }
-ul.yellow li[itemname="color"] {
+ul.yellow li[column="color"] {
     background-color: yellow;
 }
-ul.green li[itemname="color"] {
+ul.green li[column="color"] {
     background-color: green;
 }
-ul.purple li[itemname="color"] {
+ul.purple li[column="color"] {
     background-color: purple;
 }
-ul.orange li[itemname="color"] {
+ul.orange li[column="color"] {
     background-color: orange;
 }
-ul.black li[itemname="color"] {
+ul.black li[column="color"] {
     background-color: black;
     color: white;
 }
-ul.blue li[itemname="color"] {
+ul.blue li[column="color"] {
     background-color: blue;
     color: white;
 }
-ul.pink li[itemname="color"] {
+ul.pink li[column="color"] {
     background-color: pink;
 }
-ul.grey li[itemname="color"] {
+ul.grey li[column="color"] {
     background-color: grey;
 }
-ul.yellow li[itemname="color"] {
+ul.yellow li[column="color"] {
     background-color: yellow;
 }
 
@@ -38,7 +38,7 @@ ul.yellow li[itemname="color"] {
 
 
 
-li[itemname="fo"] {
+li[column="fo"] {
     background-color: red;
     font-weight: bold;
 }

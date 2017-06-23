@@ -394,7 +394,8 @@ function combineWords(word1, word2) {
 // overrides viewHandler default function
 function refreshSummary(viewConfig) {
 	var configName = viewConfig.configName;
-	//console.log('refreshSummary: ' + configName);
+	console.log('refreshSummary: ' + configName);
+
 	if (configName === 'UtrUrvalCisternerHL.simple'
 			|| configName === 'UtrUrvalCisternerSTN.simple'
 			|| configName === 'UtrUrvalCisternerREP.simple') {
@@ -404,11 +405,12 @@ function refreshSummary(viewConfig) {
 		if (viewConfig.where !== '')
 			sql += ' WHERE ' + viewConfig.where;
 		var queryResult = ViewHandler.query(sql);
-		//console.log('sql: ' + sql + '   #: ' + queryResult.length);
+		console.log('sql: ' + sql + '   #: ' + queryResult.length);
 
 		for ( var i = 0; i < queryResult.length; i++) {
-			var antal = queryResult[i][ViewHandler.getColumnInfoFromTitle('Volym')
-					.getItemName()];
+		   var antal = queryResult[i]['Volym'];
+		   
+
 			if (antal !== undefined) {
 				var value = parseFloat(antal);
 				if (!isNaN(value))

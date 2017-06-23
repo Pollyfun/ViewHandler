@@ -22,12 +22,12 @@ function refreshSummary() {
    var qtyRows = viewConfig.qtyVisible;
    $('#summaryRows').text(qtyRows);
 
-   var durationItemName = ViewHandler.getColumnInfoFromTitle('duration').getItemName();
-   var sql = 'SELECT SUM(CAST([' + durationItemName + '] AS NUMBER)) AS [' + durationItemName + '] FROM ' + viewConfig.dataStores[0].alias;
+   var durationColumnTitle = ViewHandler.getColumnInfoFromTitle('duration').getTitle();
+   var sql = 'SELECT SUM(CAST([' + durationColumnTitle + '] AS NUMBER)) AS [' + durationColumnTitle + '] FROM ' + viewConfig.dataStores[0].alias;
    if (viewConfig.where !== '')
       sql += ' WHERE ' + viewConfig.where;
    var queryResult = ViewHandler.query(sql);
-   var summaryDuration = queryResult[0][durationItemName];
+   var summaryDuration = queryResult[0][durationColumnTitle];
    $('#summaryDuration').text(summaryDuration);
 }
 

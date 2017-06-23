@@ -89,28 +89,10 @@ function makeDataPath(dataSourcePath) {
 
 function fillInBaseColumns(viewConfig) {
    var designData = serverColumnDesign[viewConfig.containerId]
-
    // receives an array with the view design in key/value pairs
-   //var columns = designData['@columns'];
-   //console.log("#: " + columns.length);
-   //var calculatedWidth = 0;
-
-   //for (var i = 0, l = columns.length; i < l; i++) {
-   //   var column = columns[i];
-   //   var itemName = column['@itemname'];
-   //   var title = column['@columnheader']['@title'];
-   //   var width = column['@width'];			// checka json i browsern
-   //   width *= 8;	// seems to mimic the value retrieved from 'ReadDesign'
-
-   //   // create a config from the backend info combined the default column type (LABEL)
-   //   var columnCfg = new columnConfig({ itemName: itemName, title: title, width: width, type: COLUMN.LABEL });
-   //   viewConfig.addBaseColumnConfig(columnCfg);
-   //}
 
    var columns = designData['column'];
-
    for (var column in columns) {
-
       //var columnName = columns[column]['@name'];
       var itemName = columns[column]['@name'];
       var title = columns[column]['@title'];			// key: prog name	value: title
@@ -126,18 +108,15 @@ function fillInBaseColumns(viewConfig) {
 }
 
 
-function normalizeJson(inputData, optionalInfo) {
+function normalizeJson(inputData, optionalInfo, viewConfig) {
    // standardize the data and add it to gData
-   
+   var startTime = performance.now();
+
    // when ReadViewEntries is called and no entries are returned, the json has this content
-   //{
+   // {
    //   "@timestamp": "20170111T225707,58Z"
-   //}
+   // }
    var outputData = [];
-   //if (typeof inputData['viewentry'] === 'undefined') {
-   //   console.log('viewEntry is defined: ' + (typeof inputData['viewentry'] !== 'undefined'));
-   ////}
-   //console.log('has property viewEntry: ' + inputData.hasOwnProperty('viewentry'))
    
    if (inputData.hasOwnProperty('viewentry')) {
       inputData = inputData['viewentry'];
@@ -172,8 +151,10 @@ function normalizeJson(inputData, optionalInfo) {
                else {
                   console.info(i + '__' + j + ': NOT text, textlist or datetime..');
                }
-               //console.info(j + ": " + field["@name"] + ' text: ' + text[0] + "   text: ", text);
-               outputEntry[field["@name"]] = '' + text;
+               var title = viewConfig.getBaseColumnTitleFromItemName(field["@name"]);
+               //console.info(j + ": " + field["@name"] + "   text: ", text, "   title: " + title, viewConfig.baseColumnConfigs.length);
+               //outputEntry[field["@name"]] = '' + text;
+               outputEntry[title] = '' + text;
                // make sure it's a string. then we don't have to handle different sql where-variations
                // this operation is quick 75 million times in 0.1 second: http://jsperf.com/number-to-string/2
                // numeric sorting in columns and dropdown filters is done by settings numSort:true
@@ -186,6 +167,8 @@ function normalizeJson(inputData, optionalInfo) {
       //console.info('@toplevelentries: ', topLevelEntries, '  inputData#: ', inputData.length);
       //console.info(inputData);
    }
+   //console.info(inputData, outputData);
+   //console.info('  looptime: ' + (performance.now() - startTime));
    return outputData;
 }
 
@@ -249,7 +232,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
       callAgain = true;
    }
    else {
-      data = normalizeJson(data, optionalInfo)
+      data = normalizeJson(data, optionalInfo, viewConfig)
       //data = JSON.parse(JSON.stringify(data));  // seems to be needed, otherwise the data is malformed after being added to the sql database
       //console.info('normalized: ', data);
       if (!ViewHandler.hasGlobalData(optionalInfo.dataStoreIndex, viewConfig.containerId)) {
