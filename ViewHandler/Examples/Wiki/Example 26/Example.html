@@ -58,10 +58,19 @@
 
     <script>
             'use strict';
-            var SERVER_DOMAIN = 'http://openntf.org';
+            var SERVER_DOMAIN = 'https://openntf.org';
+            //console.info(location.href);
+            //var viewHandlerPath = '';
+            //if (!location.href.indexOf('localhost'))
+            //    viewHandlerPath = '/ViewHandler/ViewHandler';
 
             document.addEventListener('DOMContentLoaded', function () {
-                createView({ containerId: 'viewhandler', configName: 'Example26.config', serverDomain: SERVER_DOMAIN, viewHandlerPath: '/ViewHandler/ViewHandler' });
+                createView({
+                    containerId: 'viewhandler', configName: 'Example26.config',
+                    serverDomain: SERVER_DOMAIN
+                    //,
+                    //viewHandlerPath: viewHandlerPath
+                });
             });
 
     </script>
