@@ -22,15 +22,14 @@ function createView(cfg) {
    gServerDomain = $.trim(cfg.serverDomain);
 
    var refreshViewHandler = function () {
-      var isLocalHost = $.trim(cfg.serverDomain) !== '';
-      var designName = cfg.configName; // use same view name per default
-      if (typeof cfg.designName !== 'undefined' && cfg.designName != '')
-         designName = cfg.designName;
+      var isCodeInsideDomino = location.href.indexOf('.nsf') > -1;
+      var isLocalHost = location.href.indexOf('localhost') > -1;
 
-      // when html files are opened through Domino they need the ?OpenFileResource suffix
-      var viewHandlerPath = '/ViewHandler.html' + (!isLocalHost ? '?OpenFileResource' : '');
-      if (!isLocalHost && $.trim(cfg.viewHandlerPath) !== '')
-         viewHandlerPath = cfg.viewHandlerPath + viewHandlerPath;
+      var viewHandlerPath = '/ViewHandler.html';
+      var cfgViewHandlerPath = $.trim(cfg.viewHandlerPath);
+      if (!isLocalHost && cfgViewHandlerPath === '')
+         cfgViewHandlerPath = '/ViewHandler/ViewHandler';   // running on server, and no path defined. use this default.
+      viewHandlerPath = cfgViewHandlerPath + viewHandlerPath;
 
       ViewHandler.createView(cfg.containerId, cfg.configName, viewHandlerPath, (typeof configureView === 'function' ? configureView : null));
    }
