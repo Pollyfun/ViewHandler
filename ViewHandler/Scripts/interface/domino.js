@@ -22,8 +22,8 @@ function createView(cfg) {
    gServerDomain = $.trim(cfg.serverDomain);
 
    var refreshViewHandler = function () {
-      var isCodeInsideDomino = location.href.indexOf('.nsf');
-      var isLocalHost = location.href.indexOf('localhost');
+      var isCodeInsideDomino = location.href.indexOf('.nsf') > -1;
+      var isLocalHost = location.href.indexOf('localhost') > -1;
 
       // when html files are opened through Domino they need the ?OpenFileResource suffix
       var viewHandlerPath = '/ViewHandler.html' + (isCodeInsideDomino ? '?OpenFileResource' : '');
