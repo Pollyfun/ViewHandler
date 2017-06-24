@@ -118,6 +118,7 @@
     <Content Include="Examples\Wiki\Example 19\standard-data.json" />
     <Content Include="Examples\Wiki\Example 19\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 1\Example.html" />
+    <Content Include="Examples\Wiki\Example 1\standard-data.json" />
     <Content Include="Examples\Wiki\Example 1\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Example 20\Example.html" />
     <Content Include="Examples\Wiki\Example 20\standard-data.json" />
@@ -176,7 +177,6 @@
     <Content Include="Scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.js.map" />
     <Content Include="Scripts\External\bootstrap\3.3.7\bootstrap.min.css.map" />
     <Content Include="Examples\Wiki\psk-data.json" />
-    <Content Include="Examples\Wiki\Example 1\standard-data.json" />
     <Content Include="Examples\Wiki\Example 2\standard-data.json" />
     <Content Include="Examples\Wiki\Example 3\standard-data.json" />
     <Content Include="Examples\Wiki\Example 4\standard-data.json" />

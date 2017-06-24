@@ -22,7 +22,6 @@ function createView(cfg) {
    gServerDomain = $.trim(cfg.serverDomain);
 
    var refreshViewHandler = function () {
-      var isCodeInsideDomino = location.href.indexOf('.nsf') > -1;
       var isLocalHost = location.href.indexOf('localhost') > -1;
 
       var viewHandlerPath = '/ViewHandler.html';

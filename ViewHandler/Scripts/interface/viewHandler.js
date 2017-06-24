@@ -324,7 +324,7 @@ var ViewHandler = function () {
    function createView(containerId, configName, viewHandlerPath, callback) { // containerId first. mandatory here.
       // TODO: callback mandatory..?
       callbacks[containerId] = callback;
-      console.log('createView....containerId: ' + containerId + '  configName: ' + configName + '  viewHandlerPath: ' + viewHandlerPath);
+      //console.log('createView....containerId: ' + containerId + '  configName: ' + configName + '  viewHandlerPath: ' + viewHandlerPath);
 
       // delete any old iframe that's being replaced
       delete _windows[containerId];
@@ -338,7 +338,7 @@ var ViewHandler = function () {
       
       var separator = ~viewHandlerPath.indexOf('?') ? '&' : '?';
       var url =  viewHandlerPath + separator + 'containerid=' + containerId + '&configname=' + configName;
-      console.log('createView: ' + configName + '  URL: ' + url);
+      //console.log('createView: ' + configName + '  URL: ' + url);
       $('#' + containerId + ' iframe').attr('src', url);
    }
 
