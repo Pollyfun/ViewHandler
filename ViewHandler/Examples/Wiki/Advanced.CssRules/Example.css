@@ -1,0 +1,16 @@
+﻿ul:not(.selected) li[column="name"] {
+    background-color: blanchedalmond;
+}
+ul.green:not(:hover):not(.selected) li[column="country"] {
+    background-color: darkgrey;
+}
+ul.red li[column="duration"] {
+    font-weight: bold;
+}
+ul.yellow:not(:hover):not(.selected) li[column="duration"] {
+    font-style: italic;
+    background-color: yellow;
+}
+ul:not(:hover):not(.selected) li[column="startdate"] {
+    background-color: red;
+}

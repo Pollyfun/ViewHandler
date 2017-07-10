@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Alternative display value</title>
+    <meta charset="utf-8" />
+    <script src="../../../Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>Replacing the display value with an alternative value that's also sent from the backend.</div>
+        Here the 'country' value is replaced with a link.
+        <br/><br/>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-block">
+                        <pre><code>viewConfig.convertDisplayValue = function (columnInfo, cfgValues) {
+  if (columnInfo.getTitle() === 'country') {
+    return cfgValues.alt;
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Advanced.AltValue">Full source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+            'use strict';
+
+            document.addEventListener('DOMContentLoaded', function () {
+                createView({ containerId: 'viewhandler', configName: 'Example.config' });
+            });
+
+    </script>
+</body>
+</html>

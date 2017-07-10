@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Raw data</title>
+	<meta charset="utf-8" />
+    <script src="../../../Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>Using raw data to create a grid instead of using a datasource.</div>
+        <br />
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-block">
+                        <pre><code>var data = [
+  {
+    "name": "Charity",
+    "country": "United States",
+    "duration": 143,
+    "formating": "red",
+    "startdate": "July"
+  },
+  {
+    "name": "Quincy",
+    "country": "United States",
+    "duration": 176,
+    "formating": "yellow",
+    "startdate": "April"
+  },
+  {
+    "name": "Ishmael",
+    "country": "United States",
+    "duration": 123,
+    "formating": "green",
+    "startdate": "January"
+  },
+  {
+    "name": "Alma",
+    "country": "Canada",
+    "duration": 67,
+    "formating": "red",
+    "startdate": "September"
+  },
+  {
+    "name": "Arsenio",
+    "country": "United States",
+    "duration": 86,
+    "formating": "yellow",
+    "startdate": "October"
+  }];
+
+viewConfig.addData(data);</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Basic.GridFromData">View the source for this example on Github</a>
+    </div>
+
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+        'use strict';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            createView({ containerId: 'viewhandler', configName: 'Example.config' });
+        });
+
+    </script>
+</body>
+</html>

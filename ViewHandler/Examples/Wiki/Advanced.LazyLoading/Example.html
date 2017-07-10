@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Lazy loading</title>
+    <meta charset="utf-8" />
+    <script src="../../../Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>A grid can contains tens of thousands of rows or more. Here 30000 rows are created.</div>
+        Performance is kept by only creating a limited amount of rows at a time. When scrolling up and down
+        new rows are created dynamically while old rows are removed.
+        <br/><br/>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-block">
+                        <pre><code>No code is needed. This configuration is only here to present some controls to interact with.
+
+function configureView(viewConfig) {
+  var configName = viewConfig.configName;
+  if (configName === 'Example.config') {
+    viewConfig.addDataStore('standard-data.json');
+    viewConfig.addColumns([
+      { title: 'startdate', type: COLUMN.DROPDOWN, altFilter: true, numSort: true },
+      { title: 'formating', type: COLUMN.DROPDOWN_MULTIPLE, width: 150 },
+      { title: 'duration', type: COLUMN.LABEL, totals: true }
+    ]);
+    viewConfig.refreshSummary = refreshSummary;
+  }
+}
+
+function refreshSummary() {
+  var viewConfig = ViewHandler.getViewConfig();
+  var qtyRows = viewConfig.qtyVisible;
+  $('#summaryRows').text(qtyRows);
+  var durationColumnTitle = ViewHandler.getColumnInfoFromTitle('duration').getTitle();
+  var sql = 'SELECT SUM(CAST([' + durationColumnTitle + '] AS NUMBER)) AS [' + durationColumnTitle + '] FROM ' + viewConfig.dataStores[0].alias;
+  if (viewConfig.where !== '')
+    sql += ' WHERE ' + viewConfig.where;
+  var queryResult = ViewHandler.query(sql);
+  var summaryDuration = queryResult[0][durationColumnTitle];
+  $('#summaryDuration').text(summaryDuration);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Advanced.LazyLoading">Full source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="buttoncontainer">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default grouped" onclick="ViewHandler.resetFilter();">
+                            <i class="glyphicon glyphicon-flash"></i>
+                            <span>Reset filter</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!--------------------------------------- Summary Area ------------------------------------->
+            <div class="col-md-6">
+                <div class="panel panel-default totalsPanel">
+                    <div class="panel-body">
+                        <div class="row"><div class="col-md-6">Qty rows</div><div class="col-md-6" id="summaryRows"></div></div>
+                        <div class="row"><div class="col-md-6">Total duration</div><div class="col-md-6" id="summaryDuration"></div></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" id="activefilters">
+                        <!-- Summary of active filters -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="viewhandler"></div>
+
+    <script>
+            'use strict';
+
+            document.addEventListener('DOMContentLoaded', function () {
+                createView({ containerId: 'viewhandler', configName: 'Example.config' });
+            });
+
+    </script>
+</body>
+</html>

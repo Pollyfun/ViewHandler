@@ -1,0 +1,35 @@
+﻿li[column="name"] {
+    font-weight: bold;
+}
+ul.red:not(:hover) li[column="color"] {
+    background-color: red;
+}
+ul.yellow:not(:hover) li[column="color"] {
+    background-color: yellow;
+}
+ul.green:not(:hover) li[column="color"] {
+    background-color: green;
+}
+ul.purple:not(:hover) li[column="color"] {
+    background-color: purple;
+}
+ul.orange:not(:hover) li[column="color"] {
+    background-color: orange;
+}
+ul.black:not(:hover) li[column="color"] {
+    background-color: black;
+    color: white;
+}
+ul.blue:not(:hover) li[column="color"] {
+    background-color: blue;
+    color: white;
+}
+ul.pink:not(:hover) li[column="color"] {
+    background-color: pink;
+}
+ul.grey:not(:hover) li[column="color"] {
+    background-color: grey;
+}
+ul.yellow:not(:hover) li[column="color"] {
+    background-color: yellow;
+}

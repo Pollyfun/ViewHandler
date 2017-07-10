@@ -40,7 +40,6 @@ function getRowSelector() {
 rowSelector = getRowSelector;		// declared inside dropFilter.js
 
 $(function () {
-   //console.log('start iframe........................');
    // set some widths based on the width of the iframe body
    //fullWidth = parseInt($('body').css('width').replace('px',''), 10);	// doesn't work in IE8/IE9 (returns 34687px)
    //var width2 = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;   
@@ -73,16 +72,13 @@ $(function () {
    var pauseForAsync = initViewConfiguration(paramContainerId, paramConfigName);	// creates the viewConfig. important to do this before the viewConfig is referenced
 
    if (pauseForAsync !== true) {
-      //console.log('no pause');
       finalizeConfiguration();     // proceed immediately
-   }
-   else {
-      //console.log('pausing for now..');
    }
 });
 
 
 function finalizeConfiguration() {
+   //console.log('finalizeConfiguration------------------------------------');
    preprocessViewConfiguration();      // add .css files
 
    if (viewConfig.dataStores.length === 0) {
@@ -383,7 +379,6 @@ function createFilterPanel() {
       //console.log('panelWidth: ' + panelWidth + '  padding: ' + padding);  // panelWidth: 06414420812014480128104104888810410412080104  padding: 31
       $('#filter-row').css('width', panelWidth + padding);
       $('#data-area').css('width', panelWidth + padding + 2 + RIGHTSIDE_PADDING);		// TODO: 2 är baserat på praktisk test som får högerlinjen på filterpanel och data-area att ligga i linje
-      //console.log('filter-area: ' + $('#filter-area').length);
       var topOffset = 10;
       //console.log('topOffset: ' + topOffset + '___' + $('#filter-area').css('top'));
       var $win = $(window);
@@ -427,15 +422,14 @@ function getDataStoresLooped(dataStoreIndex, searchCriteria) {   // one time per
       var optionalInfo = dataStoreConfigurator(viewConfig, dataStoreIndex, searchCriteria);
       globalSearch = optionalInfo.globalSearch;
       delete optionalInfo.globalSearch;   // just used as return value. delete before it's used anyplace more.
-      //console.log('before retrieveData: ' + optionalInfo.uri);
+      //console.log('before retrieveData uri: ' + optionalInfo.uri);
 
       var retrieveDataFcn = parent.ViewHandler.getRetrieveDataFunction();
       //console.info('CALLING ', viewConfig);
       retrieveDataFcn(null, optionalInfo, viewConfig);         // start the retrieval sequence           TODO: viewConfig.containerId is used, not all viewConfig. skicka på annat vis? containerId/optionalInfo.containerId?
       // when done call: getDataStoresLooped(optionalInfo.dataStoreIndex + 1, optionalInfo.searchCriteria);
    }
-   else {
-      //console.log('no more dataStores. continuing..');
+   else {   // no more dataStores. continuing
       processData();
    }
 }
@@ -510,6 +504,7 @@ function refreshScrollAreaHeight() {
    var resultQty = alasql(sql);
    viewConfig.qtyTotal = resultQty[0]['COUNT(*)'];
    var scrollAreaHeight = viewConfig.qtyTotal * STANDARD_ROW_HEIGHT;
+   //console.info(scrollAreaHeight + '__' + viewConfig.qtyTotal + '__' + STANDARD_ROW_HEIGHT);
    
    if (viewConfig.showTotals) {
       scrollAreaHeight += STANDARD_ROW_HEIGHT;
@@ -517,9 +512,14 @@ function refreshScrollAreaHeight() {
    // there's some problem in IE/Edge where the last row is cut in half. add margin to handle it.
    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
    if (!isChrome) {
-       scrollAreaHeight += 14;   
+       scrollAreaHeight += 20;   
    }
-   scrollAreaHeight += 10; // 20170519 - added after padding-top 10 removed
+   var browserZoomLevel = Math.round(window.devicePixelRatio * 100);
+   //console.info('browserZoomLevel: ' + browserZoomLevel);
+   if (isChrome && browserZoomLevel > 102) {   // when zoomed in (via desktop or browser) Chrome is missing height
+      scrollAreaHeight += STANDARD_ROW_HEIGHT;
+   }
+
    $('#data-area div.panel-default').css('height', scrollAreaHeight);
    viewConfig.scrollAreaHeight = scrollAreaHeight;
    //console.log('viewConfig.qtyTotal: ' + viewConfig.qtyTotal + '  scrollAreaHeight: ' + scrollAreaHeight); // 57240
@@ -1369,7 +1369,7 @@ function openCustomWindow(sUrl, sType, sUNID, optView, sQS, inTab) {
    }
    //sUrl += '&exitfunction=refreshEntry';
    //  ska inte behövas. kan i close() anropa window.opener.refreshEntry(unid)
-   //  - fknen får finnas både i interface/viewHandler.js samt i viewHandler.js så att initialt read-mode samt efter ändringar är hanterat
+   //  - fknen får finnas både i interface/api.js samt i viewHandler.js så att initialt read-mode samt efter ändringar är hanterat
 
    var sTitle = '';
    var sFeatures = '';
@@ -1418,10 +1418,7 @@ function initViewConfiguration(paramContainerId, paramConfigName) {
    viewConfig.configName = paramConfigName;
    //console.log('initViewConfiguration containerId: ' + viewConfig.containerId + '  configName: ' + viewConfig.configName);
 
-   var pause = parent.frameWasCreated(viewConfig);
-
    if (viewConfig.useOuterScroll !== true) {    // inner scroll
-      //console.log("USE inner scroll...");
       $('#filter-area').addClass('innerScroll');
       $('#overlay').addClass('innerScroll');
       $('#data-area').addClass('innerScroll');
@@ -1430,6 +1427,8 @@ function initViewConfiguration(paramContainerId, paramConfigName) {
       $('#data-area').css('overflow-y', 'hidden');    // override the hiding of the inner scroll
       $('#data-area').css('overflow-x', 'auto');
    }
+
+   var pause = parent.frameWasCreated(viewConfig); // do this last in the function. calls inside can by sync or async. no more code should be executed here afterwards.
    return pause;
 }
 

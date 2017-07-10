@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Alternative column sorting</title>
+	<meta charset="utf-8" />
+    <script src="../../../Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>Sorting a column on a different value than what's shown. In this example months are sorted chronologically instead of alphabetically.
+        <br />In the cell data the value must be split up with the || separator. <br />
+            <br />Part 1: is visible ('January', 'February' etc)
+            <br />Part 2: not used here
+            <br />Part 3: value to sort on ('01', '02', etc)</div>
+            <br />Example: "startdate": "January||||01"
+        <br /><br />
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-block">
+                        <pre><code>if (configName === 'Example.config') {
+  viewConfig.addDataStore('standard-data.json');
+  viewConfig.addColumns([
+    { title: 'startdate', <strong>altSort: true,</strong> sort: true}
+  ]);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Advanced.AltColumnSort">View the source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+        'use strict';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            createView({ containerId: 'viewhandler', configName: 'Example.config' });
+        });
+
+    </script>
+</body>
+</html>

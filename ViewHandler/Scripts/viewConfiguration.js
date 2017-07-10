@@ -48,7 +48,7 @@ function viewConfiguration() {
 
    this.addBaseColumnConfig = function (cfg) {
       this.baseColumnConfigs.push(cfg);
-      //console.log("added a cfg. current qty: " + this.columnConfigs.length);
+      //console.info("added a base cfg. current qty: " + this.columnConfigs.length, cfg);
       this.lookupBaseColumns[cfg.itemName] = cfg.title;
    }
 
@@ -182,6 +182,16 @@ function viewConfiguration() {
          //console.log('--addDataStore NO category... alias: ' + alias);
          this.dataStores.push({ url: url, alias: alias });
       }
+   }
+
+   // used when adding raw data instead of providing a datasource
+   this.addData = function (data, alias) {
+      //this.data.push(data);
+      alias = $.trim(alias);
+      if (alias === '')
+         alias = TABLE_DEFAULT;     // set default table name when none is provided
+
+      this.dataStores.push({ data: data, alias: alias });
    }
 
    this.addCss = function (css) {

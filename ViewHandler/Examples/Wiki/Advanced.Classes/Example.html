@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Classes column</title>
+	<meta charset="utf-8" />
+    <script src="../../../Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>The data in this column is not shown. Instead its added to the 'class' attribute in the ul-row. It can be used for css-layout.</div>
+        <br />
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+
+            <div class="row">
+                <div class="col-md-6 col-lg-6">
+                    <div class="card card-block">
+                        <span class="codeheader">Configuration</span><pre><code>viewConfig.addCss('Examples/Wiki/Advanced.Classes/Example.css');
+
+viewConfig.addColumns([
+    { title: 'formating', type: COLUMN.CLASSES }
+]);</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="card card-block">
+                        <span class="codeheader">Css</span><pre><code>ul.yellow {
+  background-color: yellow;
+}
+ul.red {
+  background-color: red;
+}
+ul.green {
+  background-color: green;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Advanced.Classes">View the source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+        'use strict';
+        document.addEventListener('DOMContentLoaded', function () {
+            createView({ containerId: 'viewhandler', configName: 'Example.config' });
+        });
+    </script>
+</body>
+</html>

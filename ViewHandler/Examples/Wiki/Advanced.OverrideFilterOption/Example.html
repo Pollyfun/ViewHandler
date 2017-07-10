@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Override dropdown filter options</title>
+    <meta charset="utf-8" />
+    <script src="../../../Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>Overriding the text in dropdown filter options. </div>
+        In this case the season (Winter, Spring, Summer, Autumn) is prefixed before the month
+        <br /><br />
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-block">
+                        <pre><code>viewConfig.addColumns([
+  { title: 'startdate', type: COLUMN.DROPDOWN_MULTIPLE, altFilter: true, width: 150 }
+]);
+
+viewConfig.convertFilterOptionText = function (dropFilter, filterValue, filterText, selected) {
+  var columnInfo = dropFilter.getColumnInfo();
+  var overrideText = filterValue;
+  if (columnInfo.getTitle() === 'startdate') {
+    if (filterValue === '12' || filterValue === '01' || filterValue === '02')
+      return 'Winter: ' + filterText;
+    else if (filterValue === '03' || filterValue === '04' || filterValue === '05')
+      return 'Spring: ' + filterText;
+    else if (filterValue === '06' || filterValue === '07' || filterValue === '08')
+      return 'Summer: ' + filterText;
+    else if (filterValue === '09' || filterValue === '10' || filterValue === '11')
+      return 'Autumn: ' + filterText;
+  }
+};</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Advanced.OverrideFilterOption">Full source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+            'use strict';
+
+            document.addEventListener('DOMContentLoaded', function () {
+                createView({ containerId: 'viewhandler', configName: 'Example.config' });
+            });
+
+    </script>
+</body>
+</html>

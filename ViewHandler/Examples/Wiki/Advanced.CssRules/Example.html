@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Css layout</title>
+	<meta charset="utf-8" />
+    <script src="../../../Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>Applying css-rules to columns, rows or a combination of rows and columns.</div>
+        <br />
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-block">
+                        <span class="codeheader">Configuration</span><pre><code>viewConfig.addCss('Examples/Wiki/Advanced.CssRules/Example.css');
+viewConfig.addColumns([
+  { title: 'formating', type: COLUMN.CLASSES }
+]);</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="card card-block">
+                        <span class="codeheader">Css</span><pre><code>ul:not(.selected) li[column="name"] {
+  background-color: blanchedalmond;
+}
+ul.green:not(:hover):not(.selected) li[column="country"] {
+  background-color: darkgrey;
+}
+ul.red li[column="duration"] {
+  font-weight: bold;
+}
+ul.yellow:not(:hover):not(.selected) li[column="duration"] {
+  font-style: italic;
+  background-color: yellow;
+}
+ul:not(:hover):not(.selected) li[column="startdate"] {
+  background-color: red;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Advanced.CssRules">View the source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div id="viewhandler"></div>
+
+    <script>
+        'use strict';
+        document.addEventListener('DOMContentLoaded', function () {
+            createView({ containerId: 'viewhandler', configName: 'Example.config' });
+        });
+    </script>
+</body>
+</html>

@@ -1,12 +1,12 @@
 'use strict';
 // https://www.ibm.com/developerworks/lotus/library/ls-Domino_URL_cheat_sheet/
 
-// dynamically include columnInfo.js and interface/viewHandler.js
+// dynamically include columnInfo.js and interface/api.js
 var scripts = document.getElementsByTagName('script');	// get all scripts
 var fullPath = scripts[scripts.length - 1].src;				// extract the path of this file
 var newPath = fullPath.replace('interface/domino.js', 'columnInfoVH.js');
 document.write('<script src="' + newPath + '"></script>');
-newPath = fullPath.replace('interface/domino.js', 'interface/viewHandler.js');
+newPath = fullPath.replace('interface/domino.js', 'interface/api.js');
 document.write('<script src="' + newPath + '"></script>');
 
 var gServerDomain = '';  // needed when localhost to retrieve server data
@@ -227,6 +227,8 @@ function configureDatastore(viewConfig, dataStoreIndex, searchCriteria) {
 
 
 function retrieveData(data, optionalInfo, viewConfig) {
+   //console.info('domino.js retrieveData() data: ', data, optionalInfo, viewConfig);
+
    var callAgain = false;
    if (data == null) {
       // calling sequence not started yet.

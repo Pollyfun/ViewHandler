@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Reset button for dropdown filters</title>
+	<meta charset="utf-8" />
+    <script src="../../../Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="viewHandlerCustom.js"></script>
+    <script src="../../../Scripts/interface/local.js"></script>
+    <link href="../Container.css" rel="stylesheet" />
+    <link href="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../../Scripts/External/bootstrap/3.3.7/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="summary">
+        <h4>Demonstrates</h4>
+        <div>Reset button for dropdown filters. Reset is done by calling ViewHandler.resetFilter().</div>
+        <br />
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show code
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-block">
+                        <span class="codeheader">HTML</span><pre><code>&lt;button type="button" class="btn btn-default grouped" onclick="ViewHandler.resetFilter();"&gt;
+  &lt;i class="glyphicon glyphicon-flash"&gt;&lt;/i&gt;
+  &lt;span&gt;Reset filter&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-block">
+                        <span class="codeheader">Configuration</span><pre><code>viewConfig.addColumns([
+  { title: 'country', type: COLUMN.DROPDOWN_MULTIPLE },
+  { title: 'formating', type: COLUMN.DROPDOWN }
+]);</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &nbsp;<a href="https://github.com/Pollyfun/ViewHandler/tree/master/ViewHandler/Examples/Wiki/Dropdown.ResetButton">View the source for this example on Github</a>
+    </div>
+    <!-- The container for spinner -->
+    <div id="loading_image"></div>
+    <div class="buttoncontainer">
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default grouped" onclick="ViewHandler.resetFilter();">
+                <i class="glyphicon glyphicon-flash"></i>
+                <span>Reset filter</span>
+            </button>
+        </div>
+    </div>
+    <div id="viewhandler"></div>
+
+    <script>
+        'use strict';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            createView({ containerId: 'viewhandler', configName: 'Example.config' });
+        });
+
+    </script>
+</body>
+</html>

@@ -78,12 +78,6 @@ body {
 	padding-left: 2px;	/* ev flytta */
 }
 
-#main-area div.totalsPanel {
-	/* these margins are hardcoded. but needed to make the totalspanel align with columns */
-	margin-left: 38px;
-	margin-right: 20px;
-}
-
 /*-------------------------- Filter panel ----------------------------------------------------------------------------------*/
 /* contains the dropdown filters and sort arrows */
 #filter-area ul  {
@@ -271,11 +265,11 @@ FCFCED      252  252  237
 }
 
 #data-content ul.normal:hover {
-	background-color: #f9eacb;
+	background-color: #f9eacb !important;
 }
 
 #data-content ul.normal.selected {
-	background-color: #d8fca1;
+	background-color: #d8fca1 !important;
 }
 
 #data-content ul li {
