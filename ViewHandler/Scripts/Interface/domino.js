@@ -1,12 +1,12 @@
 'use strict';
 // https://www.ibm.com/developerworks/lotus/library/ls-Domino_URL_cheat_sheet/
 
-// dynamically include columnInfo.js and interface/api.js
+// dynamically include columnInfo.js and Interface/api.js
 var scripts = document.getElementsByTagName('script');	// get all scripts
 var fullPath = scripts[scripts.length - 1].src;				// extract the path of this file
-var newPath = fullPath.replace('interface/domino.js', 'columnInfoVH.js');
+var newPath = fullPath.replace('Interface/domino.js', 'columnInfoVH.js');
 document.write('<script src="' + newPath + '"></script>');
-newPath = fullPath.replace('interface/domino.js', 'interface/api.js');
+newPath = fullPath.replace('Interface/domino.js', 'Interface/api.js');
 document.write('<script src="' + newPath + '"></script>');
 
 var gServerDomain = '';  // needed when localhost to retrieve server data

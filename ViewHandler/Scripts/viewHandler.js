@@ -1369,7 +1369,7 @@ function openCustomWindow(sUrl, sType, sUNID, optView, sQS, inTab) {
    }
    //sUrl += '&exitfunction=refreshEntry';
    //  ska inte behövas. kan i close() anropa window.opener.refreshEntry(unid)
-   //  - fknen får finnas både i interface/api.js samt i viewHandler.js så att initialt read-mode samt efter ändringar är hanterat
+   //  - fknen får finnas både i Interface/api.js samt i viewHandler.js så att initialt read-mode samt efter ändringar är hanterat
 
    var sTitle = '';
    var sFeatures = '';
