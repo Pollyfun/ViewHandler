@@ -167,7 +167,6 @@
     <Content Include="Scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.css.map" />
     <Content Include="Scripts\External\bootstrap-select\2.0.0-beta1\bootstrap-select.js.map" />
     <Content Include="Scripts\External\bootstrap\3.3.7\bootstrap.min.css.map" />
-    <Content Include="Examples\Wiki\psk-data.json" />
     <Content Include="Examples\Wiki\Basic.NumericSort\standard-data.json" />
     <Content Include="Examples\Wiki\Basic.DescendingSort\standard-data.json" />
     <Content Include="Examples\Wiki\Basic.ColumnWidth\standard-data.json" />
