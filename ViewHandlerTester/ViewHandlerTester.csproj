@@ -89,7 +89,7 @@
     <Content Include="Scripts\remains.js" />
     <Content Include="Scripts\tests.js" />
     <Content Include="TestResults-Local.html" />
-    <Content Include="TestResults.html" />
+    <Content Include="TestResults-Online.html" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Web.config" />
   </ItemGroup>
