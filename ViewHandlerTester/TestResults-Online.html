@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Online testing</title>
+    <link rel="stylesheet" type="text/css" href="./Content/qunit.css" />
+</head>
+<body>
+    <h1 id="qunit-header">QUnit example</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+
+    <!-- You should add all the relevant logic of your application to your unit testing file so they all execute before you run your tests -->
+    <script src="./Scripts/qunit.js"></script>
+
+    <script src="./../ViewHandler/Scripts/External/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./../ViewHandler/Scripts/supportFunctions.js"></script>
+    <script src="./../ViewHandler/Scripts/columnInfoVH.js"></script>
+    <script src="./../ViewHandler/Scripts/dropFilterVH.js"></script>
+
+    <script src="./Scripts/tests.js"></script>
+</body>
+</html>
