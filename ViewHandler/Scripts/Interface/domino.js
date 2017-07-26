@@ -178,7 +178,7 @@ function configureDatastore(viewConfig, dataStoreIndex, searchCriteria) {
 
    var optionalInfo = new Object();
    optionalInfo.dataStoreIndex = dataStoreIndex;
-   optionalInfo.categorizedJson = false;   // TODO: ev skapa en klass med förifyllda default-värden
+   optionalInfo.categorizedJson = false;   // @todo: ev skapa en klass med förifyllda default-värden
    optionalInfo.firstDatablock = true;
    optionalInfo.nextIndex = 1;						// first is 1 not 0
    optionalInfo.qtyRowsPerCall = 3000;	  	// qty of rows retrieved with each server call. note that 3000 is the maximum that domino views will return at a time
@@ -249,7 +249,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
          }
       }
 
-      var highestPos = -1;			// pos 1.1 etc in categorized views    // TODO: move out this logic to normalize-functions
+      var highestPos = -1;			// pos 1.1 etc in categorized views    // @todo: move out this logic to normalize-functions
       if (data) {   // undefined if there were no hits
          //console.log('_data.length: ' + data.length);
 
@@ -287,7 +287,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
          }
       }
 
-      if (optionalInfo.firstDatablock) {        // TODO: behövs?
+      if (optionalInfo.firstDatablock) {        // @todo: behövs?
          optionalInfo.firstDatablock = false;
       }
 
@@ -305,7 +305,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
          }
          else {		// flat json
             //console.log('two..');
-            //if (parseInt(highestPos, 10) < parseInt(data['@toplevelentries']), 10)		// TODO: ersätt?
+            //if (parseInt(highestPos, 10) < parseInt(data['@toplevelentries']), 10)		// @todo: ersätt?
             callAgain = true;
             //console.log('SETTING callAgain true (2)');
             optionalInfo.nextIndex = optionalInfo.nextIndex + optionalInfo.qtyRowsPerCall;
@@ -330,7 +330,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
 
       if (optionalInfo.searchCriteria !== '') {
          //uri += '&search=' + encodeURIComponent(optionalInfo.searchCriteria);
-         // TODO: use frontend-search
+         // @todo: use frontend-search
       }
       //else {
          uri += '&start=' + optionalInfo.nextIndex;

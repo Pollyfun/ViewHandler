@@ -37,7 +37,7 @@ var ViewHandler = function () {
       }
       return _windows[containerId];
 
-      // TODO: ev använd iframe.contentWindow   https://developer.mozilla.org/en-US/docs/Inner_and_outer_windows#Nested_windows
+      // @todo: ev använd iframe.contentWindow   https://developer.mozilla.org/en-US/docs/Inner_and_outer_windows#Nested_windows
       // The <iframe> element offers the contentWindow property, which gives you the outer window Window object containing the frame's document.
    }
 
@@ -322,7 +322,7 @@ var ViewHandler = function () {
    // /ViewHandler.html                                        - html-file in local dir
    // /psk/ViewHandler.nsf/ViewHandler.html?OpenFileResource   - html-file is inside a domino .nsf file
    function createView(containerId, configName, viewHandlerPath, callback) { // containerId first. mandatory here.
-      // TODO: callback mandatory..?
+      // @todo: callback mandatory..?
       callbacks[containerId] = callback;
       //console.log('createView....containerId: ' + containerId + '  configName: ' + configName + '  viewHandlerPath: ' + viewHandlerPath);
 
@@ -332,7 +332,7 @@ var ViewHandler = function () {
 
       $('#' + containerId).empty();
       // create iframe for the viewhandler
-      // TODO: autofix width. width also in css, but the header becomes visible too early (wrong width) without width here
+      // @todo: autofix width. width also in css, but the header becomes visible too early (wrong width) without width here
       // seems width and height has to be here to be correct immediately
       $('#' + containerId).append('<iframe style="width: 800px;height:400px;" frameborder="0"></iframe>');
       

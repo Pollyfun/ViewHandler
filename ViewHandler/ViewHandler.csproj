@@ -126,8 +126,8 @@
     <Content Include="Examples\Wiki\Advanced.AltValue\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Advanced.OverrideFilterOption\Example.html" />
     <Content Include="Examples\Wiki\Advanced.OverrideFilterOption\viewHandlerCustom.js" />
-    <Content Include="Examples\Wiki\Advanced.LazyLoading\Example.html" />
-    <Content Include="Examples\Wiki\Advanced.LazyLoading\viewHandlerCustom.js" />
+    <Content Include="Examples\Wiki\Advanced.VirtualRendering\Example.html" />
+    <Content Include="Examples\Wiki\Advanced.VirtualRendering\viewHandlerCustom.js" />
     <Content Include="Examples\Wiki\Demo\Example.css" />
     <Content Include="Examples\Wiki\Demo\Example.html" />
     <Content Include="Examples\Wiki\Demo\viewHandlerCustom.js" />
@@ -185,7 +185,7 @@
     <Content Include="Examples\Wiki\Advanced.OverrideDisplayValue\standard-data.json" />
     <Content Include="Examples\Wiki\Advanced.AltValue\standard-data.json" />
     <Content Include="Examples\Wiki\Advanced.OverrideFilterOption\standard-data.json" />
-    <Content Include="Examples\Wiki\Advanced.LazyLoading\standard-data.json" />
+    <Content Include="Examples\Wiki\Advanced.VirtualRendering\standard-data.json" />
     <Content Include="Examples\Wiki\Demo\standard-data.json" />
     <Content Include="Examples\Wiki\SQL.Preprocessing\standard-data.json" />
     <Content Include="Examples\Wiki\SQL.TwoDatasources\standard-data.json" />

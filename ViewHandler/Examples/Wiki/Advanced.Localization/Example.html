@@ -13,8 +13,8 @@
 <body>
     <div class="summary">
         <h4>Demonstrates</h4>
-        <div>Translating column titles. A translateWord() function has to exist in viewHandlerCustom.js.
-        It receives a lngkey and returns the translation to be used.</div>
+        <div>Translating column titles. A translateWord callback function is used.
+        It receives a lngkey and returns the translation.</div>
         <br />
         <p>
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -26,8 +26,7 @@
                 <div class="col-md-6">
                     <div class="card card-block">
                         <pre><code>function configureView(viewConfig) {
-  var configName = viewConfig.configName;
-  if (configName === 'Example.config') {
+  if (viewConfig.configName === 'Example.config') {
     viewConfig.addDataStore('standard-data.json');
     viewConfig.addColumns([
       { title: 'name', lngkey: 'name' },
@@ -36,6 +35,7 @@
       { title: 'formating', lngkey: 'formating' },
       { title: 'startdate', lngkey: 'startdate' }
     ]);
+    viewConfig.translateWord = translateWord;
   }
 }
 

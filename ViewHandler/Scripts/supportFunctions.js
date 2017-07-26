@@ -9,7 +9,7 @@ function replaceAll(string, find, replace) {
    return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 }
 
-function trimAll(str) {    // NOTE: also trims..  todo: fix
+function trimAll(str) {    // NOTE: also trims..  @todo: fix
    if (typeof str === 'undefined' || str === null) {
       return '';
    }

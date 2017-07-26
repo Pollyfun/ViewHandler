@@ -1,9 +1,7 @@
 ﻿'use strict';
 
 function configureView(viewConfig) {
-   var configName = viewConfig.configName;
-
-   if (configName === 'Example.config') {
+   if (viewConfig.configName === 'Example.config') {
       viewConfig.addDataStore('/demos/xpages.nsf/xsp Core Controls view'); // path + name/alias of a Domino view
 
       viewConfig.addColumns([

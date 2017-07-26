@@ -28,8 +28,7 @@
                     <div class="card card-block">
                         <pre><code>Only addDataStore() is required. The rest of the configuration is here to present some controls to interact with.
 function configureView(viewConfig) {
-  var configName = viewConfig.configName;
-  if (configName === 'Example.config') {
+  if (viewConfig.configName === 'Example.config') {
     <strong>viewConfig.addDataStore('/demos/xpages.nsf/xsp Core Controls view');</strong> // path + name/alias of a Domino view
     viewConfig.addColumns([
       { title: ' ', type: COLUMN.HIDDEN },

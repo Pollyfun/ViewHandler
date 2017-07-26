@@ -27,17 +27,16 @@
                 <div class="col-md-6">
                     <div class="card card-block">
                         <span class="codeheader">Configuration</span><pre><code>function configureView(viewConfig) {
-  var configName = viewConfig.configName;
-  if (configName === 'Example.config') {
+  if (viewConfig.configName === 'Example.config') {
     viewConfig.addDataStore('standard-data.json');
     viewConfig.addCss('Examples/Wiki/Demo/Example.css');
     viewConfig.addColumns([
       { title: 'name', lngkey: 'name' },
       { title: 'country', type: COLUMN.DROPDOWN_MULTIPLE, lngkey: 'country', width: 150 },
-      { title: 'color', type: COLUMN.DROPDOWN, lngkey: 'color' },
+      { title: 'color', type: COLUMN.DROPDOWN, lngkey: 'color', search: true },
       { title: 'duration', numSort: true, totals: true, lngkey: 'duration' },
       { title: 'startdate', type: COLUMN.DROPDOWN_MULTIPLE, altSort: true, altFilter: true, lngkey: 'startdate', width: 150 },
-      { title: 'company', type: COLUMN.DROPDOWN, lngkey: 'company', width: 200 },
+      { title: 'company', type: COLUMN.DROPDOWN, lngkey: 'company', width: 200, search: true },
       { title: 'email', lngkey: 'email', width: 230 },
       { title: 'classes', type: COLUMN.CLASSES },
     ]);

@@ -20,7 +20,7 @@ var PREFIX_SORT_ARROW = 'sortArrow';
 // itemName	     = column design (Programmatic Use: Name). Used to match Design and Data.
 function columnConfig(arguments) {
    // base attributes
-	this.itemName = '';     // required by domino
+	this.itemName = '';     // deprecated (previously required by domino.js)
 	this.title = '';
 	this.lngkey = '';
 	this.width = -1;
@@ -139,9 +139,8 @@ function columnInfo(cfg) {		// accepts a columnConfig() instance for input
 
 	// translate once
 	var _label = '';
-	if (cfg.lngkey !== '' && typeof parent.translateWord !== 'undefined')
-	   _label = parent.translateWord(cfg.lngkey);
-	//console.log('_label is: ' + _label);
+	if (cfg.lngkey !== '' && typeof viewConfig !== 'undefined' && viewConfig.translateWord !== null)       // @todo: remove dependency
+	   _label = viewConfig.translateWord (cfg.lngkey);
 
 	this.getTitle = function() {			// column view title
 		return _title;
@@ -149,12 +148,12 @@ function columnInfo(cfg) {		// accepts a columnConfig() instance for input
 	this.getDataKey = function() {
 		return _dataKey;
 	}
-	this.getLabel = function() {
+	this.getLabel = function () {
+	   if (_label !== '')
+	      return _label;	// localized text
 		// if the title starts with ( it should be hidden
 		if (_title.substr(0,1) === '(')
 			return '';
-		if (_label !== '')
-			return _label;	// localized text
 		return _title;		// no localization, use title
 	}
 	this.getWidth = function () {

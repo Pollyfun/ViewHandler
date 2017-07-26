@@ -1,9 +1,7 @@
 ﻿'use strict';
 
 function configureView(viewConfig) {
-   var configName = viewConfig.configName;
-
-   if (configName === 'Example.config') {
+   if (viewConfig.configName === 'Example.config') {
       viewConfig.addDataStore('standard-data.json');
 
       viewConfig.addColumns([
@@ -13,6 +11,7 @@ function configureView(viewConfig) {
           { title: 'formating', lngkey: 'formating' },
           { title: 'startdate', lngkey: 'startdate' }
       ]);
+      viewConfig.translateWord = translateWord;
    }
 }
 

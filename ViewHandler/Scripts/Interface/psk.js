@@ -218,10 +218,10 @@ function configureDatastore(viewConfig, dataStoreIndex, searchCriteria) {
 
    var optionalInfo = new Object();
    optionalInfo.dataStoreIndex = dataStoreIndex;
-   optionalInfo.categorizedJson = false;   // TODO: ev skapa en klass med förifyllda default-värden
+   optionalInfo.categorizedJson = false;   // @todo: ev skapa en klass med förifyllda default-värden
    optionalInfo.firstDatablock = true;
    optionalInfo.nextIndex = 1;						// first is 1 not 0
-   optionalInfo.qtyRowsPerCall = 500000;	  	// qty of rows retrieved with each server call        TODO: not really used here in psk.js. remove?
+   optionalInfo.qtyRowsPerCall = 500000;	  	// qty of rows retrieved with each server call        @todo: not really used here in psk.js. remove?
    optionalInfo.uri = viewConfig.dataStores[dataStoreIndex].url;
    optionalInfo.qtyDOMRows = 0;
    optionalInfo.searchCriteria = ''
@@ -290,7 +290,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
          }
       }
 
-      var highestPos = -1;			// pos 1.1 etc in categorized views    // TODO: move out this logic to normalize-functions
+      var highestPos = -1;			// pos 1.1 etc in categorized views    // @todo: move out this logic to normalize-functions
       if (data) {   // undefined if there were no hits
          //console.log('_data.length: ' + data.length, data);
 
@@ -326,7 +326,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
             //console.log('LAST BATCH. QUITTING  ' + optionalInfo.qtyRowsPerCall);
          }
       }
-      if (optionalInfo.firstDatablock) {        // TODO: behövs?
+      if (optionalInfo.firstDatablock) {        // @todo: behövs?
          optionalInfo.firstDatablock = false;
       }
 
@@ -344,7 +344,7 @@ function retrieveData(data, optionalInfo, viewConfig) {
          }
          else {		// flat json
             //console.log('two..');
-            //if (parseInt(highestPos, 10) < parseInt(data['@toplevelentries']), 10)		// TODO: ersätt?
+            //if (parseInt(highestPos, 10) < parseInt(data['@toplevelentries']), 10)		// @todo: ersätt?
             callAgain = true;
             console.log('SETTING callAgain true (2)');
             optionalInfo.nextIndex = optionalInfo.nextIndex + optionalInfo.qtyRowsPerCall;

@@ -1,9 +1,7 @@
 ﻿'use strict';
 
 function configureView(viewConfig) {
-   var configName = viewConfig.configName;
-
-   if (configName === 'Example.config') {
+   if (viewConfig.configName === 'Example.config') {
       viewConfig.addDataStore('standard-data.json');  // gets the default table name 'data'
       viewConfig.addDataStore('country-data.json', null, 'country'); // 'country' is table name
 

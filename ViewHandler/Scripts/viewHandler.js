@@ -19,6 +19,7 @@ var windowMinY = Infinity;
 var windowMaxY = -1;
 var BUFFER_HEIGHT = 20 * STANDARD_ROW_HEIGHT;            // render these before and after the center render area
 var WINDOW_HEIGHT = 20 * STANDARD_ROW_HEIGHT;
+var DEFAULT_COLUMN_WIDTH = 100;
 
 var spinner;
 var viewConfig;
@@ -26,7 +27,7 @@ var columnInfos = [];
 var sortColumnIndex = -1;
 var sortAscending = true;
 
-var bodyWidth = '100%';	// todo: probably can replace this (used when innerScroll=true)
+var bodyWidth = '100%';	// @todo: probably can replace this (used when innerScroll=true)
 //var fullWidth = 1000;
 var ulWidth = '100%';
 
@@ -58,7 +59,7 @@ $(function () {
    $(window).on('filtercontentwasupdated', function (e) {
       handleFilterOptions(e.excludeDropFilter);                     // first way to pass parameter
    });
-   $(window).on('filterupdate_start', function (e, dropdown) {      // second way to pass parameter. TODO: choose best one
+   $(window).on('filterupdate_start', function (e, dropdown) {      // second way to pass parameter. @todo: choose best one
       handleFilterUpdateStart(dropdown);
    });
    $(window).on('filterupdate_end', function (e, dropdown) {
@@ -67,7 +68,6 @@ $(function () {
    });
    addEventListeners();
 
-   overrideTranslation();
    createLocalFilterTable(); // före addFilter
    var pauseForAsync = initViewConfiguration(paramContainerId, paramConfigName);	// creates the viewConfig. important to do this before the viewConfig is referenced
 
@@ -79,6 +79,7 @@ $(function () {
 
 function finalizeConfiguration() {
    //console.log('finalizeConfiguration------------------------------------');
+   overrideTranslation();  // uses translation method in viewConfig
    preprocessViewConfiguration();      // add .css files
 
    if (viewConfig.dataStores.length === 0) {
@@ -124,11 +125,18 @@ function hasUrlParameter(name, url) {
 
 // not perfect to override 'constants', but without a real language module this'll have to do
 function overrideTranslation() {
-   if (typeof parent.translateWord !== 'undefined') {
-      TEXT_STATUS_DROPDOWN_OPTION_UNSELECT = '(' + parent.translateWord('unselect') + ')';	// for single-select
-      TEXT_ALL = parent.translateWord('all');	               // for multi-select
-      TEXT_NONE = parent.translateWord('none');	               // for multi-select
+   if (viewConfig.translateWord !== null) {
+      TEXT_STATUS_DROPDOWN_OPTION_UNSELECT = translateIfDefined(TEXT_STATUS_DROPDOWN_OPTION_UNSELECT, 'unselect');   // for single-select
+      TEXT_ALL = translateIfDefined(TEXT_ALL, 'all');       // for multi-select
+      TEXT_NONE = translateIfDefined(TEXT_NONE, 'none');    // for multi-select
    }
+}
+
+function translateIfDefined(defaultValue, lngkey) {
+   var word = viewConfig.translateWord(lngkey);
+   if (word !== '((' + lngkey + '))')
+      return word;
+   return defaultValue;
 }
 
 function createLocalFilterTable() {		// merge to createLocalDatabase - addFilter() funkar inte nu om inte denna skapas först
@@ -144,7 +152,7 @@ function createLocalDatabase() {
 
    alasql.fn.EXTRACT_NUMERIC = function (value) {
       // ex: 13s --> 13, 1a --> 1
-      // TODO: just extract the initial numbers, not all numbers
+      // @todo: just extract the initial numbers, not all numbers
       if (typeof value === 'undefined')
          return value;
       //var before = value;
@@ -232,7 +240,7 @@ function extractBaseColumnsFromData() {
    //console.dir(globalData);
    if (globalData[0].length === 0) {
       console.log('<ERROR>No data. Cannot extract columns...');
-      return; // TODO: real exit
+      return; // @todo: real exit
    }
    var document = globalData[0][0];
    //console.dir(document);
@@ -242,7 +250,7 @@ function extractBaseColumnsFromData() {
       if (item.indexOf('@') === 0)
          continue;      // skip @id and @position
 
-      viewConfig.addBaseColumnConfig(new columnConfig({ title: item, itemName: item, type: COLUMN.LABEL, width: 100 }));
+      viewConfig.addBaseColumnConfig(new columnConfig({ title: item, itemName: item, type: COLUMN.LABEL, width: DEFAULT_COLUMN_WIDTH }));
    }
 }
 
@@ -252,8 +260,8 @@ function mergeColumnDesign() {
       extractBaseColumnsFromData(); // fills in viewConfig.baseColumnConfigs
 
    if (viewConfig.baseColumnConfigs.length === 0) {
-      console.log('<ERROR>no base-columns exist.');      // TODO: ev tillåta detta ifall viewConfig.columns.length > 0
-      return; // TODO: real exit
+      console.log('<ERROR>no base-columns exist.');      // @todo: ev tillåta detta ifall viewConfig.columns.length > 0
+      return; // @todo: real exit
    }
 
    var calculatedWidth = 0;
@@ -310,7 +318,7 @@ function createFilterPanel() {
 
          var id = PREFIX_FILTER + tmpColumnInfo.getDataKey();	// connect dropfilter with the 'filter_' attribute on the row
          var sortArrowId = PREFIX_SORT_ARROW + tmpColumnInfo.getDataKey();
-         // TODO check min():
+         // @todo check min():
          var ctrlWidth = tmpColumnInfo.getWidth() - SORT_ARROW_WIDTH - 4;  // 4 is for padding (fixa sen)
          var columnCtrl;
 
@@ -378,7 +386,7 @@ function createFilterPanel() {
       //console.log('padding: ' + padding);
       //console.log('panelWidth: ' + panelWidth + '  padding: ' + padding);  // panelWidth: 06414420812014480128104104888810410412080104  padding: 31
       $('#filter-row').css('width', panelWidth + padding);
-      $('#data-area').css('width', panelWidth + padding + 2 + RIGHTSIDE_PADDING);		// TODO: 2 är baserat på praktisk test som får högerlinjen på filterpanel och data-area att ligga i linje
+      $('#data-area').css('width', panelWidth + padding + 2 + RIGHTSIDE_PADDING);		// @todo: 2 är baserat på praktisk test som får högerlinjen på filterpanel och data-area att ligga i linje
       var topOffset = 10;
       //console.log('topOffset: ' + topOffset + '___' + $('#filter-area').css('top'));
       var $win = $(window);
@@ -398,7 +406,7 @@ function createFilterPanel() {
 
 function refreshInnerScrollPositions() {
    //var topOffset = 10; //parseInt($("#filter-area").css('top'), 10);			// 10		(equals body padding)
-   // TODO: for some annoying reason the width and position:absolute is lost after the top is updated
+   // @todo: for some annoying reason the width and position:absolute is lost after the top is updated
    $('#filter-area.innerScroll').css({
       //'top': $(this).scrollTop() + topOffset,
       //'top': topOffset,
@@ -426,7 +434,7 @@ function getDataStoresLooped(dataStoreIndex, searchCriteria) {   // one time per
 
       var retrieveDataFcn = parent.ViewHandler.getRetrieveDataFunction();
       //console.info('CALLING ', viewConfig);
-      retrieveDataFcn(null, optionalInfo, viewConfig);         // start the retrieval sequence           TODO: viewConfig.containerId is used, not all viewConfig. skicka på annat vis? containerId/optionalInfo.containerId?
+      retrieveDataFcn(null, optionalInfo, viewConfig);         // start the retrieval sequence           @todo: viewConfig.containerId is used, not all viewConfig. skicka på annat vis? containerId/optionalInfo.containerId?
       // when done call: getDataStoresLooped(optionalInfo.dataStoreIndex + 1, optionalInfo.searchCriteria);
    }
    else {   // no more dataStores. continuing
@@ -611,7 +619,7 @@ function resizeInnerScrollFrame() {
    console.log('parent width: ' + parentWidth);
    //$('html').css('width', parentWidth);*/
 
-   /* TODO
+   /* @todo
    this height doesn't work so great when it's an embedded view that's starting after under the viewport.
    example:
    parentHeight: 765          (viewport height)
@@ -628,7 +636,7 @@ function resizeInnerScrollFrame() {
    // the real height (changing window size or showing debug window affects it)
    // note that if a frameset is used, this is the height inside the iframe
    // (for example $$ViewTemplate rather than the global viewport height)
-   var parentHeight = $(parent).height();    // TODO: when Windows GUI is zoomed in (like 125% etc) this number is off..
+   var parentHeight = $(parent).height();    // @todo: when Windows GUI is zoomed in (like 125% etc) this number is off..
    // offset from the beginning of the parent to the beginning of the iframe
    var iframeOffsetY = parent.ViewHandler.getOffsetY(viewConfig.containerId);
    var innerFrameHeight = parentHeight - iframeOffsetY - 20; // -20 is needed to remove the outerscroll from St1 Myndighetsärenden i IE. so just always use it.
@@ -662,14 +670,14 @@ function createDOMRow(viewEntry, rowType, replacing) {
          rowCode += convertDisplayValue(columnInfo, cfgValues, extractUnidFromId(rowUNID));
          //console.log(columnInfo.getTitle() + " cfgValues.filter: " + cfgValues.filter + "---" + columnInfo.getType());
          var title = sanitizeValue(columnInfo.getDataKey());  // sanitize probably not needed here
-         var sortValue = convertSortValue(columnInfo, cfgValues.sort);
+         var sortValue = cfgValues.sort;
          var attrName = PREFIX_SORT + title;
          attributes += ' ' + attrName + '="' + sortValue + '"';
 
          if (columnInfo.getType() === COLUMN.DROPDOWN || columnInfo.getType() === COLUMN.DROPDOWN_MULTIPLE) {
             // create a filter-attribute on each row
             var attrName = PREFIX_FILTER + title;
-            attributes += ' ' + attrName + '="' + convertFilterValue(columnInfo, cfgValues.filterValue) + '"';
+            attributes += ' ' + attrName + '="' + cfgValues.filterValue + '"';
          }
       }
       else if (columnInfo.getType() == COLUMN.CLASSES) {
@@ -679,7 +687,7 @@ function createDOMRow(viewEntry, rowType, replacing) {
       else if (columnInfo.getType() == COLUMN.HIDDEN) {	// sort-attributes are created also for hidden columns. can be used for summary and other things
          var attrName = PREFIX_SORT + sanitizeValue(columnInfo.getDataKey());
          //console.log("   stamping hidden field " + attrName);
-         attributes += ' ' + attrName + '="' + convertSortValue(columnInfo, cfgValues.display) + '"';
+         ttributes += ' ' + attrName + '="' + cfgValues.display + '"';
       }
    }
 
@@ -785,30 +793,6 @@ function extractUnidFromId(id) {
    if (id === '')
       return '';
    return id.substr(id.indexOf('.') + 1);
-}
-
-// default code. this can be overridden to format the sortvalue in any choosen way.
-// the sortvalue is added as a PREFIX_SORT-attribute to the ul-row
-function convertSortValue(columnInfo, value) {
-   var output = viewConfig.convertSortValue(columnInfo, value);
-   if (typeof output !== 'undefined') {
-      return sanitizeSortFilterValue(output);
-   }
-   else {
-      return sanitizeSortFilterValue(value);
-   }
-}
-
-// default code. this can be overridden to format the filtervalue in any choosen way.
-// the filtervalue is added as a PREFIX_FILTER-attribute to the ul-row
-function convertFilterValue(columnInfo, filterValue) {
-   var output = viewConfig.convertFilterValue(columnInfo, filterValue);
-   if (typeof output !== 'undefined') {
-      return sanitizeSortFilterValue(output);
-   }
-   else {
-      return sanitizeSortFilterValue(filterValue);
-   }
 }
 
 
@@ -1238,7 +1222,7 @@ function hideSpinner() {
 // it's called afterwards to refresh the current view
 //function refreshWindow(unid) {
 function refreshEntry(unid) {
-   console.log('TODO: refreshEntry unid: ' + unid + '. Exiting.');
+   console.log('@todo: refreshEntry unid: ' + unid + '. Exiting.');
    // metaId (replicaId.unid)
 
    unid = $.trim(unid);
@@ -1352,7 +1336,7 @@ function openCustomWindow(sUrl, sType, sUNID, optView, sQS, inTab) {
       var view = $.trim(optView);
       view = view === '' ? '0' : view;
       var url = viewConfig.getSourceDbUrl(0);					// db: /kund/psk/xagents.nsf/view.xsp/entries?uri=/kund/statoil/stbygg.nsf
-      // extract only the actual path to the view		// TODO: this is psk-specific code. move it out.
+      // extract only the actual path to the view		// @todo: this is psk-specific code. move it out.
       //console.log('db: ' + url);
       //var view = viewConfig.dataStores[storeIndex].url.split(',')[0];
       //return view.substring(0, view.lastIndexOf('?uri='));
@@ -1386,7 +1370,7 @@ function openCustomWindow(sUrl, sType, sUNID, optView, sQS, inTab) {
 		sFeatures+=', top=25, left=200, width=750, height=850';
 	}*/
    var w = window.open(sUrl, sTitle, sFeatures, false);
-   //w.sourceFrameId = viewConfig.frameId;	// TODO: not functional yet. must be used in the target form. ev skicka vanlig parameter istället ovan.
+   //w.sourceFrameId = viewConfig.frameId;	// @todo: not functional yet. must be used in the target form. ev skicka vanlig parameter istället ovan.
    //alert("source: " + w.sourceFrameId);
    w.focus();
 }
@@ -1815,7 +1799,7 @@ function generateDOM(forceRefresh, scrolling) {
       //console.log('windowMinY ' + windowMinY + '  windowMaxY ' + windowMaxY);             // ie: -480 480
       //console.log('renderLowerY ' + renderLowerY + '  renderHigherY ' + renderHigherY);   // ie:    0 960
       //console.log('viewPortHeight ' + viewPortHeight);
-      // todo: cleara domen
+      // @todo: cleara domen
       // loopa records (använd .where)
       // räkna ackumulerade height tills att det är innanför
       // sätt div-filler höjden
@@ -1840,6 +1824,7 @@ function generateDOM(forceRefresh, scrolling) {
       sql += viewConfig.orderBy;   // should always be filled in
       var resultArray = alasql('SELECT ' + sql);// + ' LIMIT 100');// OFFSET ' + offset);
       //console.log('generateDOM sql: ' + sql, resultArray);
+      //console.info('where: ' + viewConfig.where + '  orderBy: ' + viewConfig.orderBy);
       var hasTotalsRow = false;
       var qtyLooped = 0;
       var qtyCreated = 0;
@@ -1864,7 +1849,7 @@ function generateDOM(forceRefresh, scrolling) {
                hasTotalsRow = true;
             }
          }
-         totalYPos += STANDARD_ROW_HEIGHT;      // todo: läs från column height-value istället
+         totalYPos += STANDARD_ROW_HEIGHT;      // @todo: läs från column height-value istället
          qtyLooped++;
       }
       //console.log(codeDOM);
@@ -1913,7 +1898,7 @@ function generateDOM(forceRefresh, scrolling) {
       if (hasTotalsRow) {
          fillInTotalsRowCells();
       }
-      parent.ViewHandler.resizeIframe(false, viewConfig);      // TODO: antagligen onödig. görs inuti resetFilter()
+      parent.ViewHandler.resizeIframe(false, viewConfig);      // @todo: antagligen onödig. görs inuti resetFilter()
       hideSpinner();
    }
    else {

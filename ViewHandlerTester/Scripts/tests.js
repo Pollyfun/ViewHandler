@@ -336,7 +336,7 @@ test("trimAll", 4, function () {
 
 test("replaceAll", 2, function () {
    deepEqual(replaceAll('bra strängar här!', 'a', 'A'), 'brA strängAr här!');
-   deepEqual(replaceAll('bra strängar här! ', 'ä', 'Ä'), 'bra strÄngar hÄr!');   // TODO: inte trimma
+   deepEqual(replaceAll('bra strängar här! ', 'ä', 'Ä'), 'bra strÄngar hÄr!');   // @todo: inte trimma
 });
 
 test("sanitizeValue", 2, function () {

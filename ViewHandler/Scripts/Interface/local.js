@@ -47,7 +47,7 @@ function configureDatastore(viewConfig, dataStoreIndex, searchCriteria) {
 
    var optionalInfo = new Object();
    optionalInfo.dataStoreIndex = dataStoreIndex;
-   optionalInfo.categorizedJson = false;   // TODO: ev skapa en klass med förifyllda default-värden
+   optionalInfo.categorizedJson = false;   // @todo: ev skapa en klass med förifyllda default-värden
    optionalInfo.firstDatablock = true;
    optionalInfo.uri = viewConfig.dataStores[dataStoreIndex].url;
    optionalInfo.qtyDOMRows = 0;

@@ -1,9 +1,7 @@
 ﻿'use strict';
 
 function configureView(viewConfig) {
-   var configName = viewConfig.configName;
-
-   if (configName === 'Example.config') {
+   if (viewConfig.configName === 'Example.config') {
       var category = $('#selectCategory').val();
       viewConfig.addDataStore('/demos/xpages.nsf/AuthorView', category);
 

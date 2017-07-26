@@ -510,7 +510,7 @@ function fillInDropDowns(excludeDropFilter) {     // TEMP name
                // when Filter_ column is used, match substrings instead of the full value
                //viewConfig.where += '[' + dropFilter.getColumnInfo().getFilterFieldName() + '] LIKE "%<' + arrFilterValues[j] + '>%"';
                // the performance hit for LIKE is massive.   (Område takes 6 seconds when filtering on Lev datum). Has to solve substring matching in another way.
-               // Todo: handle many-to-many
+               // @todo: handle many-to-many
                // loopa igenom så många [] som den djupaste cellen är
                // 
                if (highest > 0)
