@@ -687,7 +687,7 @@ function createDOMRow(viewEntry, rowType, replacing) {
       else if (columnInfo.getType() == COLUMN.HIDDEN) {	// sort-attributes are created also for hidden columns. can be used for summary and other things
          var attrName = PREFIX_SORT + sanitizeValue(columnInfo.getDataKey());
          //console.log("   stamping hidden field " + attrName);
-         ttributes += ' ' + attrName + '="' + cfgValues.display + '"';
+         attributes += ' ' + attrName + '="' + cfgValues.display + '"';
       }
    }
 
