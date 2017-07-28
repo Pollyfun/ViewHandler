@@ -1,0 +1,12 @@
+ViewHandler
+Copyright 2017 Joakim Långberg
+
+Licensed under Apache
+
+Dependencies
+
+* [jQuery](https://github.com/jquery/jquery)
+* [Bootstrap](https://github.com/twbs/bootstrap)
+* [Bootstrap-select](https://github.com/silviomoreto/bootstrap-select)
+* [AlaSQL](https://github.com/agershun/alasql)
+* [es5-shim](https://github.com/es-shims/es5-shim)
